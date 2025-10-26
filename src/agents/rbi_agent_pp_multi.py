@@ -56,7 +56,8 @@ import sys
 import argparse  # 🌙 Moon Dev: For command-line args
 from dotenv import load_dotenv
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from threading import Lock, Semaphore
+from threading import Lock, Semaphore, Thread
+from queue import Queue
 
 # Load environment variables FIRST
 load_dotenv()
@@ -1331,8 +1332,95 @@ def process_trading_idea_parallel(idea: str, thread_id: int) -> dict:
         thread_print(f"❌ FATAL ERROR: {str(e)}", thread_id, "red", attrs=['bold'])
         return {"success": False, "error": str(e), "thread_id": thread_id}
 
+def idea_monitor_thread(idea_queue: Queue, queued_ideas: set, queued_lock: Lock, stop_flag: dict):
+    """🌙 Moon Dev: Producer thread - continuously monitors ideas.txt and queues new ideas"""
+    global IDEAS_FILE
+
+    while not stop_flag.get('stop', False):
+        try:
+            if not IDEAS_FILE.exists():
+                time.sleep(1)
+                continue
+
+            with open(IDEAS_FILE, 'r') as f:
+                ideas = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+
+            # Find new unprocessed ideas
+            for idea in ideas:
+                idea_hash = get_idea_hash(idea)
+
+                # Check if not processed AND not already queued (thread-safe)
+                with queued_lock:
+                    already_queued = idea_hash in queued_ideas
+
+                if not is_idea_processed(idea) and not already_queued:
+                    idea_queue.put(idea)
+                    with queued_lock:
+                        queued_ideas.add(idea_hash)
+                    with console_lock:
+                        cprint(f"🆕 NEW IDEA QUEUED: {idea[:80]}...", "green", attrs=['bold'])
+
+            time.sleep(1)  # Check every 1 second
+
+        except Exception as e:
+            with console_lock:
+                cprint(f"❌ Monitor thread error: {str(e)}", "red")
+            time.sleep(1)
+
+
+def worker_thread(worker_id: int, idea_queue: Queue, queued_ideas: set, queued_lock: Lock, stats: dict, stop_flag: dict):
+    """🌙 Moon Dev: Consumer thread - processes ideas from queue"""
+    while not stop_flag.get('stop', False):
+        try:
+            # Get idea from queue (timeout 1 second to check stop_flag periodically)
+            try:
+                idea = idea_queue.get(timeout=1)
+            except:
+                continue  # Queue empty, check again
+
+            with console_lock:
+                stats['active'] += 1
+                cprint(f"\n🚀 Thread {worker_id:02d} starting: {idea[:80]}...", "cyan")
+
+            # Process the idea
+            start_time = datetime.now()
+            result = process_trading_idea_parallel(idea, worker_id)
+            total_time = (datetime.now() - start_time).total_seconds()
+
+            # Remove from queued set when done (thread-safe)
+            idea_hash = get_idea_hash(idea)
+            with queued_lock:
+                if idea_hash in queued_ideas:
+                    queued_ideas.remove(idea_hash)
+
+            # Update stats
+            with console_lock:
+                stats['completed'] += 1
+                stats['active'] -= 1
+
+                cprint(f"\n{'='*60}", "green")
+                cprint(f"✅ Thread {worker_id:02d} COMPLETED ({stats['completed']} total) - {total_time:.1f}s", "green", attrs=['bold'])
+                if result.get('success'):
+                    stats['successful'] += 1
+                    if result.get('target_hit'):
+                        stats['targets_hit'] += 1
+                        cprint(f"🎯 TARGET HIT: {result.get('strategy_name')} @ {result.get('return')}%", "green", attrs=['bold'])
+                    else:
+                        cprint(f"📊 Best return: {result.get('return', 'N/A')}%", "yellow")
+                else:
+                    stats['failed'] += 1
+                    cprint(f"❌ Failed: {result.get('error', 'Unknown error')}", "red")
+                cprint(f"{'='*60}\n", "green")
+
+            idea_queue.task_done()
+
+        except Exception as e:
+            with console_lock:
+                cprint(f"\n❌ Worker thread {worker_id:02d} error: {str(e)}", "red", attrs=['bold'])
+
+
 def main(ideas_file_path=None, run_name=None):
-    """Main parallel processing orchestrator with multi-data testing"""
+    """Main parallel processing orchestrator with multi-data testing - CONTINUOUS QUEUE MODE"""
     # 🌙 Moon Dev: Use custom ideas file if provided
     global IDEAS_FILE
     if ideas_file_path:
@@ -1353,9 +1441,9 @@ def main(ideas_file_path=None, run_name=None):
     else:
         cprint("", "white")
 
+    # Create template if needed
     if not IDEAS_FILE.exists():
-        cprint(f"❌ Ideas file not found: {IDEAS_FILE}", "red")
-        cprint("❌ ideas.txt not found! Creating template...", "red")
+        cprint(f"❌ ideas.txt not found! Creating template...", "red")
         IDEAS_FILE.parent.mkdir(parents=True, exist_ok=True)
         with open(IDEAS_FILE, 'w') as f:
             f.write("# Add your trading ideas here (one per line)\n")
@@ -1364,94 +1452,61 @@ def main(ideas_file_path=None, run_name=None):
             f.write("Create a simple RSI strategy that buys when RSI < 30 and sells when RSI > 70\n")
             f.write("Momentum strategy using 20/50 SMA crossover with volume confirmation\n")
         cprint(f"📝 Created template ideas.txt at: {IDEAS_FILE}", "yellow")
-        cprint("💡 Add your trading ideas and run again!", "yellow")
-        return
 
-    with open(IDEAS_FILE, 'r') as f:
-        ideas = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+    # 🌙 Moon Dev: CONTINUOUS QUEUE MODE
+    cprint(f"\n🔄 CONTINUOUS QUEUE MODE ACTIVATED", "cyan", attrs=['bold'])
+    cprint(f"⏰ Monitoring ideas.txt every 1 second", "yellow")
+    cprint(f"🧵 {MAX_PARALLEL_THREADS} worker threads ready\n", "yellow")
 
-    total_ideas = len(ideas)
-    already_processed = sum(1 for idea in ideas if is_idea_processed(idea))
-    new_ideas = total_ideas - already_processed
+    # Shared queue, queued ideas set, and stats
+    idea_queue = Queue()
+    queued_ideas = set()  # Track which ideas are currently queued (by hash)
+    queued_lock = Lock()  # Protect access to queued_ideas set
+    stats = {
+        'completed': 0,
+        'successful': 0,
+        'failed': 0,
+        'targets_hit': 0,
+        'active': 0
+    }
+    stop_flag = {'stop': False}
 
-    cprint(f"🎯 Total ideas: {total_ideas}", "cyan")
-    cprint(f"✅ Already processed: {already_processed}", "green")
-    cprint(f"🆕 New to process: {new_ideas}\n", "yellow", attrs=['bold'])
+    # Start monitor thread (producer)
+    monitor = Thread(target=idea_monitor_thread, args=(idea_queue, queued_ideas, queued_lock, stop_flag), daemon=True)
+    monitor.start()
+    cprint("✅ Idea monitor thread started", "green")
 
-    if new_ideas == 0:
-        cprint("🎉 All ideas have been processed!", "green", attrs=['bold'])
-        return
+    # Start worker threads (consumers)
+    workers = []
+    for worker_id in range(MAX_PARALLEL_THREADS):
+        worker = Thread(target=worker_thread, args=(worker_id, idea_queue, queued_ideas, queued_lock, stats, stop_flag), daemon=True)
+        worker.start()
+        workers.append(worker)
+    cprint(f"✅ {MAX_PARALLEL_THREADS} worker threads started (IDs 00-{MAX_PARALLEL_THREADS-1:02d})\n", "green")
 
-    # Filter out already processed ideas
-    ideas_to_process = [(i, idea) for i, idea in enumerate(ideas) if not is_idea_processed(idea)]
+    # Main thread just monitors stats and waits
+    try:
+        while True:
+            time.sleep(5)  # Status update every 5 seconds
 
-    cprint(f"🚀 Starting parallel processing with {MAX_PARALLEL_THREADS} threads...\n", "cyan", attrs=['bold'])
+            with console_lock:
+                if stats['active'] > 0 or not idea_queue.empty():
+                    cprint(f"📊 Status: {stats['active']} active | {idea_queue.qsize()} queued | {stats['completed']} completed | {stats['targets_hit']} targets hit", "cyan")
+                else:
+                    cprint(f"💤 AI swarm waiting... ({stats['completed']} total completed, {stats['targets_hit']} targets hit) - {datetime.now().strftime('%I:%M:%S %p')}", "yellow")
 
-    start_time = datetime.now()
+    except KeyboardInterrupt:
+        cprint(f"\n\n🛑 Shutting down gracefully...", "yellow", attrs=['bold'])
+        stop_flag['stop'] = True
 
-    # Process ideas in parallel
-    with ThreadPoolExecutor(max_workers=MAX_PARALLEL_THREADS) as executor:
-        # Submit all ideas as futures with thread IDs
-        futures = {
-            executor.submit(process_trading_idea_parallel, idea, thread_id): (thread_id, idea)
-            for thread_id, idea in ideas_to_process
-        }
-
-        # Track results
-        results = []
-        completed = 0
-
-        # Process completed futures as they finish
-        for future in as_completed(futures):
-            thread_id, idea = futures[future]
-            completed += 1
-
-            try:
-                result = future.result()
-                results.append(result)
-
-                with console_lock:
-                    cprint(f"\n{'='*60}", "green")
-                    cprint(f"✅ Thread {thread_id:02d} COMPLETED ({completed}/{len(futures)})", "green", attrs=['bold'])
-                    if result.get('success'):
-                        if result.get('target_hit'):
-                            cprint(f"🎯 TARGET HIT: {result.get('strategy_name')} @ {result.get('return')}%", "green", attrs=['bold'])
-                        else:
-                            cprint(f"📊 Best return: {result.get('return', 'N/A')}%", "yellow")
-                    else:
-                        cprint(f"❌ Failed: {result.get('error', 'Unknown error')}", "red")
-                    cprint(f"{'='*60}\n", "green")
-
-            except Exception as e:
-                with console_lock:
-                    cprint(f"\n❌ Thread {thread_id:02d} raised exception: {str(e)}", "red", attrs=['bold'])
-                results.append({"success": False, "thread_id": thread_id, "error": str(e)})
-
-    total_time = (datetime.now() - start_time).total_seconds()
-
-    # Final summary
-    cprint(f"\n{'='*60}", "cyan", attrs=['bold'])
-    cprint(f"🎉 PARALLEL PROCESSING COMPLETE!", "cyan", attrs=['bold'])
-    cprint(f"{'='*60}", "cyan", attrs=['bold'])
-
-    cprint(f"\n⏱️  Total time: {total_time:.2f}s", "magenta")
-    cprint(f"📊 Ideas processed: {len(results)}", "cyan")
-
-    successful = [r for r in results if r.get('success')]
-    failed = [r for r in results if not r.get('success')]
-    targets_hit = [r for r in successful if r.get('target_hit')]
-
-    cprint(f"✅ Successful: {len(successful)}", "green")
-    cprint(f"🎯 Targets hit: {len(targets_hit)}", "green", attrs=['bold'])
-    cprint(f"❌ Failed: {len(failed)}", "red")
-
-    if targets_hit:
-        cprint(f"\n🚀 STRATEGIES THAT HIT TARGET {TARGET_RETURN}%:", "green", attrs=['bold'])
-        for r in targets_hit:
-            cprint(f"  • {r.get('strategy_name')}: {r.get('return')}%", "green")
-
-    cprint(f"\n✨ All results saved to: {TODAY_DIR}", "cyan")
-    cprint(f"{'='*60}\n", "cyan", attrs=['bold'])
+        cprint(f"\n{'='*60}", "cyan", attrs=['bold'])
+        cprint(f"📊 FINAL STATS", "cyan", attrs=['bold'])
+        cprint(f"{'='*60}", "cyan", attrs=['bold'])
+        cprint(f"✅ Successful: {stats['successful']}", "green")
+        cprint(f"🎯 Targets hit: {stats['targets_hit']}", "green", attrs=['bold'])
+        cprint(f"❌ Failed: {stats['failed']}", "red")
+        cprint(f"📊 Total completed: {stats['completed']}", "cyan")
+        cprint(f"{'='*60}\n", "cyan", attrs=['bold'])
 
 if __name__ == "__main__":
     # 🌙 Moon Dev: Parse command-line arguments for custom ideas file and run name
