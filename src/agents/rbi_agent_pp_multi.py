@@ -98,34 +98,38 @@ THREAD_COLORS = {
 console_lock = Lock()
 api_lock = Lock()
 file_lock = Lock()
+date_lock = Lock()  # 🌙 Moon Dev: Lock for date checking/updating
 
 # Rate limiter
 rate_limiter = Semaphore(MAX_PARALLEL_THREADS)
 
-# Model Configurations (same as v3)
+# 🌙 Moon Dev's Model Configurations
+# Available types: "claude", "openai", "deepseek", "groq", "gemini", "xai", "ollama", "openrouter"
+# OpenRouter models: "qwen/qwen3-vl-32b-instruct", "google/gemini-2.5-pro", "google/gemini-2.5-flash", "qwen/qwen3-max", "z-ai/glm-4.6"
+# See src/models/openrouter_model.py for all 200+ available OpenRouter models!
 RESEARCH_CONFIG = {
-    "type": "xai",
-    "name": "grok-4-fast-reasoning"
+    "type": "openrouter",
+    "name": "qwen/qwen3-vl-32b-instruct"
 }
 
 BACKTEST_CONFIG = {
-    "type": "xai",
-    "name": "grok-4-fast-reasoning"
+    "type": "openrouter",
+    "name": "qwen/qwen3-vl-32b-instruct"
 }
 
 DEBUG_CONFIG = {
-    "type": "xai",
-    "name": "grok-4-fast-reasoning"
+    "type": "openrouter",
+    "name": "qwen/qwen3-vl-32b-instruct"
 }
 
 PACKAGE_CONFIG = {
-    "type": "xai",
-    "name": "grok-4-fast-reasoning"
+    "type": "openrouter",
+    "name": "qwen/qwen3-vl-32b-instruct"
 }
 
 OPTIMIZE_CONFIG = {
-    "type": "xai",
-    "name": "grok-4-fast-reasoning"
+    "type": "openrouter",
+    "name": "qwen/qwen3-vl-32b-instruct"
 }
 
 # 🎯 PROFIT TARGET CONFIGURATION
@@ -139,30 +143,66 @@ EXECUTION_TIMEOUT = 300  # 5 minutes
 # DeepSeek Configuration
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
 
-# Get today's date for organizing outputs
-TODAY_DATE = datetime.now().strftime("%m_%d_%Y")
+# 🌙 Moon Dev: Date tracking for always-on mode - will update when date changes!
+CURRENT_DATE = datetime.now().strftime("%m_%d_%Y")
 
 # Update data directory paths - Parallel Multi-Data version uses its own folder
 PROJECT_ROOT = Path(__file__).parent.parent
 DATA_DIR = PROJECT_ROOT / "data/rbi_pp_multi"
-TODAY_DIR = DATA_DIR / TODAY_DATE
-RESEARCH_DIR = TODAY_DIR / "research"
-BACKTEST_DIR = TODAY_DIR / "backtests"
-PACKAGE_DIR = TODAY_DIR / "backtests_package"
-WORKING_BACKTEST_DIR = TODAY_DIR / "backtests_working"  # Moon Dev's working iterations!
-FINAL_BACKTEST_DIR = TODAY_DIR / "backtests_final"
-OPTIMIZATION_DIR = TODAY_DIR / "backtests_optimized"
-CHARTS_DIR = TODAY_DIR / "charts"
-EXECUTION_DIR = TODAY_DIR / "execution_results"
+
+# 🌙 Moon Dev: These will be updated dynamically when date changes
+TODAY_DIR = None
+RESEARCH_DIR = None
+BACKTEST_DIR = None
+PACKAGE_DIR = None
+WORKING_BACKTEST_DIR = None
+FINAL_BACKTEST_DIR = None
+OPTIMIZATION_DIR = None
+CHARTS_DIR = None
+EXECUTION_DIR = None
+
 PROCESSED_IDEAS_LOG = DATA_DIR / "processed_ideas.log"
 STATS_CSV = DATA_DIR / "backtest_stats.csv"  # Moon Dev's stats tracker!
-
 IDEAS_FILE = DATA_DIR / "ideas.txt"
 
-# Create main directories if they don't exist
-for dir in [DATA_DIR, TODAY_DIR, RESEARCH_DIR, BACKTEST_DIR, PACKAGE_DIR,
-            WORKING_BACKTEST_DIR, FINAL_BACKTEST_DIR, OPTIMIZATION_DIR, CHARTS_DIR, EXECUTION_DIR]:
-    dir.mkdir(parents=True, exist_ok=True)
+def update_date_folders():
+    """
+    🌙 Moon Dev's Date Folder Updater!
+    Checks if date has changed and updates all folder paths accordingly.
+    Thread-safe and works in always-on mode! 🚀
+    """
+    global CURRENT_DATE, TODAY_DIR, RESEARCH_DIR, BACKTEST_DIR, PACKAGE_DIR
+    global WORKING_BACKTEST_DIR, FINAL_BACKTEST_DIR, OPTIMIZATION_DIR, CHARTS_DIR, EXECUTION_DIR
+
+    with date_lock:
+        new_date = datetime.now().strftime("%m_%d_%Y")
+
+        # Check if date has changed
+        if new_date != CURRENT_DATE:
+            with console_lock:
+                cprint(f"\n🌅 NEW DAY DETECTED! {CURRENT_DATE} → {new_date}", "cyan", attrs=['bold'])
+                cprint(f"📁 Creating new folder structure for {new_date}...\n", "yellow")
+
+            CURRENT_DATE = new_date
+
+        # Update all directory paths (whether date changed or first run)
+        TODAY_DIR = DATA_DIR / CURRENT_DATE
+        RESEARCH_DIR = TODAY_DIR / "research"
+        BACKTEST_DIR = TODAY_DIR / "backtests"
+        PACKAGE_DIR = TODAY_DIR / "backtests_package"
+        WORKING_BACKTEST_DIR = TODAY_DIR / "backtests_working"
+        FINAL_BACKTEST_DIR = TODAY_DIR / "backtests_final"
+        OPTIMIZATION_DIR = TODAY_DIR / "backtests_optimized"
+        CHARTS_DIR = TODAY_DIR / "charts"
+        EXECUTION_DIR = TODAY_DIR / "execution_results"
+
+        # Create directories if they don't exist
+        for dir in [DATA_DIR, TODAY_DIR, RESEARCH_DIR, BACKTEST_DIR, PACKAGE_DIR,
+                    WORKING_BACKTEST_DIR, FINAL_BACKTEST_DIR, OPTIMIZATION_DIR, CHARTS_DIR, EXECUTION_DIR]:
+            dir.mkdir(parents=True, exist_ok=True)
+
+# 🌙 Moon Dev: Initialize folders on startup!
+update_date_folders()
 
 # ============================================
 # 🎨 THREAD-SAFE PRINTING
@@ -324,8 +364,27 @@ At the VERY END of your code (after all strategy definitions), you MUST add this
 if __name__ == "__main__":
     import sys
     import os
+    from backtesting import Backtest
+    import pandas as pd
 
-    # Import the multi-data tester from Moon Dev's trading bots repo
+    # FIRST: Run standard backtest and print stats (REQUIRED for parsing!)
+    print("\\n🌙 Running initial backtest for stats extraction...")
+    data = pd.read_csv('/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/rbi/BTC-USD-15m.csv')
+    data['datetime'] = pd.to_datetime(data['datetime'])
+    data = data.set_index('datetime')
+    data.columns = ['Open', 'High', 'Low', 'Close', 'Volume']
+
+    bt = Backtest(data, YourStrategyClassName, cash=1_000_000, commission=0.002)
+    stats = bt.run()
+
+    # 🌙 CRITICAL: Print full stats for Moon Dev's parser!
+    print("\\n" + "="*80)
+    print("📊 BACKTEST STATISTICS (Moon Dev's Format)")
+    print("="*80)
+    print(stats)
+    print("="*80 + "\\n")
+
+    # THEN: Run multi-data testing
     sys.path.append('/Users/md/Dropbox/dev/github/moon-dev-trading-bots/backtests')
     from multi_data_tester import test_on_all_data
 
@@ -1077,6 +1136,9 @@ def process_trading_idea_parallel(idea: str, thread_id: int) -> dict:
     This is the worker function for each parallel thread
     """
     try:
+        # 🌙 Moon Dev: Check if date has changed and update folders!
+        update_date_folders()
+
         thread_print(f"🚀 Starting processing", thread_id, attrs=['bold'])
 
         # Phase 1: Research
@@ -1430,7 +1492,7 @@ def main(ideas_file_path=None, run_name=None):
     cprint(f"🌟 Moon Dev's RBI AI v3.0 PARALLEL PROCESSOR + MULTI-DATA 🚀", "cyan", attrs=['bold'])
     cprint(f"{'='*60}", "cyan", attrs=['bold'])
 
-    cprint(f"\n📅 Date: {TODAY_DATE}", "magenta")
+    cprint(f"\n📅 Date: {CURRENT_DATE}", "magenta")
     cprint(f"🎯 Target Return: {TARGET_RETURN}%", "green", attrs=['bold'])
     cprint(f"🔀 Max Parallel Threads: {MAX_PARALLEL_THREADS}", "yellow", attrs=['bold'])
     cprint(f"🐍 Conda env: {CONDA_ENV}", "cyan")
@@ -1488,6 +1550,9 @@ def main(ideas_file_path=None, run_name=None):
     try:
         while True:
             time.sleep(5)  # Status update every 5 seconds
+
+            # 🌙 Moon Dev: Check for date changes periodically (even when idle!)
+            update_date_folders()
 
             with console_lock:
                 if stats['active'] > 0 or not idea_queue.empty():

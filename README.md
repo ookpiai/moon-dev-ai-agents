@@ -153,6 +153,7 @@ DEEPSEEK_KEY=your_deepseek_api_key_here            # DeepSeek models (cheap!)
 GROQ_API_KEY=your_groq_api_key_here                # Groq (fast inference)
 GEMINI_KEY=your_gemini_api_key_here                # Google Gemini
 XAI_API_KEY=your_xai_api_key_here                  # Grok models
+OPENROUTER_API_KEY=your_openrouter_api_key_here    # OpenRouter (200+ models!)
 
 # Market Data APIs (for downloading price data)
 BIRDEYE_API_KEY=your_birdeye_api_key_here          # Solana token data
@@ -166,6 +167,7 @@ COINGECKO_API_KEY=your_coingecko_api_key_here      # Crypto market data
 - **Groq**: https://console.groq.com/
 - **Google Gemini**: https://aistudio.google.com/app/apikey
 - **xAI Grok**: https://console.x.ai/
+- **OpenRouter**: https://openrouter.ai/keys (access 200+ models including Qwen, GLM, and more!)
 - **BirdEye**: https://birdeye.so/ (Solana data)
 - **CoinGecko**: https://www.coingecko.com/en/api
 
