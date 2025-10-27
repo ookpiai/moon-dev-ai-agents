@@ -61,7 +61,7 @@ Navigate to: `http://localhost:8001`
 - Copy all paths from a folder
 - Delete folders
 
-### New Backtests
+### New Backtests (WIP - Work in Progress)
 - Run backtests directly from UI
 - Add strategy ideas in text box
 - Auto-creates folder with results
