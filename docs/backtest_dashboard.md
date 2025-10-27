@@ -7,7 +7,7 @@ Web dashboard for viewing and organizing RBI agent backtest results.
 - Shows summary stats (total backtests, avg return, max return)
 - Organize backtests into folders
 - Copy file paths for easy access
-- Run new backtests directly from the UI
+- Run new backtests directly from the UI (work in progress, idk if i will build this out as i just run from terminal)
 
 ## Quick Start
 
