@@ -45,6 +45,52 @@ class OpenRouterModel(BaseModel):
             "output_price": "$0.50/1M tokens"
         },
 
+        # DeepSeek Models
+        "deepseek/deepseek-r1-0528": {
+            "description": "DeepSeek R1 - Advanced reasoning - 64k context",
+            "input_price": "$0.55/1M tokens",
+            "output_price": "$2.19/1M tokens"
+        },
+
+        # OpenAI Models
+        "openai/gpt-4.5-preview": {
+            "description": "GPT-4.5 Preview - Latest OpenAI flagship - 128k context",
+            "input_price": "See openrouter.ai/docs",
+            "output_price": "See openrouter.ai/docs"
+        },
+        "openai/gpt-5": {
+            "description": "GPT-5 - Next-gen OpenAI model - 200k context",
+            "input_price": "See openrouter.ai/docs",
+            "output_price": "See openrouter.ai/docs"
+        },
+        "openai/gpt-5-mini": {
+            "description": "GPT-5 Mini - Fast & efficient - 128k context",
+            "input_price": "See openrouter.ai/docs",
+            "output_price": "See openrouter.ai/docs"
+        },
+        "openai/gpt-5-nano": {
+            "description": "GPT-5 Nano - Ultra-fast & cheap - 64k context",
+            "input_price": "See openrouter.ai/docs",
+            "output_price": "See openrouter.ai/docs"
+        },
+
+        # Anthropic Claude Models
+        "anthropic/claude-sonnet-4.5": {
+            "description": "Claude Sonnet 4.5 - Balanced performance - 200k context",
+            "input_price": "See openrouter.ai/docs",
+            "output_price": "See openrouter.ai/docs"
+        },
+        "anthropic/claude-haiku-4.5": {
+            "description": "Claude Haiku 4.5 - Fast & efficient - 200k context",
+            "input_price": "See openrouter.ai/docs",
+            "output_price": "See openrouter.ai/docs"
+        },
+        "anthropic/claude-opus-4.1": {
+            "description": "Claude Opus 4.1 - Most powerful - 200k context",
+            "input_price": "See openrouter.ai/docs",
+            "output_price": "See openrouter.ai/docs"
+        },
+
         # 🌙 Moon Dev: ADD MORE MODELS HERE!
         # Copy the format above and paste model info from https://openrouter.ai/docs
         # Example:

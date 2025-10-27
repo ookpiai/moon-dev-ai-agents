@@ -105,8 +105,15 @@ rate_limiter = Semaphore(MAX_PARALLEL_THREADS)
 
 # 🌙 Moon Dev's Model Configurations
 # Available types: "claude", "openai", "deepseek", "groq", "gemini", "xai", "ollama", "openrouter"
-# OpenRouter models: "qwen/qwen3-vl-32b-instruct", "google/gemini-2.5-pro", "google/gemini-2.5-flash", "qwen/qwen3-max", "z-ai/glm-4.6"
-# See src/models/openrouter_model.py for all 200+ available OpenRouter models!
+#
+# OpenRouter Models (just set type="openrouter" and pick any model below):
+# - Gemini: google/gemini-2.5-pro, google/gemini-2.5-flash
+# - Qwen: qwen/qwen3-vl-32b-instruct, qwen/qwen3-max
+# - DeepSeek: deepseek/deepseek-r1-0528
+# - OpenAI: openai/gpt-4.5-preview, openai/gpt-5, openai/gpt-5-mini, openai/gpt-5-nano
+# - Claude: anthropic/claude-sonnet-4.5, anthropic/claude-haiku-4.5, anthropic/claude-opus-4.1
+# - GLM: z-ai/glm-4.6
+# See src/models/openrouter_model.py for ALL available models!
 
 # 🧠 RESEARCH: Gemini 2.5 Flash (fast strategy analysis)
 RESEARCH_CONFIG = {

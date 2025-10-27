@@ -10,11 +10,31 @@ Access 200+ AI models through a single API key.
 
 ## Supported Models
 ### Currently Configured
+
+**Google Gemini:**
 - `google/gemini-2.5-pro` - Advanced reasoning, 128k context
 - `google/gemini-2.5-flash` - Fast multimodal, 1M context
+
+**Qwen:**
 - `qwen/qwen3-vl-32b-instruct` - Vision & Language, 32k context
 - `qwen/qwen3-max` - Flagship Qwen model, 32k context
+
+**Zhipu AI:**
 - `z-ai/glm-4.6` - Zhipu AI, 128k context
+
+**DeepSeek:**
+- `deepseek/deepseek-r1-0528` - Advanced reasoning, 64k context
+
+**OpenAI GPT:**
+- `openai/gpt-4.5-preview` - Latest OpenAI flagship, 128k context
+- `openai/gpt-5` - Next-gen model, 200k context
+- `openai/gpt-5-mini` - Fast & efficient, 128k context
+- `openai/gpt-5-nano` - Ultra-fast & cheap, 64k context
+
+**Anthropic Claude:**
+- `anthropic/claude-sonnet-4.5` - Balanced performance, 200k context
+- `anthropic/claude-haiku-4.5` - Fast & efficient, 200k context
+- `anthropic/claude-opus-4.1` - Most powerful, 200k context
 
 ### Adding More Models
 See https://openrouter.ai/docs for 200+ available models.

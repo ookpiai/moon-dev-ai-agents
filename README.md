@@ -210,7 +210,7 @@ cd src/data/rbi_pp_multi
 python app.py
 ```
 
-Open browser to: `http://localhost:8000`
+Open browser to: `http://localhost:8001`
 
 Click "New Backtests" and enter your strategy ideas!
 
