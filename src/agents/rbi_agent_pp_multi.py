@@ -65,7 +65,7 @@ print("✅ Environment variables loaded")
 
 # Add config values directly to avoid import issues
 AI_TEMPERATURE = 0.7
-AI_MAX_TOKENS = 4000
+AI_MAX_TOKENS = 16000  # 🌙 Moon Dev: Increased for complete backtest code generation with execution block!
 
 # Import model factory with proper path handling
 import sys
@@ -107,29 +107,35 @@ rate_limiter = Semaphore(MAX_PARALLEL_THREADS)
 # Available types: "claude", "openai", "deepseek", "groq", "gemini", "xai", "ollama", "openrouter"
 # OpenRouter models: "qwen/qwen3-vl-32b-instruct", "google/gemini-2.5-pro", "google/gemini-2.5-flash", "qwen/qwen3-max", "z-ai/glm-4.6"
 # See src/models/openrouter_model.py for all 200+ available OpenRouter models!
+
+# 🧠 RESEARCH: Gemini 2.5 Flash (fast strategy analysis)
 RESEARCH_CONFIG = {
     "type": "openrouter",
-    "name": "qwen/qwen3-vl-32b-instruct"
+    "name": "google/gemini-2.5-flash"
 }
 
+# 💻 BACKTEST CODE GEN: OpenRouter Gemini 2.5 Pro (testing Gemini through OpenRouter!)
 BACKTEST_CONFIG = {
     "type": "openrouter",
-    "name": "qwen/qwen3-vl-32b-instruct"
+    "name": "google/gemini-2.5-pro"
 }
 
+# 🐛 DEBUGGING: Qwen 3 VL 32B (vision & language for code debugging)
 DEBUG_CONFIG = {
     "type": "openrouter",
     "name": "qwen/qwen3-vl-32b-instruct"
 }
 
+# 📦 PACKAGE CHECK: GLM 4.6 (Zhipu AI)
 PACKAGE_CONFIG = {
     "type": "openrouter",
-    "name": "qwen/qwen3-vl-32b-instruct"
+    "name": "z-ai/glm-4.6"
 }
 
+# 🚀 OPTIMIZATION: GLM 4.6 (Zhipu AI for strategy optimization)
 OPTIMIZE_CONFIG = {
     "type": "openrouter",
-    "name": "qwen/qwen3-vl-32b-instruct"
+    "name": "z-ai/glm-4.6"
 }
 
 # 🎯 PROFIT TARGET CONFIGURATION
@@ -290,7 +296,14 @@ Remember: The name must be UNIQUE and SPECIFIC to this strategy's approach!
 """
 
 BACKTEST_PROMPT = """
-You are Moon Dev's Backtest AI 🌙 ONLY SEND BACK CODE, NO OTHER TEXT.
+You are Moon Dev's Backtest AI 🌙
+
+🚨 CRITICAL: Your code MUST have TWO parts:
+PART 1: Strategy class definition
+PART 2: if __name__ == "__main__" block (SEE TEMPLATE BELOW - MANDATORY!)
+
+If you don't include the if __name__ == "__main__" block with stats printing, the code will FAIL!
+
 Create a backtesting.py implementation for the strategy.
 USE BACKTESTING.PY
 Include:
@@ -355,8 +368,12 @@ datetime, open, high, low, close, volume,
 
 Always add plenty of Moon Dev themed debug prints with emojis to make debugging easier! 🌙 ✨ 🚀
 
-MULTI-DATA TESTING REQUIREMENT:
-At the VERY END of your code (after all strategy definitions), you MUST add this EXACT block:
+🚨🚨🚨 MANDATORY EXECUTION BLOCK - DO NOT SKIP THIS! 🚨🚨🚨
+
+YOU ABSOLUTELY MUST INCLUDE THIS BLOCK AT THE END OF YOUR CODE!
+WITHOUT THIS BLOCK, THE STATS CANNOT BE PARSED AND THE BACKTEST WILL FAIL!
+
+Copy this EXACT template and replace YourStrategyClassName with your actual class name:
 
 ```python
 # 🌙 MOON DEV'S MULTI-DATA TESTING FRAMEWORK 🚀
@@ -406,6 +423,15 @@ if __name__ == "__main__":
 
 IMPORTANT: Replace 'YourStrategyClassName' with your actual strategy class name!
 IMPORTANT: Replace 'YourStrategyName' with a descriptive name for the CSV output!
+
+🚨 FINAL REMINDER 🚨
+Your response MUST include:
+1. Import statements
+2. Strategy class (with init() and next() methods)
+3. The if __name__ == "__main__" block shown above (MANDATORY!)
+
+Do NOT send ONLY the strategy class. You MUST include the execution block!
+ONLY SEND BACK CODE, NO OTHER TEXT.
 
 FOR THE PYTHON BACKTESTING LIBRARY USE BACKTESTING.PY AND SEND BACK ONLY THE CODE, NO OTHER TEXT.
 ONLY SEND BACK CODE, NO OTHER TEXT.
@@ -972,13 +998,28 @@ def clean_model_output(output, content_type="text"):
     if content_type == "code" and "```" in cleaned_output:
         try:
             import re
+            # Try to extract code blocks with closing ```
             code_blocks = re.findall(r'```python\n(.*?)\n```', cleaned_output, re.DOTALL)
             if not code_blocks:
                 code_blocks = re.findall(r'```(?:python)?\n(.*?)\n```', cleaned_output, re.DOTALL)
-            if code_blocks:
+
+            # If no complete blocks found, try extracting from opening fence to end
+            if not code_blocks:
+                # Handle case where code starts with ```python but no closing ```
+                match = re.search(r'```(?:python)?\s*\n(.*)', cleaned_output, re.DOTALL)
+                if match:
+                    cleaned_output = match.group(1).strip()
+                    # Remove any trailing ``` if present
+                    if cleaned_output.endswith('```'):
+                        cleaned_output = cleaned_output[:-3].strip()
+            else:
                 cleaned_output = "\n\n".join(code_blocks)
         except Exception as e:
             thread_print(f"❌ Error extracting code: {str(e)}", 0, "red")
+
+    # 🌙 Moon Dev: Final cleanup - strip any remaining markdown fences
+    if content_type == "code":
+        cleaned_output = cleaned_output.replace('```python', '').replace('```', '').strip()
 
     return cleaned_output
 
