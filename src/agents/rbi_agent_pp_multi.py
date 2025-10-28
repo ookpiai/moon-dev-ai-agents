@@ -85,6 +85,23 @@ MAX_PARALLEL_THREADS = 18  # How many ideas to process simultaneously
 RATE_LIMIT_DELAY = .5  # Seconds to wait between API calls (per thread)
 RATE_LIMIT_GLOBAL_DELAY = 0.5  # Global delay between any API calls
 
+# ============================================
+# 📁 STRATEGY SOURCE CONFIGURATION - Moon Dev
+# ============================================
+# IMPORTANT: Choose where to read trading strategies from
+#
+# Option 1 (Default): STRATEGIES_FROM_FILES = False
+#   - Reads from ideas.txt (one strategy per line)
+#   - Classic behavior - works exactly as before
+#
+# Option 2: STRATEGIES_FROM_FILES = True
+#   - Reads all .md and .txt files from STRATEGIES_FOLDER
+#   - Each FILE = one complete strategy idea
+#   - Perfect for auto-generated strategies from web search agent!
+#
+STRATEGIES_FROM_FILES = True  # Set to True to read from folder instead of ideas.txt
+STRATEGIES_FOLDER = "/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/web_search_research/final_strategies"
+
 # Thread color mapping
 THREAD_COLORS = {
     0: "cyan",
@@ -115,34 +132,34 @@ rate_limiter = Semaphore(MAX_PARALLEL_THREADS)
 # - GLM: z-ai/glm-4.6
 # See src/models/openrouter_model.py for ALL available models!
 
-# 🧠 RESEARCH: Gemini 2.5 Flash (fast strategy analysis)
+# 🧠 RESEARCH: Grok 4 Fast Reasoning (xAI's blazing fast model!)
 RESEARCH_CONFIG = {
-    "type": "openrouter",
-    "name": "google/gemini-2.5-flash"
+    "type": "xai",
+    "name": "grok-4-fast-reasoning"
 }
 
-# 💻 BACKTEST CODE GEN: OpenRouter Gemini 2.5 Pro (testing Gemini through OpenRouter!)
+# 💻 BACKTEST CODE GEN: Grok 4 Fast Reasoning (xAI's blazing fast model!)
 BACKTEST_CONFIG = {
-    "type": "openrouter",
-    "name": "google/gemini-2.5-pro"
+    "type": "xai",
+    "name": "grok-4-fast-reasoning"
 }
 
-# 🐛 DEBUGGING: Qwen 3 VL 32B (vision & language for code debugging)
+# 🐛 DEBUGGING: Grok 4 Fast Reasoning (xAI's blazing fast model!)
 DEBUG_CONFIG = {
-    "type": "openrouter",
-    "name": "qwen/qwen3-vl-32b-instruct"
+    "type": "xai",
+    "name": "grok-4-fast-reasoning"
 }
 
-# 📦 PACKAGE CHECK: GLM 4.6 (Zhipu AI)
+# 📦 PACKAGE CHECK: Grok 4 Fast Reasoning (xAI's blazing fast model!)
 PACKAGE_CONFIG = {
-    "type": "openrouter",
-    "name": "z-ai/glm-4.6"
+    "type": "xai",
+    "name": "grok-4-fast-reasoning"
 }
 
-# 🚀 OPTIMIZATION: GLM 4.6 (Zhipu AI for strategy optimization)
+# 🚀 OPTIMIZATION: Grok 4 Fast Reasoning (xAI's blazing fast model!)
 OPTIMIZE_CONFIG = {
-    "type": "openrouter",
-    "name": "z-ai/glm-4.6"
+    "type": "xai",
+    "name": "grok-4-fast-reasoning"
 }
 
 # 🎯 PROFIT TARGET CONFIGURATION
@@ -664,7 +681,12 @@ def parse_all_stats_from_output(stdout: str, thread_id: int) -> dict:
         if match:
             stats['trades'] = int(match.group(1))
 
-        thread_print(f"📊 Extracted {sum(1 for v in stats.values() if v is not None)}/7 stats", thread_id)
+        # 🌙 Moon Dev: Exposure Time [%]
+        match = re.search(r'Exposure Time \[%\]\s+([-\d.]+)', stdout)
+        if match:
+            stats['exposure'] = float(match.group(1))
+
+        thread_print(f"📊 Extracted {sum(1 for v in stats.values() if v is not None)}/8 stats", thread_id)
         return stats
 
     except Exception as e:
@@ -695,6 +717,7 @@ def log_stats_to_csv(strategy_name: str, thread_id: int, stats: dict, file_path:
                         'Max Drawdown %',
                         'Sharpe Ratio',
                         'Sortino Ratio',
+                        'Exposure %',  # 🌙 Moon Dev: Added Exposure Time
                         'EV %',  # 🌙 Moon Dev: Changed from Expectancy %
                         'Trades',  # 🌙 Moon Dev: Added # Trades
                         'File Path',
@@ -714,6 +737,7 @@ def log_stats_to_csv(strategy_name: str, thread_id: int, stats: dict, file_path:
                     stats.get('max_drawdown_pct', 'N/A'),
                     stats.get('sharpe', 'N/A'),
                     stats.get('sortino', 'N/A'),
+                    stats.get('exposure', 'N/A'),  # 🌙 Moon Dev: Added Exposure %
                     stats.get('expectancy', 'N/A'),
                     stats.get('trades', 'N/A'),  # 🌙 Moon Dev: Added # Trades
                     str(file_path),
@@ -769,6 +793,7 @@ def parse_and_log_multi_data_results(strategy_name: str, thread_id: int, backtes
                 'max_drawdown_pct': row.get('Max_DD_%', None),
                 'sharpe': row.get('Sharpe', None),
                 'sortino': row.get('Sortino', None),
+                'exposure': row.get('Exposure_Time_%', None),  # 🌙 Moon Dev: Added Exposure % (matches multi_data_tester.py column name)
                 'expectancy': row.get('Expectancy_%', None),
                 'trades': row.get('Trades', None)  # 🌙 Moon Dev: Added # Trades
             }
@@ -1442,18 +1467,47 @@ def process_trading_idea_parallel(idea: str, thread_id: int) -> dict:
         thread_print(f"❌ FATAL ERROR: {str(e)}", thread_id, "red", attrs=['bold'])
         return {"success": False, "error": str(e), "thread_id": thread_id}
 
+def get_strategies_from_files():
+    """🌙 Moon Dev: Read all .md and .txt files from STRATEGIES_FOLDER"""
+    strategies = []
+    folder_path = Path(STRATEGIES_FOLDER)
+
+    if not folder_path.exists():
+        return strategies
+
+    # Get all .md and .txt files
+    for file_path in folder_path.glob('*'):
+        if file_path.suffix.lower() in ['.md', '.txt']:
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read().strip()
+                    if content:  # Only add non-empty files
+                        strategies.append(content)
+            except Exception as e:
+                with console_lock:
+                    cprint(f"⚠️ Error reading {file_path.name}: {str(e)}", "yellow")
+
+    return strategies
+
+
 def idea_monitor_thread(idea_queue: Queue, queued_ideas: set, queued_lock: Lock, stop_flag: dict):
-    """🌙 Moon Dev: Producer thread - continuously monitors ideas.txt and queues new ideas"""
+    """🌙 Moon Dev: Producer thread - monitors ideas.txt OR strategy files and queues new ideas"""
     global IDEAS_FILE
 
     while not stop_flag.get('stop', False):
         try:
-            if not IDEAS_FILE.exists():
-                time.sleep(1)
-                continue
+            # 🌙 Moon Dev: Check which mode we're in
+            if STRATEGIES_FROM_FILES:
+                # MODE: Read from files
+                ideas = get_strategies_from_files()
+            else:
+                # MODE: Read from ideas.txt (classic behavior)
+                if not IDEAS_FILE.exists():
+                    time.sleep(1)
+                    continue
 
-            with open(IDEAS_FILE, 'r') as f:
-                ideas = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+                with open(IDEAS_FILE, 'r') as f:
+                    ideas = [line.strip() for line in f if line.strip() and not line.startswith('#')]
 
             # Find new unprocessed ideas
             for idea in ideas:
@@ -1551,6 +1605,24 @@ def main(ideas_file_path=None, run_name=None):
     else:
         cprint("", "white")
 
+    # 🌙 Moon Dev: Show VERY CLEAR configuration mode
+    cprint(f"\n{'='*60}", "white", attrs=['bold'])
+    if STRATEGIES_FROM_FILES:
+        cprint(f"📁 STRATEGY SOURCE: FILES FROM FOLDER", "green", attrs=['bold'])
+        cprint(f"📂 Folder: {STRATEGIES_FOLDER}", "yellow")
+        # Count files
+        folder_path = Path(STRATEGIES_FOLDER)
+        if folder_path.exists():
+            file_count = len([f for f in folder_path.glob('*') if f.suffix.lower() in ['.md', '.txt']])
+            cprint(f"📊 Found {file_count} strategy files (.md/.txt)", "cyan", attrs=['bold'])
+        else:
+            cprint(f"⚠️  Folder does not exist yet!", "red")
+    else:
+        cprint(f"📝 STRATEGY SOURCE: ideas.txt (line by line)", "cyan", attrs=['bold'])
+        cprint(f"📄 File: {IDEAS_FILE}", "yellow")
+        cprint(f"💡 Classic mode - one strategy per line", "white")
+    cprint(f"{'='*60}\n", "white", attrs=['bold'])
+
     # Create template if needed
     if not IDEAS_FILE.exists():
         cprint(f"❌ ideas.txt not found! Creating template...", "red")
@@ -1565,7 +1637,10 @@ def main(ideas_file_path=None, run_name=None):
 
     # 🌙 Moon Dev: CONTINUOUS QUEUE MODE
     cprint(f"\n🔄 CONTINUOUS QUEUE MODE ACTIVATED", "cyan", attrs=['bold'])
-    cprint(f"⏰ Monitoring ideas.txt every 1 second", "yellow")
+    if STRATEGIES_FROM_FILES:
+        cprint(f"⏰ Monitoring strategy files in folder every 1 second", "yellow")
+    else:
+        cprint(f"⏰ Monitoring ideas.txt every 1 second", "yellow")
     cprint(f"🧵 {MAX_PARALLEL_THREADS} worker threads ready\n", "yellow")
 
     # Shared queue, queued ideas set, and stats

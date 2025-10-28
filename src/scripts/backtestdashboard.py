@@ -28,8 +28,8 @@ Built with love by Moon Dev
 ================================================================================
 """
 
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi import FastAPI, Request, BackgroundTasks
+from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
@@ -42,6 +42,16 @@ import shutil
 import subprocess
 import threading
 from datetime import datetime
+import sys
+import asyncio
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.triggers.interval import IntervalTrigger
+import traceback
+import logging
+
+# Add path to import MoonDevAPI
+sys.path.append('/Users/md/Dropbox/dev/github/moon-dev-trading-bots')
+from api import MoonDevAPI
 
 # ============================================================================
 # 🔧 CONFIGURATION - CHANGE THESE PATHS TO MATCH YOUR SETUP!
@@ -64,9 +74,23 @@ USER_FOLDERS_DIR = TEMPLATE_BASE_DIR / "user_folders"
 TARGET_RETURN = 50  # % - Optimization goal
 SAVE_IF_OVER_RETURN = 1.0  # % - Minimum return to save to CSV
 
+# 📊 Data Portal Configuration - Moon Dev
+DATA_DIR = TEMPLATE_BASE_DIR / "downloads"
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+# 📊 Test Data Sets Directory - Historical datasets for backtesting
+TEST_DATA_DIR = Path("/Users/md/Dropbox/dev/github/moon-dev-ai-agents-for-trading/src/data/private_data")
+
+# TEST MODE for data portal - Set to True for fast testing with sample data
+TEST_MODE = True
+
 # ============================================================================
 # 🚀 FASTAPI APP INITIALIZATION
 # ============================================================================
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Moon Dev's AI Agent Backtests")
 
@@ -75,6 +99,15 @@ USER_FOLDERS_DIR.mkdir(exist_ok=True)
 
 # Track running backtests
 running_backtests = {}
+
+# 🌙 Moon Dev Data API Integration
+moon_api = MoonDevAPI()
+
+# Track data update status
+data_status = {
+    "liquidations": {"status": "pending", "last_updated": None, "file_size": None},
+    "oi": {"status": "pending", "last_updated": None, "file_size": None}
+}
 
 # Mount static files and templates
 app.mount("/static", StaticFiles(directory=str(TEMPLATE_BASE_DIR / "static")), name="static")
@@ -96,6 +129,154 @@ class BacktestRunRequest(BaseModel):
     run_name: str
 
 
+# ============================================================================
+# 🌙 MOON DEV DATA API FUNCTIONS
+# ============================================================================
+
+def format_file_size(size_bytes):
+    """Format file size in human readable format"""
+    if size_bytes is None:
+        return "N/A"
+    for unit in ['B', 'KB', 'MB', 'GB']:
+        if size_bytes < 1024.0:
+            return f"{size_bytes:.2f} {unit}"
+        size_bytes /= 1024.0
+    return f"{size_bytes:.2f} TB"
+
+
+async def fetch_liquidation_data():
+    """Fetch liquidation data from Moon Dev API"""
+    try:
+        if TEST_MODE:
+            logger.info("🧪 TEST MODE: Creating sample liquidation data...")
+            data_status["liquidations"]["status"] = "fetching"
+
+            # Create realistic sample data for testing (10,000 rows)
+            num_rows = 10000
+            symbols = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'BNBUSDT', 'ADAUSDT'] * (num_rows // 5)
+            sample_data = pd.DataFrame({
+                'symbol': symbols[:num_rows],
+                'side': ['Buy', 'Sell'] * (num_rows // 2),
+                'size': [100000 + i * 10000 for i in range(num_rows)],
+                'price': [50000 + i * 100 for i in range(num_rows)],
+                'timestamp': [datetime.now().timestamp() - i * 3600 for i in range(num_rows)]
+            })
+
+            file_path = DATA_DIR / "liquidations.csv"
+            sample_data.to_csv(file_path, index=False)
+
+            file_size = file_path.stat().st_size
+            data_status["liquidations"]["status"] = "ready"
+            data_status["liquidations"]["last_updated"] = datetime.now().strftime("%H:%M:%S")
+            data_status["liquidations"]["file_size"] = file_size
+
+            logger.info(f"✅ TEST MODE: Sample liquidation data created: {format_file_size(file_size)}")
+        else:
+            logger.info("🌙 Fetching liquidation data...")
+            data_status["liquidations"]["status"] = "fetching"
+
+            # Fetch ALL liquidation data (no limit for full dataset)
+            df = moon_api.get_liquidation_data(limit=None)
+
+            if df is not None:
+                file_path = DATA_DIR / "liquidations.csv"
+                df.to_csv(file_path, index=False)
+
+                file_size = file_path.stat().st_size
+                data_status["liquidations"]["status"] = "ready"
+                data_status["liquidations"]["last_updated"] = datetime.now().strftime("%H:%M:%S")
+                data_status["liquidations"]["file_size"] = file_size
+
+                logger.info(f"✅ Liquidation data saved: {format_file_size(file_size)}")
+            else:
+                data_status["liquidations"]["status"] = "error"
+                logger.error("❌ Failed to fetch liquidation data")
+
+    except Exception as e:
+        data_status["liquidations"]["status"] = "error"
+        logger.error(f"💥 Error fetching liquidation data: {str(e)}")
+        logger.error(traceback.format_exc())
+
+
+async def fetch_oi_data():
+    """Fetch open interest data from Moon Dev API"""
+    try:
+        if TEST_MODE:
+            logger.info("🧪 TEST MODE: Creating sample OI data...")
+            data_status["oi"]["status"] = "fetching"
+
+            # Create realistic sample data for testing (10,000 rows)
+            num_rows = 10000
+            symbols = ['BTC', 'ETH', 'SOL', 'BNB', 'ADA'] * (num_rows // 5)
+            exchanges = ['Binance', 'Bybit', 'OKX', 'Bitget', 'Deribit'] * (num_rows // 5)
+            sample_data = pd.DataFrame({
+                'symbol': symbols[:num_rows],
+                'exchange': exchanges[:num_rows],
+                'open_interest': [1000000 + i * 50000 for i in range(num_rows)],
+                'timestamp': [datetime.now().timestamp() - i * 3600 for i in range(num_rows)]
+            })
+
+            file_path = DATA_DIR / "oi.csv"
+            sample_data.to_csv(file_path, index=False)
+
+            file_size = file_path.stat().st_size
+            data_status["oi"]["status"] = "ready"
+            data_status["oi"]["last_updated"] = datetime.now().strftime("%H:%M:%S")
+            data_status["oi"]["file_size"] = file_size
+
+            logger.info(f"✅ TEST MODE: Sample OI data created: {format_file_size(file_size)}")
+        else:
+            logger.info("📊 Fetching OI data...")
+            data_status["oi"]["status"] = "fetching"
+
+            df = moon_api.get_oi_data()
+
+            if df is not None:
+                file_path = DATA_DIR / "oi.csv"
+                df.to_csv(file_path, index=False)
+
+                file_size = file_path.stat().st_size
+                data_status["oi"]["status"] = "ready"
+                data_status["oi"]["last_updated"] = datetime.now().strftime("%H:%M:%S")
+                data_status["oi"]["file_size"] = file_size
+
+                logger.info(f"✅ OI data saved: {format_file_size(file_size)}")
+            else:
+                data_status["oi"]["status"] = "error"
+                logger.error("❌ Failed to fetch OI data")
+
+    except Exception as e:
+        data_status["oi"]["status"] = "error"
+        logger.error(f"💥 Error fetching OI data: {str(e)}")
+        logger.error(traceback.format_exc())
+
+
+async def fetch_all_data():
+    """Fetch all data from Moon Dev API"""
+    logger.info("🚀 Starting data fetch for all datasets...")
+
+    try:
+        # Run all fetches concurrently
+        await asyncio.gather(
+            fetch_liquidation_data(),
+            fetch_oi_data()
+        )
+        logger.info("✨ Data fetch complete!")
+    except Exception as e:
+        logger.error(f"Error during data fetch: {str(e)}")
+        # Don't crash, just log the error
+
+
+async def background_data_fetch():
+    """Background task to fetch data without blocking startup"""
+    await asyncio.sleep(1)  # Small delay to let server fully start
+    await fetch_all_data()
+
+
+# ============================================================================
+# 🌙 ROUTES
+# ============================================================================
+
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     """Render the main dashboard page"""
@@ -112,15 +293,32 @@ async def get_backtests():
                 "message": "No backtest data found yet. Run rbi_agent_pp_multi.py to generate results!"
             })
 
-        # Read CSV
-        df = pd.read_csv(STATS_CSV)
+        # 🌙 Moon Dev: Read CSV with proper header handling
+        # Check if header needs updating (old format without Exposure %)
+        with open(STATS_CSV, 'r') as f:
+            header_line = f.readline().strip()
+
+        # If header is old format, read with names parameter to handle 13 columns
+        if 'Exposure %' not in header_line:
+            print("📊 Detected old CSV header format - reading with new column names")
+            df = pd.read_csv(
+                STATS_CSV,
+                names=['Strategy Name', 'Thread ID', 'Return %', 'Buy & Hold %',
+                       'Max Drawdown %', 'Sharpe Ratio', 'Sortino Ratio', 'Exposure %',
+                       'EV %', 'Trades', 'File Path', 'Data', 'Time'],
+                skiprows=1,  # Skip old header
+                on_bad_lines='warn'
+            )
+        else:
+            # New format - read normally
+            df = pd.read_csv(STATS_CSV, on_bad_lines='warn')
 
         # Debug: Print columns
         print(f"📊 CSV Columns: {list(df.columns)}")
         print(f"📊 Row count: {len(df)}")
 
         # Convert numeric columns, replacing 'N/A' with NaN
-        numeric_cols = ['Return %', 'Buy & Hold %', 'Max Drawdown %', 'Sharpe Ratio', 'Sortino Ratio', 'EV %', 'Trades']
+        numeric_cols = ['Return %', 'Buy & Hold %', 'Max Drawdown %', 'Sharpe Ratio', 'Sortino Ratio', 'Exposure %', 'EV %', 'Trades']
         for col in numeric_cols:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors='coerce')
@@ -178,12 +376,27 @@ async def get_stats():
                 "message": "No data yet"
             })
 
-        df = pd.read_csv(STATS_CSV)
+        # 🌙 Moon Dev: Read CSV with proper header handling
+        with open(STATS_CSV, 'r') as f:
+            header_line = f.readline().strip()
+
+        # If header is old format, read with names parameter to handle 13 columns
+        if 'Exposure %' not in header_line:
+            df = pd.read_csv(
+                STATS_CSV,
+                names=['Strategy Name', 'Thread ID', 'Return %', 'Buy & Hold %',
+                       'Max Drawdown %', 'Sharpe Ratio', 'Sortino Ratio', 'Exposure %',
+                       'EV %', 'Trades', 'File Path', 'Data', 'Time'],
+                skiprows=1,
+                on_bad_lines='warn'
+            )
+        else:
+            df = pd.read_csv(STATS_CSV, on_bad_lines='warn')
 
         print(f"📊 Stats CSV Columns: {list(df.columns)}")
 
         # Convert numeric columns, replacing 'N/A' with NaN
-        numeric_cols = ['Return %', 'Buy & Hold %', 'Max Drawdown %', 'Sharpe Ratio', 'Sortino Ratio', 'EV %', 'Trades']
+        numeric_cols = ['Return %', 'Buy & Hold %', 'Max Drawdown %', 'Sharpe Ratio', 'Sortino Ratio', 'Exposure %', 'EV %', 'Trades']
         for col in numeric_cols:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors='coerce')
@@ -517,6 +730,75 @@ async def run_backtest(request: BacktestRunRequest):
         }, status_code=500)
 
 
+# ============================================================================
+# 🌙 DATA PORTAL ROUTES
+# ============================================================================
+
+@app.get("/data", response_class=HTMLResponse)
+async def data_portal(request: Request):
+    """Render the data portal page"""
+    return templates.TemplateResponse("data.html", {"request": request})
+
+
+@app.get("/download/liquidations")
+async def download_liquidations():
+    """Download liquidation data"""
+    file_path = DATA_DIR / "liquidations.csv"
+    if file_path.exists():
+        return FileResponse(
+            file_path,
+            media_type="text/csv",
+            filename="moon_dev_liquidations.csv"
+        )
+    return JSONResponse({"error": "Data not available yet"}, status_code=404)
+
+
+@app.get("/download/oi")
+async def download_oi():
+    """Download open interest data"""
+    file_path = DATA_DIR / "oi.csv"
+    if file_path.exists():
+        return FileResponse(
+            file_path,
+            media_type="text/csv",
+            filename="moon_dev_oi.csv"
+        )
+    return JSONResponse({"error": "Data not available yet"}, status_code=404)
+
+
+@app.get("/download/testdata/{dataset_name}")
+async def download_test_data(dataset_name: str):
+    """Download test dataset for backtesting"""
+    # 🌙 Moon Dev: Serve historical test datasets for backtesting
+    file_path = TEST_DATA_DIR / f"{dataset_name}.csv"
+
+    if not file_path.exists():
+        return JSONResponse({"error": f"Dataset {dataset_name} not found"}, status_code=404)
+
+    return FileResponse(
+        file_path,
+        media_type="text/csv",
+        filename=f"moondev_testdata_{dataset_name}.csv"
+    )
+
+
+@app.get("/api/data-status")
+async def get_data_status():
+    """Get current data status"""
+    return JSONResponse(data_status)
+
+
+@app.post("/api/refresh-data")
+async def refresh_data(background_tasks: BackgroundTasks):
+    """Manually trigger data refresh"""
+    background_tasks.add_task(fetch_all_data)
+    return JSONResponse({"message": "Data refresh initiated"})
+
+
+# ============================================================================
+# 🌙 BACKTEST FOLDER OPERATIONS
+# ============================================================================
+
 def auto_add_to_folder(run_name: str, csv_before_path: str) -> int:
     """🌙 Moon Dev: Automatically add new winning backtests to a folder"""
     try:
@@ -576,13 +858,56 @@ def auto_add_to_folder(run_name: str, csv_before_path: str) -> int:
         return 0
 
 
+# ============================================================================
+# 🌙 STARTUP EVENT
+# ============================================================================
+
+@app.on_event("startup")
+async def startup_event():
+    """Initialize scheduler and fetch data on startup"""
+    logger.info("🌙 Moon Dev's AI Agent Backtests Dashboard starting up...")
+    if TEST_MODE:
+        logger.info("🧪 TEST MODE ENABLED - Using sample data for Data Portal")
+    logger.info("")
+    logger.info("🚀 Server is now available at: http://localhost:8001")
+    logger.info("📊 Analysis Dashboard: http://localhost:8001/")
+    logger.info("📊 Data Portal: http://localhost:8001/data")
+    logger.info("📊 Data will begin downloading in the background...")
+    logger.info("")
+
+    # Setup scheduler for periodic data updates (every 5 minutes)
+    scheduler = AsyncIOScheduler()
+
+    # Schedule data fetch every 5 minutes
+    scheduler.add_job(
+        fetch_all_data,
+        IntervalTrigger(minutes=5),
+        id='fetch_all_data',
+        name='Fetch all data every 5 minutes',
+        replace_existing=True
+    )
+
+    # Start scheduler
+    scheduler.start()
+    logger.info("⏰ Scheduler started - will update data every 5 minutes")
+
+    # Start data fetch in background (truly non-blocking)
+    asyncio.create_task(background_data_fetch())
+
+
 if __name__ == "__main__":
     print("\n" + "="*80)
     print("🌙 Moon Dev's AI Agent Backtests Dashboard 🚀")
     print("="*80)
     print(f"\n📊 CSV Path: {STATS_CSV}")
     print(f"📁 Templates: {TEMPLATE_BASE_DIR}")
+    print(f"📂 Data Downloads: {DATA_DIR}")
     print(f"🌐 Starting server at: http://localhost:8001")
+    print(f"\n💡 Page 1 (Analysis): http://localhost:8001/")
+    print(f"💡 Page 2 (Data Portal): http://localhost:8001/data")
+    if TEST_MODE:
+        print(f"\n🧪 TEST MODE: Data portal will use sample data")
+        print(f"   Set TEST_MODE = False in backtestdashboard.py for real data")
     print(f"\n💡 NOTE: Make sure you've run rbi_agent_pp_multi.py first to generate backtest data!")
     print(f"💡 Port 8001 is used to avoid conflict with main API on port 8000")
     print("\nPress CTRL+C to stop\n")
