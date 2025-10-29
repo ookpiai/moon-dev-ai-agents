@@ -40,6 +40,7 @@ import os
 import time
 import re
 import hashlib
+import csv
 from datetime import datetime
 from termcolor import cprint
 import sys
@@ -118,6 +119,7 @@ OPTIMIZE_CONFIG = {
 
 # 🎯 PROFIT TARGET CONFIGURATION
 TARGET_RETURN = 50  # Target return in %
+SAVE_IF_OVER_RETURN = 1.0  # Save backtest to CSV and folders if return > this % (Moon Dev's threshold!)
 CONDA_ENV = "tflow"
 MAX_DEBUG_ITERATIONS = 10
 MAX_OPTIMIZATION_ITERATIONS = 10
@@ -136,17 +138,19 @@ TODAY_DIR = DATA_DIR / TODAY_DATE
 RESEARCH_DIR = TODAY_DIR / "research"
 BACKTEST_DIR = TODAY_DIR / "backtests"
 PACKAGE_DIR = TODAY_DIR / "backtests_package"
+WORKING_BACKTEST_DIR = TODAY_DIR / "backtests_working"  # Moon Dev's working iterations!
 FINAL_BACKTEST_DIR = TODAY_DIR / "backtests_final"
 OPTIMIZATION_DIR = TODAY_DIR / "backtests_optimized"
 CHARTS_DIR = TODAY_DIR / "charts"
 EXECUTION_DIR = TODAY_DIR / "execution_results"
 PROCESSED_IDEAS_LOG = DATA_DIR / "processed_ideas.log"
+STATS_CSV = DATA_DIR / "backtest_stats.csv"  # Moon Dev's stats tracker!
 
 IDEAS_FILE = DATA_DIR / "ideas.txt"
 
 # Create main directories if they don't exist
 for dir in [DATA_DIR, TODAY_DIR, RESEARCH_DIR, BACKTEST_DIR, PACKAGE_DIR,
-            FINAL_BACKTEST_DIR, OPTIMIZATION_DIR, CHARTS_DIR, EXECUTION_DIR]:
+            WORKING_BACKTEST_DIR, FINAL_BACKTEST_DIR, OPTIMIZATION_DIR, CHARTS_DIR, EXECUTION_DIR]:
     dir.mkdir(parents=True, exist_ok=True)
 
 # ============================================
@@ -469,6 +473,165 @@ def parse_return_from_output(stdout: str, thread_id: int) -> float:
         thread_print(f"❌ Error parsing return: {str(e)}", thread_id, "red")
         return None
 
+def parse_all_stats_from_output(stdout: str, thread_id: int) -> dict:
+    """
+    🌙 Moon Dev's Stats Parser - Extract all key stats from backtest output!
+    Returns dict with: return_pct, buy_hold_pct, max_drawdown_pct, sharpe, sortino, expectancy
+    """
+    stats = {
+        'return_pct': None,
+        'buy_hold_pct': None,
+        'max_drawdown_pct': None,
+        'sharpe': None,
+        'sortino': None,
+        'expectancy': None
+    }
+
+    try:
+        # Return [%]
+        match = re.search(r'Return \[%\]\s+([-\d.]+)', stdout)
+        if match:
+            stats['return_pct'] = float(match.group(1))
+
+        # Buy & Hold Return [%]
+        match = re.search(r'Buy & Hold Return \[%\]\s+([-\d.]+)', stdout)
+        if match:
+            stats['buy_hold_pct'] = float(match.group(1))
+
+        # Max. Drawdown [%]
+        match = re.search(r'Max\. Drawdown \[%\]\s+([-\d.]+)', stdout)
+        if match:
+            stats['max_drawdown_pct'] = float(match.group(1))
+
+        # Sharpe Ratio
+        match = re.search(r'Sharpe Ratio\s+([-\d.]+)', stdout)
+        if match:
+            stats['sharpe'] = float(match.group(1))
+
+        # Sortino Ratio
+        match = re.search(r'Sortino Ratio\s+([-\d.]+)', stdout)
+        if match:
+            stats['sortino'] = float(match.group(1))
+
+        # Expectancy [%] (or Avg. Trade [%])
+        match = re.search(r'Expectancy \[%\]\s+([-\d.]+)', stdout)
+        if not match:
+            match = re.search(r'Avg\. Trade \[%\]\s+([-\d.]+)', stdout)
+        if match:
+            stats['expectancy'] = float(match.group(1))
+
+        thread_print(f"📊 Extracted {sum(1 for v in stats.values() if v is not None)}/6 stats", thread_id)
+        return stats
+
+    except Exception as e:
+        thread_print(f"❌ Error parsing stats: {str(e)}", thread_id, "red")
+        return stats
+
+def log_stats_to_csv(strategy_name: str, iteration: int, thread_id: int, stats: dict, file_path: str) -> None:
+    """
+    🌙 Moon Dev's CSV Logger - Thread-safe stats logging!
+    Appends backtest stats to CSV for easy analysis and comparison
+    """
+    try:
+        with file_lock:
+            # Create CSV with headers if it doesn't exist
+            file_exists = STATS_CSV.exists()
+
+            with open(STATS_CSV, 'a', newline='') as f:
+                writer = csv.writer(f)
+
+                # Write header if new file
+                if not file_exists:
+                    writer.writerow([
+                        'Strategy Name',
+                        'Iteration',
+                        'Thread ID',
+                        'Return %',
+                        'Buy & Hold %',
+                        'Max Drawdown %',
+                        'Sharpe Ratio',
+                        'Sortino Ratio',
+                        'Expectancy %',
+                        'File Path',
+                        'Timestamp'
+                    ])
+                    thread_print("📝 Created new stats CSV with headers", thread_id, "green")
+
+                # Write stats row
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                writer.writerow([
+                    strategy_name,
+                    iteration,
+                    f"T{thread_id:02d}",
+                    stats.get('return_pct', 'N/A'),
+                    stats.get('buy_hold_pct', 'N/A'),
+                    stats.get('max_drawdown_pct', 'N/A'),
+                    stats.get('sharpe', 'N/A'),
+                    stats.get('sortino', 'N/A'),
+                    stats.get('expectancy', 'N/A'),
+                    str(file_path),
+                    timestamp
+                ])
+
+                thread_print(f"✅ Logged stats to CSV (Return: {stats.get('return_pct', 'N/A')}%)", thread_id, "green")
+
+    except Exception as e:
+        thread_print(f"❌ Error logging to CSV: {str(e)}", thread_id, "red")
+
+def save_backtest_if_threshold_met(code: str, stats: dict, strategy_name: str, iteration: int, thread_id: int, phase: str = "debug") -> bool:
+    """
+    🌙 Moon Dev's Threshold Checker - Save backtests that pass the return threshold!
+
+    Args:
+        code: The backtest code to save
+        stats: Dict of parsed stats
+        strategy_name: Name of the strategy
+        iteration: Current iteration number
+        thread_id: Thread ID
+        phase: "debug", "opt", or "final" to determine filename
+
+    Returns:
+        True if saved (threshold met), False otherwise
+    """
+    return_pct = stats.get('return_pct')
+
+    # Check if return meets threshold
+    if return_pct is None or return_pct <= SAVE_IF_OVER_RETURN:
+        thread_print(f"⚠️ Return {return_pct}% ≤ {SAVE_IF_OVER_RETURN}% threshold - not saving", thread_id, "yellow")
+        return False
+
+    try:
+        # Determine filename based on phase
+        if phase == "debug":
+            filename = f"T{thread_id:02d}_{strategy_name}_DEBUG_v{iteration}_{return_pct:.1f}pct.py"
+        elif phase == "opt":
+            filename = f"T{thread_id:02d}_{strategy_name}_OPT_v{iteration}_{return_pct:.1f}pct.py"
+        else:  # final
+            filename = f"T{thread_id:02d}_{strategy_name}_FINAL_{return_pct:.1f}pct.py"
+
+        # Save to WORKING folder
+        working_file = WORKING_BACKTEST_DIR / filename
+        with file_lock:
+            with open(working_file, 'w') as f:
+                f.write(code)
+
+        # Save to FINAL folder (same logic per Moon Dev's request)
+        final_file = FINAL_BACKTEST_DIR / filename
+        with file_lock:
+            with open(final_file, 'w') as f:
+                f.write(code)
+
+        thread_print(f"💾 Saved to working & final! Return: {return_pct:.2f}%", thread_id, "green", attrs=['bold'])
+
+        # Log to CSV
+        log_stats_to_csv(strategy_name, iteration, thread_id, stats, str(working_file))
+
+        return True
+
+    except Exception as e:
+        thread_print(f"❌ Error saving backtest: {str(e)}", thread_id, "red")
+        return False
+
 def execute_backtest(file_path: str, strategy_name: str, thread_id: int) -> dict:
     """Execute a backtest file in conda environment and capture output"""
     thread_print(f"🚀 Executing: {strategy_name}", thread_id)
@@ -746,7 +909,9 @@ def debug_backtest(backtest_code, error_message, strategy_name, thread_id, itera
     if output:
         output = clean_model_output(output, "code")
 
-        filepath = FINAL_BACKTEST_DIR / f"T{thread_id:02d}_{strategy_name}_BTFinal_v{iteration}.py"
+        # 🌙 Moon Dev: Save debug iterations to BACKTEST_DIR, not FINAL
+        # Only threshold-passing backtests go to FINAL/WORKING folders!
+        filepath = BACKTEST_DIR / f"T{thread_id:02d}_{strategy_name}_DEBUG_v{iteration}.py"
         with file_lock:
             with open(filepath, 'w') as f:
                 f.write(output)
@@ -852,7 +1017,8 @@ def process_trading_idea_parallel(idea: str, thread_id: int) -> dict:
                             return {"success": False, "error": "Debug failed", "thread_id": thread_id}
 
                         current_code = debugged_code
-                        current_file = FINAL_BACKTEST_DIR / f"T{thread_id:02d}_{strategy_name}_BTFinal_v{debug_iteration}.py"
+                        # 🌙 Moon Dev: Update to match new debug file location
+                        current_file = BACKTEST_DIR / f"T{thread_id:02d}_{strategy_name}_DEBUG_v{debug_iteration}.py"
                         continue
                     else:
                         thread_print(f"❌ Max debug iterations reached", thread_id, "red")
@@ -861,7 +1027,9 @@ def process_trading_idea_parallel(idea: str, thread_id: int) -> dict:
                     # SUCCESS! Code executes with trades!
                     thread_print("🎉 BACKTEST SUCCESSFUL!", thread_id, "green", attrs=['bold'])
 
-                    current_return = parse_return_from_output(execution_result['stdout'], thread_id)
+                    # 🌙 Moon Dev: Parse ALL stats, not just return!
+                    all_stats = parse_all_stats_from_output(execution_result['stdout'], thread_id)
+                    current_return = all_stats.get('return_pct')
 
                     if current_return is None:
                         thread_print("⚠️ Could not parse return", thread_id, "yellow")
@@ -871,12 +1039,23 @@ def process_trading_idea_parallel(idea: str, thread_id: int) -> dict:
                                 f.write(current_code)
                         break
 
+                    # 🌙 Moon Dev: Check threshold and save if met!
+                    save_backtest_if_threshold_met(
+                        current_code,
+                        all_stats,
+                        strategy_name,
+                        debug_iteration,
+                        thread_id,
+                        phase="debug"
+                    )
+
                     thread_print(f"📊 Return: {current_return}% | Target: {TARGET_RETURN}%", thread_id)
 
                     if current_return >= TARGET_RETURN:
                         # TARGET HIT!
                         thread_print("🚀🚀🚀 TARGET HIT! 🚀🚀🚀", thread_id, "green", attrs=['bold'])
 
+                        # 🌙 Moon Dev: Save to OPTIMIZATION_DIR for target hits
                         final_file = OPTIMIZATION_DIR / f"T{thread_id:02d}_{strategy_name}_TARGET_HIT_{current_return}pct.py"
                         with file_lock:
                             with open(final_file, 'w') as f:
@@ -922,7 +1101,9 @@ def process_trading_idea_parallel(idea: str, thread_id: int) -> dict:
                                 thread_print(f"⚠️ Optimization {optimization_iteration} failed", thread_id, "yellow")
                                 continue
 
-                            new_return = parse_return_from_output(opt_result['stdout'], thread_id)
+                            # 🌙 Moon Dev: Parse ALL stats from optimization!
+                            opt_stats = parse_all_stats_from_output(opt_result['stdout'], thread_id)
+                            new_return = opt_stats.get('return_pct')
 
                             if new_return is None:
                                 continue
@@ -935,6 +1116,16 @@ def process_trading_idea_parallel(idea: str, thread_id: int) -> dict:
                                 best_return = new_return
                                 best_code = optimized_code
                                 optimization_code = optimized_code
+
+                                # 🌙 Moon Dev: Check threshold and save if met!
+                                save_backtest_if_threshold_met(
+                                    optimized_code,
+                                    opt_stats,
+                                    strategy_name,
+                                    optimization_iteration,
+                                    thread_id,
+                                    phase="opt"
+                                )
 
                                 if new_return >= TARGET_RETURN:
                                     thread_print("🚀🚀🚀 TARGET HIT VIA OPTIMIZATION! 🚀🚀🚀", thread_id, "green", attrs=['bold'])
@@ -994,7 +1185,8 @@ def process_trading_idea_parallel(idea: str, thread_id: int) -> dict:
                         return {"success": False, "error": "Debug failed", "thread_id": thread_id}
 
                     current_code = debugged_code
-                    current_file = FINAL_BACKTEST_DIR / f"T{thread_id:02d}_{strategy_name}_BTFinal_v{debug_iteration}.py"
+                    # 🌙 Moon Dev: Update to match new debug file location
+                    current_file = BACKTEST_DIR / f"T{thread_id:02d}_{strategy_name}_DEBUG_v{debug_iteration}.py"
                 else:
                     thread_print(f"❌ Max debug iterations reached", thread_id, "red")
                     return {"success": False, "error": "Max debug iterations", "thread_id": thread_id}

@@ -66,7 +66,7 @@ SWARM_MODELS = {
     #"ollama_qwen": (True, "ollama", "qwen3:8b"),  # Qwen3 8B via Ollama - Fast local reasoning! (Replaces Gemini)
     "xai": (True, "xai", "grok-4-fast-reasoning"),  # Grok-4 fast reasoning
     "deepseek": (True, "deepseek", "deepseek-chat"),  # DeepSeek for reasoning (API)
-    "ollama": (True, "ollama", "DeepSeek-R1:latest"),  # DeepSeek-R1 local model - 90s timeout
+    #"ollama": (True, "ollama", "DeepSeek-R1:latest"),  # DeepSeek-R1 local model - 90s timeout
 }
 
 # Default parameters for model queries

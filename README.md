@@ -9,43 +9,66 @@ ai agents are clearly the future and the entire workforce will be replaced or at
 
 feel free to join [our discord](https://discord.gg/8UPuVZ53bh) if you beleive ai agents will be integrated into the workforce
 
+## Video Updates & Training
+
 ⭐️ [first full concise documentation video (watch here)](https://youtu.be/RlqzkSgDKDc)
 
-## Video Updates & Training
-📀 follow all updates here on youtube: https://www.youtube.com/playlist?list=PLXrNVMjRZUJg4M4uz52iGd1LhXXGVbIFz
+⭐️ [second full walkthrough video(watch here)](https://youtu.be/tjY24JR8Cso?si=Za-PQ2L79US6cu2T)
 
-## Live Agents
-- **Trading Agent** (`trading_agent.py`): **DUAL-MODE AI trading system** - Toggle between single model (fast ~10s) or swarm mode (6-model consensus ~45-60s). Swarm mode queries Claude 4.5, GPT-5, Gemini 2.5, Grok-4, DeepSeek, and DeepSeek-R1 local for majority vote trading decisions. Configure via `USE_SWARM_MODE` in config.py 
-- Strategy Agent (`strategy_agent.py`): Manages and executes trading strategies placed in the strategies folder
-- Risk Agent (`risk_agent.py`): Monitors and manages portfolio risk, enforcing position limits and PnL thresholds
-- Copy Agent (`copy_agent.py`): monitors copy bot for potential trades
-- Whale Agent (`whale_agent.py`): monitors whale activity and announces when a whale enters the market
-- Sentiment Agent (`sentiment_agent.py`): analyzes Twitter sentiment for crypto tokens with voice announcements
-- Listing Arbitrage Agent (`listingarb_agent.py`): identifies promising Solana tokens on CoinGecko before they reach major exchanges like Binance and Coinbase, using parallel AI analysis for technical and fundamental insights
-- Focus Agent (`focus_agent.py`): randomly samples audio during coding sessions to maintain productivity, providing focus scores and voice alerts when focus drops (~$10/month, perfect for voice-to-code workflows)
-- Funding Agent (`funding_agent.py`): monitors funding rates across exchanges and uses AI to analyze opportunities, providing voice alerts for extreme funding situations with technical context 🌙
-- Liquidation Agent (`liquidation_agent.py`): tracks liquidation events with configurable time windows (15min/1hr/4hr), providing AI analysis and voice alerts for significant liquidation spikes 💦
-- Chart Agent (`chartanalysis_agent.py`): looks at any crypto chart and then analyzes it with ai to make a buy/sell/nothing reccomendation.
-- funding rate arbitrage agent (`fundingarb_agent.py`): tracks the funding rate on hyper liquid to find funding rate arbitrage opportunities between hl and solana
-- rbi agent (`rbi_agent.py`): uses deepseek to research trading strategies based on the youtube video, pdf, or words you give it. then sends to his ai friend who codes out the backtest.
-- twitter agent (`tweet_agent.py`): takes in text and creates tweets using deepseek or other models
-- video agent (`video_agent.py`): takes in text to create videos by creating audio snippets using elevenlabs and combining with raw_video footage
-- new or top tokens (`new_or_top_agent.py`): an agent that looks at the new tokens and the top tokens from coin gecko api
-- chat agent (`chat_agent.py`): an agent that monitors youtube live stream chat, moderates & responds to known questions. absolute fire.
-- clips agent (`clips_agent.py`): an agent that helps clip long videos into shorter ones so you can upload to your youtube and get paid more info is in the code notes and here: https://discord.gg/XAw8US9aHT
-- phone agent (`phone_agent.py`): an ai agent that can take phone calls for you
-- sniper agent (`sniper_agent.py`): sniper agent that watches for new solana token launches and will then analyze them and maybe snipe
-- tx agent (`tx_agent.py`): watches transactions made by my copy list and then prints them out with an optional auto tab open
-- solana agent (`solana_agent.py`): looks at the sniper agent and the tx agent in order to select which memes may be interesting
-- million agent (`million_agent.py`): uses million context window from gemini to pull in a knowledge base
-- tiktok agent (`tiktok_agent.py`): scrolls tiktok and gets screenshots of the video + comments to extract consumer data in order to feed into algos. sometimes called social arbitrage
-- compliance agent (`compliance_agent.py`): analyzes TikTok ads for Facebook advertising compliance, extracting frames and transcribing audio to check against FB guidelines
-- research agent (`research_agent`): an agent to fill the ideas.txt so the rbi agent can run forever
-- real time clips agent (`src/agents/realtime_clips_agent.py`): an ai agent that makes real time clips of streamers using obs
-- housecoin agent (`src/agents/housecoin_agent.py`): DCA (dollar cost average) agent with AI confirmation layer using Grok-4 for the thesis: 1 House = 1 Housecoin 🏠
-- swarm agent (`src/agents/swarm_agent.py`): queries 6 AI models in parallel (Claude 4.5, GPT-5, Gemini 2.5, Grok-4, DeepSeek, DeepSeek-R1 local), generates AI consensus summary, returns clean JSON with model mapping for easy parsing 🐝
+⭐️ [third full walkthrough w/ big updates, new models, new agents(watch here)](https://youtu.be/qZv6IFIkk6I)
 
-**⚠️ IMPORTANT: This is an experimental project. There are NO guarantees of profitability. Trading involves substantial risk of loss.**
+📀 follow all updates here on youtube in this playlist: https://www.youtube.com/playlist?list=PLXrNVMjRZUJg4M4uz52iGd1LhXXGVbIFz
+
+---
+
+## 🤖 All Available Agents
+
+**⚠️ For live trading agents: Only use these AFTER thoroughly backtesting your strategies!**
+
+### Backtesting & Research Agents
+- **RBI Agent** (`rbi_agent.py`): Uses DeepSeek to research trading strategies based on YouTube videos, PDFs, or text you provide, then codes out the backtest automatically
+- **RBI Parallel Agent** (`rbi_agent_pp_multi.py`): Parallel version with 18 threads, tests across 20+ data sources, web dashboard included
+- **Research Agent** (`research_agent.py`): Fills the ideas.txt file so the RBI agent can run forever
+- **Websearch Agent** (`websearch_agent.py`): This agent searches the web, in my use case for trading strategy resources and then uses other ai's to split the website ideas into strategy files i can have my  `rbi_agent_pp_multi.py` process and build out backtests
+
+### Live Trading Agents
+- **Trading Agent** (`trading_agent.py`): **DUAL-MODE AI trading system** - Toggle between single model (fast ~10s) or swarm mode (6-model consensus ~45-60s). Swarm mode queries Claude 4.5, GPT-5, Gemini 2.5, Grok-4, DeepSeek, and DeepSeek-R1 local for majority vote trading decisions. Configure via `USE_SWARM_MODE` in config.py
+- **Strategy Agent** (`strategy_agent.py`): Manages and executes trading strategies placed in the strategies folder
+- **Risk Agent** (`risk_agent.py`): Monitors and manages portfolio risk, enforcing position limits and PnL thresholds
+- **Copy Agent** (`copy_agent.py`): Monitors copy bot for potential trades
+- **Swarm Agent** (`swarm_agent.py`): Queries 6 AI models in parallel (Claude 4.5, GPT-5, Gemini 2.5, Grok-4, DeepSeek, DeepSeek-R1 local), generates AI consensus summary, returns clean JSON with model mapping for easy parsing 🐝
+
+### Market Analysis Agents
+- **Whale Agent** (`whale_agent.py`): Monitors whale activity and announces when a whale enters the market
+- **Sentiment Agent** (`sentiment_agent.py`): Analyzes Twitter sentiment for crypto tokens with voice announcements
+- **Chart Agent** (`chartanalysis_agent.py`): Looks at any crypto chart and analyzes it with AI to make a buy/sell/nothing recommendation
+- **Funding Agent** (`funding_agent.py`): Monitors funding rates across exchanges and uses AI to analyze opportunities, providing voice alerts for extreme funding situations with technical context 🌙
+- **Liquidation Agent** (`liquidation_agent.py`): Tracks liquidation events with configurable time windows (15min/1hr/4hr), providing AI analysis and voice alerts for significant liquidation spikes 💦
+- **Listing Arbitrage Agent** (`listingarb_agent.py`): Identifies promising Solana tokens on CoinGecko before they reach major exchanges like Binance and Coinbase, using parallel AI analysis for technical and fundamental insights
+- **Funding Arbitrage Agent** (`fundingarb_agent.py`): Tracks the funding rate on HyperLiquid to find funding rate arbitrage opportunities between HL and Solana
+- **New or Top Tokens Agent** (`new_or_top_agent.py`): Looks at the new tokens and the top tokens from CoinGecko API
+
+### Solana-Specific Agents
+- **Sniper Agent** (`sniper_agent.py`): Watches for new Solana token launches, analyzes them, and maybe snipes
+- **TX Agent** (`tx_agent.py`): Watches transactions made by your copy list and prints them out with optional auto tab open
+- **Solana Agent** (`solana_agent.py`): Looks at the sniper agent and the TX agent to select which memes may be interesting
+
+### Content Creation Agents
+- **Chat Agent** (`chat_agent.py`): Monitors YouTube live stream chat, moderates & responds to known questions. Absolute fire.
+- **Twitter Agent** (`tweet_agent.py`): Takes in text and creates tweets using DeepSeek or other models
+- **Video Agent** (`video_agent.py`): Takes in text to create videos by creating audio snippets using ElevenLabs and combining with raw_video footage
+- **Clips Agent** (`clips_agent.py`): Helps clip long videos into shorter ones so you can upload to your YouTube and get paid. More info: https://discord.gg/XAw8US9aHT
+- **Real-Time Clips Agent** (`realtime_clips_agent.py`): Makes real-time clips of streamers using OBS
+- **Phone Agent** (`phone_agent.py`): An AI agent that can take phone calls for you
+
+### Specialized Agents
+- **Focus Agent** (`focus_agent.py`): Randomly samples audio during coding sessions to maintain productivity, providing focus scores and voice alerts when focus drops (~$10/month, perfect for voice-to-code workflows)
+- **Million Agent** (`million_agent.py`): Uses million context window from Gemini to pull in a knowledge base
+- **TikTok Agent** (`tiktok_agent.py`): Scrolls TikTok and gets screenshots of the video + comments to extract consumer data to feed into algos. Sometimes called social arbitrage
+- **Compliance Agent** (`compliance_agent.py`): Analyzes TikTok ads for Facebook advertising compliance, extracting frames and transcribing audio to check against FB guidelines
+- **Housecoin Agent** (`housecoin_agent.py`): DCA (dollar cost average) agent with AI confirmation layer using Grok-4 for the thesis: 1 House = 1 Housecoin 🏠
+- **Polymarket Agent** (`polymarket_agent.py`): Connects to the live trades feed via WebSocket and analyzes with the swarm agent to see which markets could be interesting to trade
+
 
 ## ⚠️ Critical Disclaimers
 
@@ -68,204 +91,226 @@ feel free to join [our discord](https://discord.gg/8UPuVZ53bh) if you beleive ai
 7. Trading involves substantial risk of loss
 8. Past performance does not indicate future results
 
+**⚠️ IMPORTANT: This is an experimental project. There are NO guarantees of profitability. Trading involves substantial risk of loss.**
+
 ## 👂 Looking for Updates?
-Project updates will be posted in Discord, join here: [discord.gg/8UPuVZ53bh](https://discord.gg/8UPuVZ53bh) 
+Project updates will be posted in Discord, join here: [discord.gg/8UPuVZ53bh](https://discord.gg/8UPuVZ53bh)
 
 ## 🔗 Links
 - Free Algo Trading Roadmap: [moondev.com](https://moondev.com)
 - Algo Trading Education: [algotradecamp.com](https://algotradecamp.com)
 - Business Contact [moon@algotradecamp.com](mailto:moon@algotradecamp.com)
 
-## 🚀 Quick Start Guide
+---
 
-python 3.10.9 is what was used during dev
+## 🚀 Quick Start Guide - RBI Backtesting Agent
 
-1. ⭐ **Star the Repo**
-   - Click the star button to save it to your GitHub favorites
+**Why Start with Backtesting?**
 
-2. 🍴 **Fork the Repo**
-   - Fork to your GitHub account to get your own copy
-   - This lets you make changes and track updates
+Before running ANY trading algorithm or AI agent with real money, you MUST backtest your strategies. Backtesting shows you how a strategy would have performed on historical data. The RBI (Research-Based Inference) Agent automates this entire process for you.
 
-3. 💻 **Open in Your IDE**
-   - Clone to your local machine
-   - Recommended: Use [Cursor](https://www.cursor.com/) or [Windsurfer](https://codeium.com/) for AI-enabled coding
+**What is the RBI Agent?**
 
-4. 🔑 **Set Environment Variables**
-   - Check `.env.example` for required variables
-   - Create a copy of above and name it `.env` file with your keys:
-     - Anthropic API key
-     - Other trading API keys
-   - ⚠️ Never commit or share your API keys!
+The RBI Agent takes your trading ideas (from YouTube videos, PDFs, or plain text) and:
+1. 🧠 Uses AI to understand the trading strategy
+2. 💻 Codes a complete backtest using the `backtesting.py` library
+3. 📊 Tests across 20+ different market data sources
+4. ✅ Only saves strategies that pass a 1% return threshold
+5. 🎯 Tries to optimize strategies to hit a 50% target return
 
-5. 🤖 **Customize Agent Prompts**
-   - Navigate to `/agents` folder
-   - Modify LLM prompts to fit your needs
-   - Each agent has configurable parameters
+**Python Version:** 3.10.9 was used during development
 
-6. 📈 **Implement Your Strategies**
-   - Add your strategies to `/strategies` folder
-   - Remember: Out-of-box code is NOT profitable
-   - Thorough testing required before live trading
+### Step 1: ⭐ Star & Fork the Repo
+- Click the star button to save it to your GitHub favorites
+- Fork to your GitHub account to get your own copy
+- This lets you make changes and track updates
 
-7. 🏃‍♂️ **Run the System**
-   - Execute via `main.py`
-   - Toggle agents on/off as needed
-   - Monitor logs for performance
+### Step 2: 💻 Clone to Your Machine
+```bash
+git clone https://github.com/YOUR_USERNAME/moon-dev-ai-agents-for-trading.git
+cd moon-dev-ai-agents-for-trading
+```
+
+**Recommended IDEs:**
+- [Cursor](https://www.cursor.com/) - AI-enabled coding
+- [Windsurfer](https://codeium.com/) - AI-enabled coding
+
+### Step 3: 🔑 Set Up Environment Variables
+
+The RBI Agent needs API keys to function. Create a `.env` file in the root directory:
+
+```bash
+# Copy the example file
+cp .env.example .env
+```
+
+**Required API Keys for RBI Agent:**
+
+```bash
+# AI Model APIs (you need at least ONE of these)
+ANTHROPIC_KEY=your_anthropic_api_key_here          # Claude models (recommended)
+OPENAI_KEY=your_openai_api_key_here                # GPT models
+DEEPSEEK_KEY=your_deepseek_api_key_here            # DeepSeek models (cheap!)
+GROQ_API_KEY=your_groq_api_key_here                # Groq (fast inference)
+GEMINI_KEY=your_gemini_api_key_here                # Google Gemini
+XAI_API_KEY=your_xai_api_key_here                  # Grok models
+OPENROUTER_API_KEY=your_openrouter_api_key_here    # OpenRouter (200+ models!)
+
+# Market Data APIs (for downloading price data)
+BIRDEYE_API_KEY=your_birdeye_api_key_here          # Solana token data
+COINGECKO_API_KEY=your_coingecko_api_key_here      # Crypto market data
+```
+
+**Where to Get API Keys:**
+- **Anthropic Claude**: https://console.anthropic.com/
+- **OpenAI GPT**: https://platform.openai.com/api-keys
+- **DeepSeek**: https://platform.deepseek.com/ (very cheap, great for backtesting)
+- **Groq**: https://console.groq.com/
+- **Google Gemini**: https://aistudio.google.com/app/apikey
+- **xAI Grok**: https://console.x.ai/
+- **OpenRouter**: https://openrouter.ai/keys (access 200+ models including Qwen, GLM, and more!)
+- **BirdEye**: https://birdeye.so/ (Solana data)
+- **CoinGecko**: https://www.coingecko.com/en/api
+
+⚠️ **Never commit or share your `.env` file! It's in .gitignore for your safety.**
+
+### Step 4: 📦 Install Dependencies
+
+Using conda (recommended):
+```bash
+conda create -n tflow python=3.10.9
+conda activate tflow
+pip install -r requirements.txt
+```
+
+Or using pip directly:
+```bash
+pip install -r requirements.txt
+```
+
+### Step 5: 🧪 Run Your First Backtest
+
+**Option A: Single Strategy Test**
+
+Create a file called `ideas.txt` in `src/data/rbi_pp_multi/`:
+
+```
+Buy when RSI < 30 and sell when RSI > 70
+```
+
+Then run:
+```bash
+python src/agents/rbi_agent_pp_multi.py
+```
+
+**Option B: Use the Web Dashboard**
+
+Start the dashboard:
+```bash
+cd src/data/rbi_pp_multi
+python app.py
+```
+
+Open browser to: `http://localhost:8001`
+
+Click "New Backtests" and enter your strategy ideas!
+
+### Step 6: 📊 Understanding Results
+
+The agent will:
+- Process your strategy idea
+- Generate backtest code
+- Test across 20+ market datasets (BTC, ETH, SOL, etc.)
+- Show results in a table with:
+  - Return %
+  - Buy & Hold %
+  - Max Drawdown
+  - Sharpe Ratio
+  - Sortino Ratio
+  - Number of Trades
+
+**Only strategies returning > 1% are saved to the CSV.**
+
+Results are saved to:
+- `src/data/rbi_pp_multi/backtest_stats.csv` - All passing backtests
+- `src/data/rbi_pp_multi/user_folders/` - Organized by run name
+
+### Step 7: 🔍 Analyze Backtest Code
+
+Find your strategy files in:
+```
+src/data/rbi_pp_multi/10_25_2025_09_08/
+```
+
+Each successful backtest has:
+- **Python file**: The actual backtest code you can review and modify
+- **Results**: Performance metrics
+
+**Read the code!** This is how you learn what works and what doesn't.
 
 ---
 
-## 🌊 Swarm Trading System
+## 🎯 Configuration - RBI Agent
 
-The **Trading Agent** (`src/agents/trading_agent.py`) is a **fully self-contained, dual-mode AI trading system**.
-
-### ⚙️ Configuration - All in One Place
-**ALL settings are at the top of `src/agents/trading_agent.py` (lines 55-95)**
-
-No need to edit multiple files - everything is configured in the trading agent itself:
+All settings are in `src/agents/rbi_agent_pp_multi.py` (lines 130-132):
 
 ```python
-# 🌊 AI MODE (line 71)
-USE_SWARM_MODE = True  # True = swarm, False = single model
+# 🎯 PROFIT TARGET CONFIGURATION
+TARGET_RETURN = 50  # Target return in % (AI tries to optimize to this)
+SAVE_IF_OVER_RETURN = 1.0  # Save backtest to CSV if return > this %
+```
 
-# 📈 TRADING MODE (line 75)
-LONG_ONLY = True  # True = Long positions only (Solana on-chain, no shorting)
-                  # False = Long & Short (HyperLiquid perpetuals)
+**How it works:**
+- AI tries to optimize strategies to hit **50% return**
+- But ANY backtest returning **> 1%** gets saved to CSV
+- This way you can review all decent strategies, not just perfect ones
 
-# 💰 POSITION SIZING (lines 93-96)
-usd_size = 25                    # Target position size
-max_usd_order_size = 3           # Order chunk size
-MAX_POSITION_PERCENTAGE = 30     # Max % per position
-CASH_PERCENTAGE = 20             # Min cash buffer
+**Other Settings:**
+```python
+MAX_WORKERS = 18  # Number of parallel threads (adjust based on your CPU)
+DEBUG_BACKTEST_ERRORS = True  # Auto-fix coding errors with AI
+MAX_DEBUG_ITERATIONS = 10  # How many times to try fixing errors
+```
 
-# 📊 MARKET DATA (lines 75-79)
-DAYSBACK_4_DATA = 3              # Days of history
-DATA_TIMEFRAME = '1H'            # Bar timeframe
-# Options: 1m, 3m, 5m, 15m, 30m, 1H, 2H, 4H, 6H, 8H, 12H, 1D, 3D, 1W, 1M
+---
 
-# 🎯 TOKENS (lines 93-96)
-# ⚠️ ALL tokens in this list will be analyzed (one at a time)
-MONITORED_TOKENS = [
-    # '9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump',  # FART (disabled)
-    'DitHyRMQiSDhn5cnKMJV2CDDt6sVct96YrECiM49pump',     # housecoin (active)
+## 📚 Advanced: Adding Custom Data Sources
+
+Want to test on your own tokens? Edit the data list in `rbi_agent_pp_multi.py` (lines 157-178):
+
+```python
+ALL_DATA_CONFIGS = [
+    # Crypto data from CoinGecko/BirdEye
+    {'symbol': 'BTC-USD', 'timeframe': '15m', 'days_back': 90},
+    {'symbol': 'ETH-USD', 'timeframe': '15m', 'days_back': 90},
+    {'symbol': 'SOL-USD', 'timeframe': '15m', 'days_back': 90},
+
+    # Add your own token (Solana contract address)
+    {'symbol': 'YOUR_TOKEN_ADDRESS', 'timeframe': '1H', 'days_back': 30},
 ]
 ```
 
-**⚠️ Important:** The swarm analyzes **ALL tokens** in `MONITORED_TOKENS` one at a time. Each token takes ~60 seconds in swarm mode. Comment out tokens you don't want to trade by adding `#` at the start of the line.
+The agent will automatically download and cache the data.
 
-### 🤖 Single Model Mode (Fast)
-- Uses one AI model for quick trading decisions
-- Response time: ~10 seconds per token
-- Best for: Fast execution, high-frequency strategies
-- Set `USE_SWARM_MODE = False` and configure `AI_MODEL_TYPE`
-
-### 🌊 Swarm Mode (Consensus)
-- Queries **6 AI models simultaneously** for consensus voting
-- Response time: ~45-60 seconds per token
-- Each model votes: **"Buy"**, **"Sell"**, or **"Do Nothing"**
-- Majority decision wins with confidence percentage
-- Best for: Higher confidence trades, 15-minute+ timeframes
-
-**Trading Actions:**
-- **"Buy"** = Bullish signal (open/maintain long position)
-- **"Sell"** = Bearish signal (close long position)
-- **"Do Nothing"** = Hold current position unchanged (no action taken)
-
-**Trading Modes:**
-
-Set `LONG_ONLY` to match your trading platform:
-
-- **True (Solana On-Chain - Default):**
-  - Long positions only (no shorting available)
-  - **"Buy"** = Opens/maintains long position
-  - **"Sell"** = Closes long position (exits to cash)
-  - **"Sell" with no position** = Does nothing (can't short)
-  - **Use case:** Spot trading on Solana, token trading
-
-- **False (HyperLiquid Perpetuals):**
-  - Long AND short positions available
-  - **"Buy"** = Opens/maintains long position
-  - **"Sell"** = Closes long OR opens short position
-  - **"Sell" with no position** = Can open short
-  - **Use case:** Perpetual futures on HyperLiquid
-
-**Portfolio Allocation:**
-- Automatically allocates capital when swarm recommends BUY signals
-- Skipped when all signals are SELL or DO NOTHING
-- Manages position sizing based on confidence levels
-
-**Active Swarm Models:**
-1. **Claude Sonnet 4.5** - Anthropic's latest reasoning model
-2. **GPT-5** - OpenAI's most advanced model
-3. **Gemini 2.5 Flash** - Google's fast multimodal model
-4. **Grok-4 Fast Reasoning** - xAI's 2M context window model
-5. **DeepSeek Chat** - DeepSeek API reasoning model
-6. **DeepSeek-R1 Local** - Local reasoning model (free!)
-
-**Example Swarm Output:**
-```
-🌊 Swarm Consensus: BUY with 83% agreement
-
-Swarm Consensus (6 models voted):
-  Buy: 5 votes
-  Sell: 0 votes
-  Do Nothing: 1 vote
-
-Individual votes:
-  - claude: Buy
-  - openai: Buy
-  - gemini: Buy
-  - xai: Buy
-  - deepseek: Buy
-  - ollama: Do Nothing
-```
-
-**Market Data Details:**
-- Current settings: 3 days @ 1H = **~72 bars per token**
-- For 15-min bars: Change `DATA_TIMEFRAME = '15m'` = **~288 bars**
-- Each query includes: Full OHLCV dataframe, strategy signals, token metadata
-
-**How to Run:**
-```bash
-# Edit settings at top of file
-vim src/agents/trading_agent.py  # Lines 55-95
-
-# Run standalone
-python src/agents/trading_agent.py
-
-# Or via main orchestrator
-python src/main.py  # Enable in ACTIVE_AGENTS
-```
 
 ---
+
 ## 🗺️ ROADMAP
 
 ### In Progress
 - [x] **HyperLiquid Perps Integration** ✅
-   - Built ExchangeManager for seamless switching between Solana and HyperLiquid
-   - No router needed - using explicit imports via `nice_funcs_hyperliquid.py`
+- [x] **Swarm Consensus Trading** ✅
+- [x] **RBI Parallel Backtesting** ✅
 
 ### Coming Soon
-- [ ] **Polymarket Integration**
-   - Prediction market trading capabilities
-- [ ] **Base Chain Integration**
-   - Support for Base L2 network trading
-- [ ] **Extended Integration**
-   - Additional exchange support using same ExchangeManager pattern
-- [ ] **HyperLiquid Spot Trading**
-   - Spot market support on HyperLiquid
-- [ ] **Trending Agent**
-   - Spots leaders on HyperLiquid and trades with data + LLM analysis
-- [ ] **RBI Agent Updates**
-   - Continued improvements to research-based inference agent
-- [ ] **postion sizing agent**
-   - looks at volume and liquidations to determine position sizing
-- [ ] **regime agents**
-   - constantly determining the trading regime we are in and running strategies for that regime
-- [x] **execution agents** ✅
-   - when a signal is triggered ask a swarm of agents if we should abide (IMPLEMENTED: Swarm Mode in Trading Agent)
-- [ ] **polymarket sweeper agent**
-   - watches our polymarket sweeper dashboard and follows some sweepers
+- [ ] **Polymarket Integration** - Prediction market trading
+- [ ] **Base Chain Integration** - L2 network support
+- [ ] **Extended Integration** - Additional exchange support
+- [ ] **HyperLiquid Spot Trading** - Spot market support
+- [ ] **Trending Agent** - Spots leaders on HyperLiquid
+- [ ] **Position Sizing Agent** - Volume/liquidation-based sizing
+- [ ] **Regime Agents** - Adaptive strategy switching
+- [ ] **Polymarket Sweeper Agent** - Follow successful prediction traders
 
 ### Future Ideas
 - [ ] **Lighter Integration**
@@ -274,10 +319,9 @@ python src/main.py  # Enable in ACTIVE_AGENTS
 - [ ] **Aster Integration**
 - [ ] **HyperEVM Support**
 
-
 ---
-*Built with love by Moon Dev - Pioneering the future of AI-powered trading*
 
+*Built with love by Moon Dev - Pioneering the future of AI-powered trading*
 
 ## 📜 Detailed Disclaimer
 The content presented is for educational and informational purposes only and does not constitute financial advice. All trading involves risk and may not be suitable for all investors. You should carefully consider your investment objectives, level of experience, and risk appetite before investing.
