@@ -1,0 +1,33 @@
+C:\Users\oo\Desktop\moon-dev-ai-agents\src\data\pinescript_conversions\backtests\ADX_Squeeze_R_Based_BT.py:495: UserWarning: Some prices are larger than initial cash value. Note that fractional trading is not supported by this class. If you want to trade Bitcoin, increase initial cash, or trade \u03bcBTC or satoshis instead (see e.g. class `backtesting.lib.FractionalBacktest`.
+  bt = Backtest(
+================================================================================
+MOON DEV'S ADX + SQUEEZE R-BASED BACKTEST
+================================================================================
+Data: 31066 bars from 2023-01-01 00:00:00 to 2023-11-20 19:15:00
+Initial Capital: $10,000
+Risk Per Trade: 0.5%
+Commission: 0.1% per trade
+================================================================================
+Backtest.run:   0%|          | 0/31007 [00:00<?, ?bar/s]                                                        Traceback (most recent call last):
+  File "C:\Users\oo\Desktop\moon-dev-ai-agents\src\data\pinescript_conversions\backtests\ADX_Squeeze_R_Based_BT.py", line 503, in <module>
+    stats = bt.run()
+            ^^^^^^^^
+  File "C:\Users\oo\AppData\Roaming\Python\Python311\site-packages\backtesting\backtesting.py", line 1339, in run
+    strategy.next()
+  File "C:\Users\oo\Desktop\moon-dev-ai-agents\src\data\pinescript_conversions\backtests\ADX_Squeeze_R_Based_BT.py", line 213, in next
+    print(f"\u23f0 Long signal EXPIRED after {bars_elapsed} bars")
+  File "C:\Program Files\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u23f0' in position 0: character maps to <undefined>
+[SIGNAL] ADX LONG signal @ $16576.97 | Stop entry: $16580.24
+[ENTRY] LONG @ $16584.75 | Qty: 6 | Risk: 0.5% ($50.00)
+   Stop: $16576.79 (0.05%) | Pos Size: 995.1%
+[SIGNAL] ADX SHORT signal @ $16570.61 | Stop entry: $16566.79
+[SIGNAL] ADX LONG signal @ $16600.36 | Stop entry: $16604.51
+[ENTRY] LONG @ $16656.66 | Qty: 4 | Risk: 0.5% ($50.00)
+   Stop: $16643.30 (0.08%) | Pos Size: 666.3%
+[SQUEEZE] SQUEEZE LONG @ $16656.66 | Qty: 4
+[SQUEEZE] SQUEEZE LONG @ $16727.63 | Qty: 3
+[SIGNAL] ADX LONG signal @ $16737.38 | Stop entry: $16744.52
+ERROR: Error running backtest: 'charmap' codec can't encode character '\u23f0' in position 0: character maps to <undefined>

@@ -28,6 +28,7 @@ feel free to join [our discord](https://discord.gg/8UPuVZ53bh) if you beleive ai
 - Chart Agent (`chartanalysis_agent.py`): looks at any crypto chart and then analyzes it with ai to make a buy/sell/nothing reccomendation.
 - funding rate arbitrage agent (`fundingarb_agent.py`): tracks the funding rate on hyper liquid to find funding rate arbitrage opportunities between hl and solana
 - rbi agent (`rbi_agent.py`): uses deepseek to research trading strategies based on the youtube video, pdf, or words you give it. then sends to his ai friend who codes out the backtest.
+- **Pinescript Conversion System**: Precise TradingView Pinescript → Python backtesting.py conversions with zero loss in translation. Handles complex indicators, custom libraries (loxx), multi-stop systems, and R-based position sizing. Includes data extraction tools for daily NAV and trades list. See `src/data/pinescript_conversions/`
 - twitter agent (`tweet_agent.py`): takes in text and creates tweets using deepseek or other models
 - video agent (`video_agent.py`): takes in text to create videos by creating audio snippets using elevenlabs and combining with raw_video footage
 - new or top tokens (`new_or_top_agent.py`): an agent that looks at the new tokens and the top tokens from coin gecko api

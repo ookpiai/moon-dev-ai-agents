@@ -1,6 +1,6 @@
 """
-🌙 Moon Dev's Gemini Model Implementation
-Built with love by Moon Dev 🚀
+[MOON] Moon Dev's Gemini Model Implementation
+Built with love by Moon Dev [ROCKET]
 """
 
 import google.generativeai as genai
@@ -25,9 +25,9 @@ class GeminiModel(BaseModel):
         try:
             genai.configure(api_key=self.api_key)
             self.client = genai.GenerativeModel(self.model_name)
-            cprint(f"✨ Initialized Gemini model: {self.model_name}", "green")
+            cprint(f"[OK] Initialized Gemini model: {self.model_name}", "green")
         except Exception as e:
-            cprint(f"❌ Failed to initialize Gemini model: {str(e)}", "red")
+            cprint(f"[ERROR] Failed to initialize Gemini model: {str(e)}", "red")
             self.client = None
     
     def generate_response(self,
@@ -105,7 +105,7 @@ class GeminiModel(BaseModel):
             )
 
         except Exception as e:
-            cprint(f"❌ Gemini generation error: {str(e)}", "red")
+            cprint(f"[ERROR] Gemini generation error: {str(e)}", "red")
             raise
     
     def is_available(self) -> bool:

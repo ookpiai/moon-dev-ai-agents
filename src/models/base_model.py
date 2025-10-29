@@ -1,6 +1,6 @@
 """
-🌙 Moon Dev's Model Interface
-Built with love by Moon Dev 🚀
+[MOON] Moon Dev's Model Interface
+Built with love by Moon Dev [ROCKET]
 
 This module defines the base interface for all AI models.
 """
@@ -58,7 +58,7 @@ class BaseModel(ABC):
         except Exception as e:
             if "503" in str(e):
                 raise e  # Let the retry logic handle 503s
-            cprint(f"❌ Model error: {str(e)}", "red")
+            cprint(f"[ERROR] Model error: {str(e)}", "red")
             return None
     
     @abstractmethod

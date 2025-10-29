@@ -1,0 +1,52 @@
+//@version=5
+indicator("Asymmetric D-Bands w/ ATR Hybrid (Triple Smoothing) private", overlay=true)
+
+// ———————————— INPUTS ————————————
+length        = input.int(30,   "Length",     minval=1)
+mult          = input.float(5.0,"Multiplier", minval=0.001, step=0.1)
+src           = input.source(hlc3, "Center Source")
+alpha         = input.float(0.3, "Blend Factor (0 = pure ATR, 1 = pure StDev)", minval=0, maxval=1)
+useTriple     = input.bool(true, "Triple Smoothing Distances", 
+     tooltip="If true, we apply an extra WMA pass on distUpRaw/distDownRaw before stdev, for 3 total smoothing passes.")
+
+// ———————————— HELPER: DOUBLE WMA ————————————
+f_doubleWMA(_source, _length) =>
+    wma1 = ta.wma(_source, _length)
+    wma2 = ta.wma(wma1,    _length)
+    wma2
+
+// ———————————— 1) CENTER LINE ————————————
+centerLine = f_doubleWMA(src, length)
+
+// ———————————— 2) UP/DOWN DISTANCES ————————————
+distUpRaw   = math.max(0.0, high - centerLine)
+distDownRaw = math.max(0.0, centerLine - low)
+
+// ———————————— 3) OPTIONAL EXTRA SMOOTH BEFORE STDEV ————————————
+distUpPre   = useTriple ? ta.wma(distUpRaw, length)   : distUpRaw
+distDownPre = useTriple ? ta.wma(distDownRaw, length) : distDownRaw
+
+// ———————————— 4) RAW STDEV OF THE DISTANCE ————————————
+stDevUpRaw   = ta.stdev(distUpPre,   length)
+stDevDownRaw = ta.stdev(distDownPre, length)
+
+// ———————————— 5) DOUBLE-WMA STDEV (2 MORE PASSES) ————————————
+stDevUp   = f_doubleWMA(stDevUpRaw,   length)
+stDevDown = f_doubleWMA(stDevDownRaw, length)
+
+// ———————————— 6) ATR CALC ————————————
+atrVal = ta.atr(length)
+
+// ———————————— 7) BLEND STDEV & ATR ————————————
+// Weighted combination: finalUpVol = alpha*stDevUp + (1-alpha)*ATR
+finalUpVol   = alpha * stDevUp   + (1.0 - alpha) * atrVal
+finalDownVol = alpha * stDevDown + (1.0 - alpha) * atrVal
+
+// ———————————— 8) FINAL BANDS ————————————
+upperBand = centerLine + (finalUpVol   * mult)
+lowerBand = centerLine - (finalDownVol * mult)
+
+// ———————————— PLOTS ————————————
+plot(centerLine, color=color.blue,  linewidth=2, title="Center (Double WMA)")
+plot(upperBand,  color=color.green, linewidth=2, title="Upper Band")
+plot(lowerBand,  color=color.red,   linewidth=2, title="Lower Band")

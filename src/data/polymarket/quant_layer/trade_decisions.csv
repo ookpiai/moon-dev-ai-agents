@@ -1,0 +1,5 @@
+timestamp,market_id,question,true_prob,market_price,edge,ev_net,z_score,spread,liquidity,volume_24h,regime,regime_multiplier,kelly_size,final_position_size,side,entry_decision,rejection_reasons,confidence
+2025-10-27 13:42:59.919090,test_btc_100k,Will Bitcoin hit $100k by end of 2024?,0.315,0.42,-0.1049999999999999,-0.1499999999999999,-1.5000000000000009,0.04,450000,125000,INFORMATION,1.0,183.75,183.75,NO,REJECT,"ev_net=-0.150<0.030,z=-1.50<1.5",0.7
+2025-10-27 14:07:38.829790,test_btc_100k,Will Bitcoin hit $100k by end of 2024?,0.365,0.42,-0.0549999999999999,-0.0999999999999999,-1.833333333333332,0.04,450000,125000,INFORMATION,1.0,96.25,96.25,NO,REJECT,"ev_net=-0.100<0.030,z=-1.83<1.5",0.7
+2025-10-27 14:08:43.591028,test_btc_100k,Will Bitcoin hit $100k by end of 2024?,0.35,0.42,-0.07,-0.115,0.0,0.04,450000,125000,INFORMATION,1.0,122.5,122.5,NO,REJECT,"ev_net=-0.115<0.030,z=0.00<1.5",0.7
+2025-10-27 14:27:06.046456,test_btc_100k,Will Bitcoin hit $100k by end of 2024?,0.365,0.42,-0.05499999999999999,-0.09999999999999999,-1.8333333333333315,0.04,450000,125000,INFORMATION,1.0,103.12499999999999,103.12499999999999,NO,REJECT,"ev_net=-0.100<0.030,z=-1.83<1.5",0.75

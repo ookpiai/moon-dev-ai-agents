@@ -1,0 +1,23 @@
+{
+  "question": "Will Bitcoin hit $100k by end of 2024?",
+  "description": "Market resolves YES if Bitcoin closes above $100,000 on December 31, 2024.",
+  "consensus_prob": 0.315,
+  "model_probs": {
+    "claude": 0.28,
+    "deepseek": 0.35
+  },
+  "disagreement": 0.06999999999999995,
+  "high_disagreement": false,
+  "reasoning": {
+    "claude": "PROBABILITY: 0.28\n\nMy reasoning for this probability estimate:\n\n**Current Context (as of early November 2024):**\nBitcoin would need to reach $100,000 by December 31, 2024 - approximately 60 days away. This requires understanding Bitcoin's current price level and the magnitude of movement needed.\n\n**Key Considerations:**\n\n1. **Required Price Movement**: Assuming Bitcoin is trading in the $60,000-$70,000 range (typical for late 2024), reaching $100,000 would require a 40-65% increase in just 2 months. While Bitcoin is volatile, such rapid appreciation is historically uncommon outside of extreme bull market conditions.\n\n2. **Historical Patterns**: Bitcoin has experienced strong Q4 rallies in some years, but moves of this magnitude in such a short timeframe typically occur:\n   - During peak bull market euphoria (2017, 2021)\n   - Following major catalysts or structural changes\n   - With sustained institutional demand\n\n3. **2024 Context**: \n   - Bitcoin ETF approvals in early 2024 were a major catalyst but likely already priced in\n   - The halving event (April 2024) historically leads to bull runs, but often with 6-18 month lags\n   - Macro conditions (interest rates, regulatory environment) matter significantly\n\n4. **Time Constraint**: 60 days is a very short window. Even bullish scenarios often unfold over quarters, not weeks.\n\n5. **Market Efficiency**: The current market odds of 42% seem somewhat high given the technical challenge. My estimate of 28% reflects:\n   - A non-trivial but below-consensus chance\n   - Acknowledgment that crypto can be explosive\n   - Recognition that we're late in the year with limited time\n   - Base rate consideration that such rapid moves are relatively rare\n\nThe 28% probability accounts for tail-risk scenarios (major institutional adoption announcement, geopolitical crisis driving crypto adoption, unexpected regulatory clarity) while recognizing that the default outcome is more likely continued volatility without reaching the $100k threshold by year-end.",
+    "deepseek": "PROBABILITY: 0.35\n\nMy reasoning for a 35% probability of Bitcoin reaching $100k by end of 2024:\n\nBase rates and historical context: Bitcoin has shown significant volatility but reaching $100k represents approximately a 45% increase from current levels around $69k. Historically, Bitcoin has achieved similar gains within 60-day periods, but these typically occur during strong bull markets rather than late-cycle environments.\n\nRecent evidence and market conditions: Current market sentiment appears mixed with institutional adoption continuing (ETF inflows) but regulatory uncertainty persisting. The cryptocurrency market has shown resilience but faces headwinds including potential macroeconomic pressures from interest rate policy and geopolitical tensions. Trading volume and liquidity suggest moderate but not overwhelming market conviction.\n\nTime to resolution: With only 60 days remaining, the timeframe is relatively short for such a significant price move. While crypto markets can move rapidly, a 45% sustained increase requires substantial positive catalysts that may not materialize in this timeframe.\n\nTechnical factors: Bitcoin faces resistance levels between $70k-$75k that have proven difficult to break decisively. The market would need to overcome these levels and maintain momentum through potential profit-taking.\n\nCounterbalancing factors: Positive developments could include unexpected institutional adoption, favorable regulatory clarity, or macroeconomic shifts favoring risk assets. However, the probability-weighted assessment suggests these are more likely to produce gradual appreciation rather than the dramatic surge needed to reach $100k within this specific timeframe.\n\nGiven these considerations, while possible, the scenario appears less likely than not within the constrained timeframe, leading to my estimate of 35% probability."
+  },
+  "metadata": {
+    "timestamp": "2025-10-27T13:42:59.441021",
+    "total_models": 3,
+    "successful_responses": 2,
+    "failed_responses": 1,
+    "total_time": 16.06,
+    "disagreement_threshold": 0.15
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "question": "Will Bitcoin hit $100k by end of 2024?",
+  "description": "Market resolves YES if Bitcoin closes above $100,000 on December 31, 2024.",
+  "consensus_prob": 0.365,
+  "model_probs": {
+    "deepseek": 0.35,
+    "claude": 0.38
+  },
+  "disagreement": 0.030000000000000027,
+  "high_disagreement": false,
+  "reasoning": {
+    "deepseek": "PROBABILITY: 0.35\n\nMy reasoning:\n\nLooking at Bitcoin's historical price action and current market conditions, I believe the probability of reaching $100k by end of 2024 is moderate but below current market expectations.\n\nBase rates: Bitcoin has shown significant volatility historically, but sustained 50%+ price increases over 60-day periods are relatively rare. The current price around $60k would require approximately 67% appreciation in 60 days, which is substantial even for Bitcoin.\n\nRecent evidence: While Bitcoin has shown strength with ETF approvals and institutional adoption, we're seeing mixed signals. Regulatory uncertainty persists, macroeconomic conditions with potential Fed policy changes could pressure risk assets, and technical indicators suggest resistance around current levels. The market appears to be in a consolidation phase rather than a strong uptrend.\n\nTime to resolution: With only 60 days remaining, the timeframe is relatively short for such a significant move. While Bitcoin can move dramatically in short periods, the magnitude required ($40k+ increase) would need substantial catalyst-driven momentum that isn't currently evident.\n\nMarket sentiment appears somewhat optimistic given the technical and fundamental headwinds. My assessment suggests the current market odds of 42% may be slightly overestimating the probability, leading me to a more conservative estimate of 35%.",
+    "claude": "PROBABILITY: 0.38\n\nMy reasoning for estimating a 38% probability that Bitcoin will close above $100,000 on December 31, 2024:\n\n**Current Context (as of early November 2024):**\nBitcoin has been trading in a range, and reaching $100k would require approximately a 15-20% increase from typical late 2024 levels (assuming Bitcoin is around $85-90k range based on the 60 days to resolution timeframe).\n\n**Factors Supporting YES (upward pressure):**\n- Historical Q4 strength: Bitcoin has shown seasonal patterns of strength in Q4\n- Post-halving year dynamics: 2024 is a halving year, and historically these have been bullish\n- Institutional adoption continuing with ETF inflows\n- Potential year-end portfolio rebalancing and FOMO effects\n- Macroeconomic tailwinds if Fed policy remains accommodative\n\n**Factors Supporting NO (downward pressure):**\n- $100k is a major psychological resistance level that may trigger profit-taking\n- 60 days is relatively short for a 15-20% move, though not impossible in crypto\n- Potential for volatility and pullbacks after any rapid ascent\n- Macroeconomic uncertainty and potential risk-off sentiment\n- The \"close above\" requirement on specifically December 31st adds timing risk - Bitcoin could spike above $100k but close below on that specific day\n\n**Calibration considerations:**\n- A ~15-20% move in 60 days represents roughly a 3-4% weekly gain needed\n- Bitcoin's volatility makes this plausible but not highly probable\n- The market odds of 42% seem slightly optimistic given the specific date requirement\n- My estimate of 38% reflects modest skepticism while acknowledging this is achievable\n\nThe 38% probability reflects that while Bitcoin reaching $100k is plausible given its volatility and historical patterns, the combination of the specific closing date requirement and the magnitude of move needed in the timeframe makes it less likely than a coin flip."
+  },
+  "metadata": {
+    "timestamp": "2025-10-27T14:07:38.075283",
+    "total_models": 2,
+    "successful_responses": 2,
+    "failed_responses": 0,
+    "total_time": 13.93,
+    "disagreement_threshold": 0.15
+  }
+}

@@ -1,6 +1,6 @@
 """
-🌙 Moon Dev's Model System
-Built with love by Moon Dev 🚀
+[EMOJI] Moon Dev's Model System
+Built with love by Moon Dev [ROCKET]
 """
 
 from .base_model import BaseModel, ModelResponse

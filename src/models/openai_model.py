@@ -1,6 +1,6 @@
 """
-🌙 Moon Dev's OpenAI Model Implementation
-Built with love by Moon Dev 🚀
+[MOON] Moon Dev's OpenAI Model Implementation
+Built with love by Moon Dev [ROCKET]
 """
 
 from openai import OpenAI
@@ -89,11 +89,11 @@ class OpenAIModel(BaseModel):
         """Initialize the OpenAI client"""
         try:
             self.client = OpenAI(api_key=self.api_key)
-            cprint(f"✨ Moon Dev's magic initialized OpenAI model: {self.model_name} 🌟", "green")
+            cprint(f"[OK] Moon Dev's magic initialized OpenAI model: {self.model_name} [EMOJI]", "green")
             if self._supports_reasoning_effort():
-                cprint(f"🧠 Reasoning effort set to: {self.reasoning_effort}", "cyan")
+                cprint(f"[EMOJI] Reasoning effort set to: {self.reasoning_effort}", "cyan")
         except Exception as e:
-            cprint(f"❌ Failed to initialize OpenAI model: {str(e)}", "red")
+            cprint(f"[ERROR] Failed to initialize OpenAI model: {str(e)}", "red")
             self.client = None
     
     def _supports_reasoning_effort(self) -> bool:
@@ -106,7 +106,7 @@ class OpenAIModel(BaseModel):
         model_kwargs = kwargs.copy()
         
         if self._supports_reasoning_effort():
-            cprint("🚀 Moon Dev's O3 model powering up with reasoning capabilities! 🌙", "cyan")
+            cprint("[ROCKET] Moon Dev's O3 model powering up with reasoning capabilities! [MOON]", "cyan")
             model_kwargs["reasoning_effort"] = self.reasoning_effort
             # Remove unsupported parameters for O3
             model_kwargs.pop('max_tokens', None)
@@ -228,12 +228,12 @@ class OpenAIModel(BaseModel):
                                 usage=data.get('usage')
                             )
                     except Exception as http_e:
-                        cprint(f"❌ Direct Responses HTTP fallback failed: {repr(http_e)}", "red")
-                        cprint("⚠️ Falling back to Chat Completions", "yellow")
+                        cprint(f"[ERROR] Direct Responses HTTP fallback failed: {repr(http_e)}", "red")
+                        cprint("[WARNING] Falling back to Chat Completions", "yellow")
 
             # Special handling for O3 models via Chat Completions
             if self.model_name.startswith('o3'):
-                cprint("🧠 Using Moon Dev's O3 model with reasoning capabilities...", "cyan")
+                cprint("[EMOJI] Using Moon Dev's O3 model with reasoning capabilities...", "cyan")
                 messages = [
                     {
                         "role": "user",
@@ -261,7 +261,7 @@ class OpenAIModel(BaseModel):
                     }
                 ]
             
-            cprint(f"🤔 Moon Dev's {self.model_name} is thinking...", "yellow")
+            cprint(f"[EMOJI] Moon Dev's {self.model_name} is thinking...", "yellow")
             
             # Prepare model-specific kwargs
             model_kwargs = self._prepare_model_kwargs(**kwargs)
@@ -281,7 +281,7 @@ class OpenAIModel(BaseModel):
             # Debug: show finish_reason and meta
             try:
                 finish_reason = getattr(choice, 'finish_reason', None)
-                cprint(f"🧪 Moon Dev debug: finish_reason={finish_reason}", "cyan")
+                cprint(f"[LAB] Moon Dev debug: finish_reason={finish_reason}", "cyan")
             except Exception:
                 pass
 
@@ -310,11 +310,11 @@ class OpenAIModel(BaseModel):
                         content_text = None
 
             if not content_text:
-                cprint("⚠️ OpenAI returned empty content", "yellow")
+                cprint("[WARNING] OpenAI returned empty content", "yellow")
 
             # If still empty, do a single simplified retry (matches other GPT handling)
             if not content_text:
-                cprint("🔁 Retrying once with simplified prompt format (Moon Dev fallback)", "yellow")
+                cprint("[EMOJI] Retrying once with simplified prompt format (Moon Dev fallback)", "yellow")
                 retry_messages = [
                     {
                         "role": "user",
@@ -338,7 +338,7 @@ class OpenAIModel(BaseModel):
             # If still empty and Responses API available, try Responses API once
             if not content_text and hasattr(self.client, 'responses'):
                 try:
-                    cprint("🛠️ Moon Dev fallback: trying Responses API for text output", "yellow")
+                    cprint("[TOOLS] Moon Dev fallback: trying Responses API for text output", "yellow")
                     content_str = f"Instructions: {system_prompt}\n\nInput: {user_content}"
                     # Map token limit to responses API
                     max_output_tokens = None
@@ -368,12 +368,12 @@ class OpenAIModel(BaseModel):
                         content_text = text2.strip()
                         response = resp2  # return this raw response for visibility
                 except Exception as fallback_e:
-                    cprint(f"❌ Moon Dev Responses API fallback error: {repr(fallback_e)}", "red")
+                    cprint(f"[ERROR] Moon Dev Responses API fallback error: {repr(fallback_e)}", "red")
 
             # Final safety net: fallback to a stable chat model if nothing came back
             if (not content_text) and self.model_name == 'gpt-5':
                 try:
-                    cprint("🛟 Moon Dev fallback: retrying with gpt-4o to avoid empty content", "yellow")
+                    cprint("[EMOJI] Moon Dev fallback: retrying with gpt-4o to avoid empty content", "yellow")
                     fallback_messages = [
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": user_content}
@@ -399,7 +399,7 @@ class OpenAIModel(BaseModel):
                             usage=fb_response.usage.model_dump() if hasattr(fb_response, 'usage') else None
                         )
                 except Exception as fb_e:
-                    cprint(f"❌ Fallback to gpt-4o failed: {repr(fb_e)}", "red")
+                    cprint(f"[ERROR] Fallback to gpt-4o failed: {repr(fb_e)}", "red")
 
             return ModelResponse(
                 content=content_text or "",
@@ -410,22 +410,22 @@ class OpenAIModel(BaseModel):
 
         except Exception as e:
             # Print detailed error info per Moon Dev style
-            cprint(f"❌ OpenAI generation error (Moon Dev full dump) 🚨: {repr(e)}", "red")
+            cprint(f"[ERROR] OpenAI generation error (Moon Dev full dump) [EMOJI]: {repr(e)}", "red")
             try:
-                cprint(f"🔎 type={type(e).__name__}", "yellow")
+                cprint(f"[EMOJI] type={type(e).__name__}", "yellow")
                 if hasattr(e, 'status_code'):
-                    cprint(f"🔎 status_code={getattr(e, 'status_code', None)}", "yellow")
+                    cprint(f"[EMOJI] status_code={getattr(e, 'status_code', None)}", "yellow")
                 if hasattr(e, 'request_id'):
-                    cprint(f"🔎 request_id={getattr(e, 'request_id', None)}", "yellow")
+                    cprint(f"[EMOJI] request_id={getattr(e, 'request_id', None)}", "yellow")
                 if hasattr(e, 'code'):
-                    cprint(f"🔎 code={getattr(e, 'code', None)}", "yellow")
+                    cprint(f"[EMOJI] code={getattr(e, 'code', None)}", "yellow")
                 if hasattr(e, 'param'):
-                    cprint(f"🔎 param={getattr(e, 'param', None)}", "yellow")
+                    cprint(f"[EMOJI] param={getattr(e, 'param', None)}", "yellow")
                 resp = getattr(e, 'response', None)
                 if resp is not None:
-                    cprint(f"🔎 response={resp}", "yellow")
+                    cprint(f"[EMOJI] response={resp}", "yellow")
                     try:
-                        cprint(f"🔎 response.body={getattr(e, 'body', None)}", "yellow")
+                        cprint(f"[EMOJI] response.body={getattr(e, 'body', None)}", "yellow")
                     except Exception:
                         pass
             except Exception:

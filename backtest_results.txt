@@ -1,0 +1,2725 @@
+C:\Users\oo\Desktop\moon-dev-ai-agents\src\data\pinescript_conversions\backtests\ADX_Squeeze_R_Based_BT.py:495: UserWarning: Some prices are larger than initial cash value. Note that fractional trading is not supported by this class. If you want to trade Bitcoin, increase initial cash, or trade \u03bcBTC or satoshis instead (see e.g. class `backtesting.lib.FractionalBacktest`.
+  bt = Backtest(
+================================================================================
+MOON DEV'S ADX + SQUEEZE R-BASED BACKTEST
+================================================================================
+Data: 31066 bars from 2023-01-01 00:00:00 to 2023-11-20 19:15:00
+Initial Capital: $10,000
+Risk Per Trade: 0.5%
+Commission: 0.1% per trade
+================================================================================
+Backtest.run:   0%|          | 0/31007 [00:00<?, ?bar/s][SIGNAL] ADX LONG signal @ $16576.97 | Stop entry: $16580.24
+[ENTRY] LONG @ $16584.75 | Qty: 6 | Risk: 0.5% ($50.00)
+   Stop: $16576.79 (0.05%) | Pos Size: 995.1%
+[SIGNAL] ADX SHORT signal @ $16570.61 | Stop entry: $16566.79
+[SIGNAL] ADX LONG signal @ $16600.36 | Stop entry: $16604.51
+[ENTRY] LONG @ $16656.66 | Qty: 4 | Risk: 0.5% ($50.00)
+   Stop: $16643.30 (0.08%) | Pos Size: 666.3%
+[SQUEEZE] SQUEEZE LONG @ $16656.66 | Qty: 4
+[SQUEEZE] SQUEEZE LONG @ $16727.63 | Qty: 3
+[SIGNAL] ADX LONG signal @ $16737.38 | Stop entry: $16744.52
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $16682.08 | Stop entry: $16667.03
+[ENTRY] SHORT @ $16666.01 | Qty: 5 | Risk: 0.5% ($50.00)
+   Stop: $16675.27 (0.06%) | Pos Size: 833.3%
+[SIGNAL] ADX LONG signal @ $16754.64 | Stop entry: $16754.99
+[SQUEEZE] SQUEEZE LONG @ $16754.64 | Qty: 5
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $16655.42 | Stop entry: $16644.08
+[ENTRY] SHORT @ $16640.60 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $16658.94 (0.11%) | Pos Size: 499.2%
+[SQUEEZE] SQUEEZE SHORT @ $16640.60 | Qty: 3
+[SQUEEZE] SQUEEZE SHORT @ $16644.33 | Qty: 3
+[SIGNAL] ADX LONG signal @ $16707.52 | Stop entry: $16719.84
+[ENTRY] LONG @ $16734.50 | Qty: 4 | Risk: 0.5% ($50.00)
+   Stop: $16721.97 (0.07%) | Pos Size: 669.4%
+[SQUEEZE] SQUEEZE LONG @ $16829.45 | Qty: 3
+[SIGNAL] ADX LONG signal @ $16819.91 | Stop entry: $16831.01
+[SIGNAL] ADX LONG signal @ $16831.97 | Stop entry: $16856.30
+[SIGNAL] ADX LONG signal @ $16847.96 | Stop entry: $16852.35
+[ENTRY] LONG @ $16874.56 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $16857.11 (0.10%) | Pos Size: 506.2%
+[SIGNAL] ADX SHORT signal @ $16805.45 | Stop entry: $16789.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $16816.34 | Stop entry: $16810.21
+[ENTRY] SHORT @ $16800.58 | Qty: 6 | Risk: 0.5% ($50.00)
+   Stop: $16808.42 (0.05%) | Pos Size: 1008.0%
+[SIGNAL] ADX SHORT signal @ $16804.27 | Stop entry: $16796.06
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $16802.85 | Stop entry: $16802.17
+[ENTRY] SHORT @ $16797.95 | Qty: 7 | Risk: 0.5% ($50.00)
+   Stop: $16805.58 (0.05%) | Pos Size: 1175.9%
+[SIGNAL] ADX LONG signal @ $16804.23 | Stop entry: $16817.68
+[ENTRY] LONG @ $16819.34 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $16719.59 (0.59%) | Pos Size: 168.2%
+[SQUEEZE] SQUEEZE LONG @ $16934.47 | Qty: 3
+[SIGNAL] ADX SHORT signal @ $16912.21 | Stop entry: $16907.96
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $16937.36 | Stop entry: $16940.09
+[ENTRY] LONG @ $16940.71 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $16911.48 (0.17%) | Pos Size: 338.8%
+[SIGNAL] ADX SHORT signal @ $16923.51 | Stop entry: $16922.44
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $16925.66 | Stop entry: $16921.87
+[SIGNAL] ADX LONG signal @ $16949.48 | Stop entry: $16951.79
+[ENTRY] LONG @ $16953.30 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $16929.01 (0.14%) | Pos Size: 339.1%
+[SQUEEZE] SQUEEZE LONG @ $16997.26 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $16921.86 | Stop entry: $16919.65
+[SIGNAL] ADX LONG signal @ $16971.57 | Stop entry: $16975.54
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $17243.57 | Stop entry: $17255.76
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $17193.16 | Stop entry: $17168.23
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $17195.56 | Stop entry: $17192.28
+[SIGNAL] ADX LONG signal @ $17255.34 | Stop entry: $17263.11
+[ENTRY] LONG @ $17270.85 | Qty: 4 | Risk: 0.5% ($50.00)
+   Stop: $17259.45 (0.07%) | Pos Size: 690.8%
+[SIGNAL] ADX LONG signal @ $17286.71 | Stop entry: $17302.57
+[ENTRY] LONG @ $17344.57 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $17321.06 (0.14%) | Pos Size: 346.9%
+[SIGNAL] ADX LONG signal @ $17409.30 | Stop entry: $17443.94
+[SQUEEZE] SQUEEZE LONG @ $17433.01 | Qty: 3
+[ENTRY] LONG @ $17450.81 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $17430.88 (0.11%) | Pos Size: 523.5%
+[SIGNAL] ADX SHORT signal @ $17330.21 | Stop entry: $17314.98
+[SQUEEZE] SQUEEZE LONG @ $17517.46 | Qty: 2
+[SIGNAL] ADX LONG signal @ $17486.63 | Stop entry: $17528.51
+[ENTRY] LONG @ $17550.18 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $17527.53 (0.13%) | Pos Size: 351.0%
+[SIGNAL] ADX LONG signal @ $18154.45 | Stop entry: $18155.09
+[ENTRY] LONG @ $18183.97 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $18165.66 (0.10%) | Pos Size: 545.5%
+[SIGNAL] ADX LONG signal @ $18653.59 | Stop entry: $18880.46
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $18936.08 | Stop entry: $19024.95
+[ENTRY] LONG @ $19040.41 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $19009.21 (0.16%) | Pos Size: 380.8%
+[SIGNAL] ADX LONG signal @ $19137.36 | Stop entry: $19189.78
+[ENTRY] LONG @ $19286.99 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $19229.53 (0.30%) | Pos Size: 192.9%
+[SQUEEZE] SQUEEZE LONG @ $19286.99 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $19765.68 | Qty: 1
+[SIGNAL] ADX LONG signal @ $20943.00 | Stop entry: $20964.19
+[SIGNAL] ADX LONG signal @ $20917.38 | Stop entry: $20985.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $21040.59 | Stop entry: $21074.36
+[SIGNAL] ADX SHORT signal @ $20772.01 | Stop entry: $20742.34
+[ENTRY] SHORT @ $20724.25 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $20773.26 (0.24%) | Pos Size: 207.2%
+[SIGNAL] ADX SHORT signal @ $20590.74 | Stop entry: $20578.10
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $20876.36 | Stop entry: $20910.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $20823.16 | Stop entry: $20862.74
+[SIGNAL] ADX LONG signal @ $20854.75 | Stop entry: $20907.76
+[ENTRY] LONG @ $20910.40 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $20879.15 (0.15%) | Pos Size: 418.2%
+[SIGNAL] ADX LONG signal @ $21148.14 | Stop entry: $21149.59
+[ENTRY] LONG @ $21188.71 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $21120.62 (0.32%) | Pos Size: 211.9%
+[SQUEEZE] SQUEEZE LONG @ $21352.43 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $20819.46 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $20776.33 | Stop entry: $20763.50
+[SQUEEZE] SQUEEZE SHORT @ $20776.33 | Qty: 1
+[ENTRY] SHORT @ $20753.98 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $20809.38 (0.27%) | Pos Size: 207.5%
+[SQUEEZE] SQUEEZE SHORT @ $20753.98 | Qty: 1
+[SIGNAL] ADX LONG signal @ $21039.09 | Stop entry: $21165.25
+[SIGNAL] ADX LONG signal @ $21282.86 | Stop entry: $21292.78
+[ENTRY] LONG @ $21344.84 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $21290.38 (0.26%) | Pos Size: 213.4%
+[SIGNAL] ADX SHORT signal @ $21020.89 | Stop entry: $21009.72
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $21393.77 | Stop entry: $21415.02
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $21341.41 | Stop entry: $21368.47
+[ENTRY] LONG @ $21385.57 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $21342.51 (0.20%) | Pos Size: 213.9%
+[SIGNAL] ADX LONG signal @ $21405.68 | Stop entry: $21475.29
+[ENTRY] LONG @ $21506.57 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $21459.47 (0.22%) | Pos Size: 215.1%
+[SQUEEZE] SQUEEZE LONG @ $21506.57 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $20872.15 | Stop entry: $20788.52
+[SQUEEZE] SQUEEZE SHORT @ $20872.15 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $20730.70 | Stop entry: $20666.53
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $20689.73 | Stop entry: $20678.25
+[SIGNAL] ADX LONG signal @ $20913.34 | Stop entry: $20960.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $21077.90 | Stop entry: $21099.89
+[ENTRY] LONG @ $21137.32 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $21100.99 (0.17%) | Pos Size: 211.4%
+[SIGNAL] ADX LONG signal @ $21110.72 | Stop entry: $21222.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $20947.18 | Stop entry: $20936.20
+[ENTRY] SHORT @ $20931.61 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $20957.03 (0.12%) | Pos Size: 418.6%
+[SIGNAL] ADX LONG signal @ $21080.69 | Stop entry: $21098.04
+[ENTRY] LONG @ $21142.98 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $21111.12 (0.15%) | Pos Size: 422.9%
+[SQUEEZE] SQUEEZE LONG @ $21359.79 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $21855.03 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $23039.21 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $23321.37 | Qty: 1
+[SIGNAL] ADX LONG signal @ $23196.82 | Stop entry: $23224.90
+[SIGNAL] ADX SHORT signal @ $22813.67 | Stop entry: $22687.21
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22946.30 | Stop entry: $22879.98
+[SIGNAL] ADX SHORT signal @ $22850.36 | Stop entry: $22830.85
+[SIGNAL] ADX SHORT signal @ $22771.52 | Stop entry: $22750.80
+[ENTRY] SHORT @ $22740.83 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $22772.97 (0.14%) | Pos Size: 454.8%
+[SIGNAL] ADX LONG signal @ $23044.44 | Stop entry: $23082.92
+[SIGNAL] ADX SHORT signal @ $22798.28 | Stop entry: $22779.39
+[ENTRY] SHORT @ $22747.54 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $22805.58 (0.26%) | Pos Size: 227.5%
+[SIGNAL] ADX SHORT signal @ $22810.83 | Stop entry: $22777.76
+[ENTRY] SHORT @ $22723.61 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $22764.47 (0.18%) | Pos Size: 227.2%
+[SQUEEZE] SQUEEZE SHORT @ $22516.70 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22456.88 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22418.46 | Qty: 1
+[SIGNAL] ADX LONG signal @ $22629.80 | Stop entry: $23128.00
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $23030.23 | Stop entry: $23040.61
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22859.31 | Stop entry: $22807.47
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22759.40 | Stop entry: $22741.22
+[ENTRY] SHORT @ $22694.39 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $22755.12 (0.27%) | Pos Size: 226.9%
+[SIGNAL] ADX SHORT signal @ $22680.59 | Stop entry: $22666.99
+[ENTRY] SHORT @ $22666.22 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $22689.88 (0.10%) | Pos Size: 453.3%
+[SIGNAL] ADX SHORT signal @ $22540.74 | Stop entry: $22506.80
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22512.94 | Stop entry: $22439.06
+[ENTRY] SHORT @ $22438.10 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $22481.95 (0.20%) | Pos Size: 224.4%
+[SIGNAL] ADX LONG signal @ $22712.66 | Stop entry: $22750.10
+[ENTRY] LONG @ $22757.59 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $22720.54 (0.16%) | Pos Size: 227.6%
+[SIGNAL] ADX LONG signal @ $22927.55 | Stop entry: $22950.70
+[ENTRY] LONG @ $22993.12 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $22936.59 (0.25%) | Pos Size: 229.9%
+[SQUEEZE] SQUEEZE LONG @ $23243.84 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $22983.63 | Stop entry: $22950.41
+[ENTRY] SHORT @ $22933.75 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $22968.21 (0.15%) | Pos Size: 229.3%
+[SIGNAL] ADX SHORT signal @ $22993.40 | Stop entry: $22923.73
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $23095.32 | Stop entry: $23168.07
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22672.63 | Stop entry: $22540.66
+[SQUEEZE] SQUEEZE SHORT @ $22652.73 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $23007.85 | Stop entry: $23018.95
+[ENTRY] LONG @ $23043.78 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $23011.02 (0.14%) | Pos Size: 460.9%
+[SIGNAL] ADX LONG signal @ $23129.75 | Stop entry: $23207.98
+[ENTRY] LONG @ $23211.68 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23162.68 (0.21%) | Pos Size: 232.1%
+[SIGNAL] ADX SHORT signal @ $22997.77 | Stop entry: $22984.11
+[ENTRY] SHORT @ $22974.37 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23059.30 (0.37%) | Pos Size: 229.7%
+[SIGNAL] ADX SHORT signal @ $23034.95 | Stop entry: $23020.15
+[ENTRY] SHORT @ $23010.36 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23092.73 (0.36%) | Pos Size: 230.1%
+[SIGNAL] ADX SHORT signal @ $22993.63 | Stop entry: $22984.90
+[ENTRY] SHORT @ $22972.88 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23044.31 (0.31%) | Pos Size: 229.7%
+[SIGNAL] ADX SHORT signal @ $22996.16 | Stop entry: $22989.57
+[ENTRY] SHORT @ $22984.61 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23059.59 (0.33%) | Pos Size: 229.8%
+[SIGNAL] ADX LONG signal @ $23117.60 | Stop entry: $23135.70
+[ENTRY] LONG @ $23340.72 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23291.85 (0.21%) | Pos Size: 233.4%
+[SIGNAL] ADX LONG signal @ $23412.84 | Stop entry: $23497.65
+[SQUEEZE] SQUEEZE LONG @ $23412.84 | Qty: 1
+[ENTRY] LONG @ $23565.69 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23514.64 (0.22%) | Pos Size: 235.7%
+[SIGNAL] ADX LONG signal @ $23816.03 | Stop entry: $23818.78
+[SIGNAL] ADX LONG signal @ $23868.65 | Stop entry: $23877.90
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23553.96 | Stop entry: $23536.41
+[ENTRY] SHORT @ $23289.07 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23333.29 (0.19%) | Pos Size: 232.9%
+[SQUEEZE] SQUEEZE SHORT @ $23289.07 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23297.73 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23181.47 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23193.81 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23260.89 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23284.41 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $22911.07 | Stop entry: $22833.48
+[SIGNAL] ADX LONG signal @ $22928.06 | Stop entry: $22940.91
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $23123.83 | Qty: 1
+[SIGNAL] ADX LONG signal @ $23075.59 | Stop entry: $23198.05
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $23094.25 | Stop entry: $23145.87
+[SIGNAL] ADX SHORT signal @ $22924.13 | Stop entry: $22902.47
+[SIGNAL] ADX LONG signal @ $23108.33 | Stop entry: $23187.99
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22995.70 | Stop entry: $22940.36
+[SIGNAL] ADX SHORT signal @ $23076.72 | Stop entry: $23056.42
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23003.45 | Stop entry: $22919.90
+[SIGNAL] ADX SHORT signal @ $23077.54 | Stop entry: $23026.99
+[ENTRY] SHORT @ $22998.81 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23049.88 (0.22%) | Pos Size: 230.0%
+[SQUEEZE] SQUEEZE LONG @ $23386.44 | Qty: 1
+[SIGNAL] ADX LONG signal @ $23566.08 | Stop entry: $23659.64
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $24195.23 | Stop entry: $24262.28
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $24006.09 | Stop entry: $24148.47
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23503.67 | Stop entry: $23367.77
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23507.22 | Stop entry: $23457.93
+[ENTRY] SHORT @ $23377.80 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23417.39 (0.17%) | Pos Size: 233.8%
+[SIGNAL] ADX SHORT signal @ $23535.57 | Stop entry: $23407.38
+[SIGNAL] ADX LONG signal @ $23671.37 | Stop entry: $23704.33
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23384.05 | Stop entry: $23305.79
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23361.68 | Stop entry: $23351.24
+[ENTRY] SHORT @ $23344.15 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $23363.25 (0.08%) | Pos Size: 700.3%
+[SIGNAL] ADX LONG signal @ $23416.21 | Stop entry: $23421.26
+[ENTRY] LONG @ $23500.12 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23407.45 (0.39%) | Pos Size: 235.0%
+[SIGNAL] ADX SHORT signal @ $23405.82 | Stop entry: $23393.69
+[SIGNAL] ADX SHORT signal @ $23301.91 | Stop entry: $23265.91
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23090.43 | Stop entry: $23077.82
+[SQUEEZE] SQUEEZE SHORT @ $23090.43 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23155.43 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23201.60 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23173.31 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23016.87 | Stop entry: $22971.96
+[ENTRY] SHORT @ $22966.75 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $22992.57 (0.11%) | Pos Size: 459.3%
+[SIGNAL] ADX SHORT signal @ $22869.74 | Stop entry: $22830.35
+[ENTRY] SHORT @ $22809.58 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $22836.90 (0.12%) | Pos Size: 456.2%
+[SQUEEZE] SQUEEZE LONG @ $23088.69 | Qty: 1
+[SIGNAL] ADX LONG signal @ $23084.55 | Stop entry: $23163.15
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22724.15 | Stop entry: $22639.29
+[SQUEEZE] SQUEEZE SHORT @ $22724.15 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $22935.08 | Stop entry: $22947.63
+[ENTRY] LONG @ $22972.27 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $22953.10 (0.08%) | Pos Size: 689.2%
+[SIGNAL] ADX LONG signal @ $22896.14 | Stop entry: $22910.18
+[ENTRY] LONG @ $22961.44 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $22940.63 (0.09%) | Pos Size: 459.2%
+[SIGNAL] ADX LONG signal @ $23009.94 | Stop entry: $23034.41
+[ENTRY] LONG @ $23040.63 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $23016.36 (0.11%) | Pos Size: 460.8%
+[SIGNAL] ADX LONG signal @ $23279.00 | Stop entry: $23340.08
+[SQUEEZE] SQUEEZE LONG @ $23279.00 | Qty: 1
+[SIGNAL] ADX LONG signal @ $23196.15 | Stop entry: $23248.02
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $23226.12 | Stop entry: $23237.84
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23154.99 | Stop entry: $23134.52
+[ENTRY] SHORT @ $23122.68 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23209.61 (0.38%) | Pos Size: 231.2%
+[SQUEEZE] SQUEEZE SHORT @ $22900.73 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22869.90 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22810.90 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22805.34 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22574.33 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22524.83 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22549.08 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22516.01 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22526.03 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22541.70 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $22685.79 | Stop entry: $22685.33
+[SIGNAL] ADX SHORT signal @ $22687.44 | Stop entry: $22685.29
+[ENTRY] SHORT @ $22672.69 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $22693.63 (0.09%) | Pos Size: 453.5%
+[SIGNAL] ADX SHORT signal @ $22517.87 | Stop entry: $22453.88
+[ENTRY] SHORT @ $22429.10 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $22470.97 (0.19%) | Pos Size: 224.3%
+[SQUEEZE] SQUEEZE SHORT @ $22174.16 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22020.92 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $21639.59 | Stop entry: $21614.22
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $21797.64 | Stop entry: $21832.10
+[SQUEEZE] SQUEEZE LONG @ $21797.64 | Qty: 1
+[ENTRY] LONG @ $21863.73 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $21765.45 (0.45%) | Pos Size: 218.6%
+[SIGNAL] ADX LONG signal @ $21867.76 | Stop entry: $21872.55
+[ENTRY] LONG @ $21908.66 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $21828.09 (0.37%) | Pos Size: 219.1%
+[SIGNAL] ADX LONG signal @ $21840.27 | Stop entry: $21847.56
+[ENTRY] LONG @ $21950.67 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $21926.62 (0.11%) | Pos Size: 439.0%
+[SQUEEZE] SQUEEZE LONG @ $22048.02 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $21804.55 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $21740.68 | Stop entry: $21711.66
+[SQUEEZE] SQUEEZE SHORT @ $21740.68 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $21715.67 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $21797.50 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $21853.44 | Stop entry: $21825.11
+[ENTRY] SHORT @ $21794.14 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $21819.66 (0.12%) | Pos Size: 435.9%
+[SQUEEZE] SQUEEZE SHORT @ $21558.45 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $21617.18 | Stop entry: $21542.35
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $21820.27 | Stop entry: $21861.15
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $21785.26 | Stop entry: $21804.27
+[ENTRY] LONG @ $21831.16 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $21806.24 (0.11%) | Pos Size: 436.6%
+[SIGNAL] ADX LONG signal @ $21821.76 | Stop entry: $21851.86
+[ENTRY] LONG @ $21869.17 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $21848.91 (0.09%) | Pos Size: 437.4%
+[SIGNAL] ADX SHORT signal @ $21615.02 | Stop entry: $21605.46
+[SQUEEZE] SQUEEZE SHORT @ $21615.02 | Qty: 1
+[SIGNAL] ADX LONG signal @ $22259.95 | Stop entry: $22266.10
+[SQUEEZE] SQUEEZE LONG @ $22259.95 | Qty: 1
+[SIGNAL] ADX LONG signal @ $22045.78 | Stop entry: $22085.65
+[SIGNAL] ADX LONG signal @ $22185.38 | Stop entry: $22235.91
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $22232.92 | Stop entry: $22280.10
+[ENTRY] LONG @ $22449.71 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $22416.47 (0.15%) | Pos Size: 449.0%
+[SIGNAL] ADX LONG signal @ $24641.75 | Stop entry: $24647.12
+[ENTRY] LONG @ $24652.09 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24616.38 (0.14%) | Pos Size: 246.5%
+[SIGNAL] ADX LONG signal @ $24650.08 | Stop entry: $24656.48
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $24545.90 | Stop entry: $24591.63
+[ENTRY] LONG @ $24768.95 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24700.02 (0.28%) | Pos Size: 247.7%
+[SQUEEZE] SQUEEZE LONG @ $25076.56 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $24462.17 | Stop entry: $24365.69
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $24208.24 | Stop entry: $24250.10
+[ENTRY] LONG @ $24271.70 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24177.10 (0.39%) | Pos Size: 242.7%
+[SIGNAL] ADX LONG signal @ $24581.02 | Stop entry: $24709.92
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $24462.81 | Stop entry: $24460.96
+[SIGNAL] ADX LONG signal @ $24600.16 | Stop entry: $24616.80
+[SIGNAL] ADX LONG signal @ $24685.37 | Stop entry: $24701.45
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $24762.11 | Stop entry: $24774.07
+[SIGNAL] ADX SHORT signal @ $24584.20 | Stop entry: $24567.44
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $24802.62 | Stop entry: $24825.10
+[ENTRY] LONG @ $25175.29 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25113.78 (0.24%) | Pos Size: 251.8%
+[SQUEEZE] SQUEEZE LONG @ $25175.29 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $24629.24 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $24611.11 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $24364.46 | Stop entry: $24324.05
+[SQUEEZE] SQUEEZE SHORT @ $24364.46 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $24889.20 | Qty: 1
+[SIGNAL] ADX LONG signal @ $24962.23 | Stop entry: $24983.89
+[SIGNAL] ADX LONG signal @ $24859.47 | Stop entry: $24870.10
+[ENTRY] LONG @ $24918.29 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24864.08 (0.22%) | Pos Size: 249.2%
+[SIGNAL] ADX LONG signal @ $24901.16 | Stop entry: $25108.62
+[SIGNAL] ADX LONG signal @ $24887.67 | Stop entry: $24935.16
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $25077.49 | Stop entry: $25100.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $24661.79 | Stop entry: $24525.90
+[SQUEEZE] SQUEEZE SHORT @ $24661.79 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $24601.63 | Stop entry: $24580.94
+[ENTRY] SHORT @ $24519.43 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24579.36 (0.24%) | Pos Size: 245.2%
+[SIGNAL] ADX SHORT signal @ $24600.45 | Stop entry: $24562.36
+[SIGNAL] ADX SHORT signal @ $24636.20 | Stop entry: $24557.20
+[ENTRY] SHORT @ $24462.78 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24518.37 (0.23%) | Pos Size: 244.6%
+[SIGNAL] ADX SHORT signal @ $24228.19 | Stop entry: $24153.86
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $24102.26 | Stop entry: $24094.13
+[SIGNAL] ADX SHORT signal @ $24135.88 | Stop entry: $24092.43
+[ENTRY] SHORT @ $24021.48 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24069.46 (0.20%) | Pos Size: 240.2%
+[SIGNAL] ADX LONG signal @ $24195.84 | Stop entry: $24212.10
+[SQUEEZE] SQUEEZE LONG @ $24195.84 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $24533.45 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $23868.98 | Stop entry: $23854.58
+[SQUEEZE] SQUEEZE SHORT @ $23868.98 | Qty: 1
+[ENTRY] SHORT @ $23793.81 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23859.31 (0.28%) | Pos Size: 237.9%
+[SQUEEZE] SQUEEZE SHORT @ $23793.81 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23785.17 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23750.71 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23829.27 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23836.00 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $23945.11 | Stop entry: $23906.18
+[ENTRY] SHORT @ $23878.79 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23920.53 (0.17%) | Pos Size: 238.8%
+[SIGNAL] ADX SHORT signal @ $23802.30 | Stop entry: $23775.10
+[ENTRY] SHORT @ $23772.34 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23808.60 (0.15%) | Pos Size: 237.7%
+[SIGNAL] ADX SHORT signal @ $23896.34 | Stop entry: $23878.54
+[ENTRY] SHORT @ $23841.78 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23877.04 (0.15%) | Pos Size: 238.4%
+[SQUEEZE] SQUEEZE SHORT @ $23414.19 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $23347.11 | Stop entry: $23327.65
+[SQUEEZE] SQUEEZE SHORT @ $23347.11 | Qty: 1
+[ENTRY] SHORT @ $23092.99 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23179.93 (0.38%) | Pos Size: 230.9%
+[SQUEEZE] SQUEEZE SHORT @ $23092.99 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23145.14 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23244.52 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23196.08 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23158.73 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $23124.01 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $23101.04 | Stop entry: $23096.54
+[SIGNAL] ADX SHORT signal @ $23040.91 | Stop entry: $23033.42
+[ENTRY] SHORT @ $23008.72 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23100.35 (0.40%) | Pos Size: 230.1%
+[SIGNAL] ADX SHORT signal @ $22893.15 | Stop entry: $22865.01
+[SIGNAL] ADX LONG signal @ $23116.33 | Stop entry: $23163.34
+[ENTRY] LONG @ $23188.63 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23150.17 (0.17%) | Pos Size: 231.9%
+[SIGNAL] ADX LONG signal @ $23218.68 | Stop entry: $23248.21
+[ENTRY] LONG @ $23256.36 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23170.49 (0.37%) | Pos Size: 232.6%
+[SIGNAL] ADX LONG signal @ $23220.70 | Stop entry: $23237.76
+[ENTRY] LONG @ $23248.95 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $23220.56 (0.12%) | Pos Size: 465.0%
+[SIGNAL] ADX LONG signal @ $23434.78 | Stop entry: $23457.94
+[ENTRY] LONG @ $23488.07 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23447.50 (0.17%) | Pos Size: 234.9%
+[SQUEEZE] SQUEEZE LONG @ $23488.07 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $23585.82 | Qty: 1
+[SIGNAL] ADX LONG signal @ $23478.42 | Stop entry: $23479.47
+[ENTRY] LONG @ $23546.72 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23493.25 (0.23%) | Pos Size: 235.5%
+[SQUEEZE] SQUEEZE LONG @ $23744.87 | Qty: 1
+[SIGNAL] ADX LONG signal @ $23703.49 | Stop entry: $23780.82
+[ENTRY] LONG @ $23790.79 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23743.53 (0.20%) | Pos Size: 237.9%
+[SIGNAL] ADX SHORT signal @ $23369.14 | Stop entry: $23315.77
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $23533.33 | Stop entry: $23554.71
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23291.34 | Stop entry: $23234.31
+[SIGNAL] ADX SHORT signal @ $23342.50 | Stop entry: $23338.25
+[SIGNAL] ADX LONG signal @ $23496.17 | Stop entry: $23504.53
+[SIGNAL] ADX LONG signal @ $23505.97 | Stop entry: $23559.22
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23280.99 | Stop entry: $23213.65
+[ENTRY] SHORT @ $23171.78 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23219.58 (0.21%) | Pos Size: 231.7%
+[SIGNAL] ADX LONG signal @ $23427.99 | Stop entry: $23496.24
+[ENTRY] LONG @ $23788.52 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23735.26 (0.22%) | Pos Size: 237.9%
+[SQUEEZE] SQUEEZE LONG @ $23788.52 | Qty: 1
+[SIGNAL] ADX LONG signal @ $23681.35 | Stop entry: $23886.43
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $23433.01 | Stop entry: $23305.20
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $23670.04 | Stop entry: $23718.91
+[SIGNAL] ADX SHORT signal @ $23500.68 | Stop entry: $23480.74
+[ENTRY] SHORT @ $23461.88 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $23486.21 (0.10%) | Pos Size: 469.2%
+[SIGNAL] ADX LONG signal @ $23475.94 | Stop entry: $23500.09
+[ENTRY] LONG @ $23512.05 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $23475.60 (0.16%) | Pos Size: 235.1%
+[SIGNAL] ADX SHORT signal @ $22849.67 | Stop entry: $22828.24
+[SQUEEZE] SQUEEZE SHORT @ $22849.67 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22367.55 | Stop entry: $22362.80
+[ENTRY] SHORT @ $22360.99 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $22421.71 (0.27%) | Pos Size: 223.6%
+[SIGNAL] ADX SHORT signal @ $22220.21 | Stop entry: $22151.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $22556.81 | Qty: 1
+[SIGNAL] ADX LONG signal @ $22601.43 | Stop entry: $22640.52
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22359.59 | Stop entry: $22336.80
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $22450.45 | Stop entry: $22496.25
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22415.21 | Stop entry: $22397.87
+[SIGNAL] ADX LONG signal @ $22461.01 | Stop entry: $22554.92
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $22371.68 | Stop entry: $22352.94
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $22473.84 | Stop entry: $22475.59
+[ENTRY] LONG @ $22553.40 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $22526.55 (0.12%) | Pos Size: 451.1%
+[SIGNAL] ADX LONG signal @ $22395.80 | Stop entry: $22458.28
+[SIGNAL] ADX SHORT signal @ $22366.27 | Stop entry: $22358.16
+[SIGNAL] ADX SHORT signal @ $22349.49 | Stop entry: $22329.87
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $22484.01 | Stop entry: $22494.88
+[ENTRY] LONG @ $22499.16 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $22479.70 (0.09%) | Pos Size: 675.0%
+[SIGNAL] ADX SHORT signal @ $22432.02 | Stop entry: $22421.55
+[ENTRY] SHORT @ $22420.69 | Qty: 4 | Risk: 0.5% ($50.00)
+   Stop: $22432.84 (0.05%) | Pos Size: 896.8%
+[SQUEEZE] SQUEEZE SHORT @ $22037.66 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $22213.12 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $22171.47 | Stop entry: $22135.65
+[ENTRY] SHORT @ $22119.83 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $22142.66 (0.10%) | Pos Size: 442.4%
+[SIGNAL] ADX SHORT signal @ $22068.88 | Stop entry: $22050.15
+[ENTRY] SHORT @ $22038.71 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $22060.69 (0.10%) | Pos Size: 440.8%
+[SIGNAL] ADX LONG signal @ $22136.99 | Stop entry: $22159.42
+[SIGNAL] ADX SHORT signal @ $21965.57 | Stop entry: $21951.45
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $21727.98 | Stop entry: $21580.74
+[SQUEEZE] SQUEEZE SHORT @ $21727.98 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $21698.18 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $21693.03 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $21698.37 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $21710.90 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $21638.76 | Stop entry: $21624.90
+[ENTRY] SHORT @ $21600.37 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $21636.46 (0.17%) | Pos Size: 216.0%
+[SQUEEZE] SQUEEZE SHORT @ $21473.80 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $21466.53 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $21318.27 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $21075.13 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $21006.21 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $20207.06 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $19734.10 | Stop entry: $19726.39
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $20217.34 | Stop entry: $20272.86
+[ENTRY] LONG @ $20276.61 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $20227.15 (0.24%) | Pos Size: 202.8%
+[SQUEEZE] SQUEEZE LONG @ $20848.27 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $19976.22 | Stop entry: $19949.90
+[SQUEEZE] SQUEEZE SHORT @ $19976.22 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $20027.96 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $20467.61 | Stop entry: $20522.85
+[ENTRY] LONG @ $20590.31 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $20541.24 (0.24%) | Pos Size: 205.9%
+[SIGNAL] ADX LONG signal @ $21042.16 | Stop entry: $21076.81
+[ENTRY] LONG @ $21199.10 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $21132.48 (0.31%) | Pos Size: 212.0%
+[SIGNAL] ADX LONG signal @ $22382.32 | Stop entry: $22463.44
+[ENTRY] LONG @ $22510.00 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $22419.92 (0.40%) | Pos Size: 225.1%
+[SIGNAL] ADX LONG signal @ $24220.00 | Stop entry: $24223.18
+[SIGNAL] ADX LONG signal @ $24214.23 | Stop entry: $24268.97
+[ENTRY] LONG @ $24275.71 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24208.45 (0.28%) | Pos Size: 242.8%
+[SIGNAL] ADX LONG signal @ $24702.26 | Stop entry: $24745.08
+[ENTRY] LONG @ $24791.52 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24723.78 (0.27%) | Pos Size: 247.9%
+[SIGNAL] ADX SHORT signal @ $24621.60 | Stop entry: $24459.34
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $24625.15 | Stop entry: $24553.04
+[ENTRY] SHORT @ $24416.32 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24491.41 (0.31%) | Pos Size: 244.2%
+[SIGNAL] ADX LONG signal @ $25100.16 | Stop entry: $25277.01
+[SIGNAL] ADX SHORT signal @ $24217.20 | Stop entry: $24120.18
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $24512.77 | Stop entry: $24385.40
+[ENTRY] SHORT @ $24377.16 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24448.48 (0.29%) | Pos Size: 243.8%
+[SIGNAL] ADX SHORT signal @ $24358.64 | Stop entry: $24327.85
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $24649.29 | Stop entry: $24675.39
+[SIGNAL] ADX LONG signal @ $24848.92 | Stop entry: $24924.26
+[ENTRY] LONG @ $24977.08 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24898.58 (0.31%) | Pos Size: 249.8%
+[SIGNAL] ADX LONG signal @ $24842.27 | Stop entry: $24869.68
+[ENTRY] LONG @ $24905.74 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $24821.72 (0.34%) | Pos Size: 249.1%
+[SIGNAL] ADX LONG signal @ $24957.10 | Stop entry: $25029.00
+[SIGNAL] ADX LONG signal @ $25115.36 | Stop entry: $25131.72
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $25729.39 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $26734.75 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $26905.83 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26649.42 | Stop entry: $26675.43
+[SIGNAL] ADX LONG signal @ $26552.42 | Stop entry: $26610.01
+[ENTRY] LONG @ $26670.36 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26573.46 (0.36%) | Pos Size: 266.7%
+[SIGNAL] ADX LONG signal @ $26799.04 | Stop entry: $26913.99
+[SIGNAL] ADX LONG signal @ $27220.20 | Stop entry: $27295.77
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27378.41 | Stop entry: $27328.83
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27273.82 | Stop entry: $27238.22
+[ENTRY] SHORT @ $27027.49 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27091.74 (0.24%) | Pos Size: 270.3%
+[SIGNAL] ADX SHORT signal @ $27196.77 | Stop entry: $27165.13
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27059.52 | Stop entry: $27021.56
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27365.11 | Stop entry: $27376.94
+[ENTRY] LONG @ $27422.41 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27365.99 (0.21%) | Pos Size: 274.2%
+[SIGNAL] ADX LONG signal @ $27566.56 | Stop entry: $27629.36
+[ENTRY] LONG @ $27630.07 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27549.41 (0.29%) | Pos Size: 276.3%
+[SQUEEZE] SQUEEZE LONG @ $28040.71 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27374.97 | Stop entry: $27284.33
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28237.24 | Stop entry: $28300.10
+[SQUEEZE] SQUEEZE LONG @ $28237.24 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27623.41 | Stop entry: $27466.07
+[SIGNAL] ADX LONG signal @ $28142.89 | Stop entry: $28277.29
+[ENTRY] LONG @ $28278.48 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28202.56 (0.27%) | Pos Size: 282.8%
+[SIGNAL] ADX LONG signal @ $28436.37 | Stop entry: $28605.42
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28358.12 | Stop entry: $28372.90
+[SIGNAL] ADX LONG signal @ $28250.76 | Stop entry: $28292.17
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28480.18 | Stop entry: $28514.10
+[ENTRY] LONG @ $28755.22 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28687.64 (0.24%) | Pos Size: 287.6%
+[SQUEEZE] SQUEEZE LONG @ $28755.22 | Qty: 1
+[SIGNAL] ADX LONG signal @ $28578.01 | Stop entry: $28640.45
+[SIGNAL] ADX SHORT signal @ $27499.95 | Stop entry: $27183.51
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27746.89 | Stop entry: $27775.12
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27436.46 | Stop entry: $27354.86
+[SIGNAL] ADX LONG signal @ $28433.70 | Stop entry: $28476.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28427.72 | Stop entry: $28507.07
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28017.76 | Stop entry: $27999.87
+[ENTRY] SHORT @ $27637.40 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27720.90 (0.30%) | Pos Size: 276.4%
+[SIGNAL] ADX SHORT signal @ $27827.80 | Stop entry: $27758.85
+[ENTRY] SHORT @ $27712.30 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27802.02 (0.32%) | Pos Size: 277.1%
+[SIGNAL] ADX SHORT signal @ $27423.20 | Stop entry: $27369.08
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27677.01 | Stop entry: $27818.77
+[SIGNAL] ADX SHORT signal @ $27471.25 | Stop entry: $27459.90
+[ENTRY] SHORT @ $27285.21 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27339.06 (0.20%) | Pos Size: 272.9%
+[SIGNAL] ADX LONG signal @ $27608.29 | Stop entry: $27633.83
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27724.91 | Stop entry: $27763.44
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $28186.55 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27904.52 | Stop entry: $27956.03
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28071.43 | Stop entry: $28095.24
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27785.86 | Stop entry: $27785.07
+[SIGNAL] ADX LONG signal @ $27954.01 | Stop entry: $27980.10
+[SIGNAL] ADX LONG signal @ $27959.48 | Stop entry: $28014.05
+[SIGNAL] ADX SHORT signal @ $27801.91 | Stop entry: $27638.63
+[ENTRY] SHORT @ $27592.93 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27652.00 (0.21%) | Pos Size: 275.9%
+[SQUEEZE] SQUEEZE SHORT @ $27351.10 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27406.94 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27125.48 | Stop entry: $27089.83
+[ENTRY] SHORT @ $27074.37 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27113.68 (0.15%) | Pos Size: 270.7%
+[SIGNAL] ADX SHORT signal @ $26752.56 | Stop entry: $26639.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $27290.59 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27431.65 | Stop entry: $27520.09
+[SQUEEZE] SQUEEZE LONG @ $27431.65 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $27996.51 | Qty: 1
+[SIGNAL] ADX LONG signal @ $28323.31 | Stop entry: $28363.47
+[ENTRY] LONG @ $28378.04 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28325.51 (0.19%) | Pos Size: 283.8%
+[SIGNAL] ADX LONG signal @ $29120.46 | Stop entry: $29190.14
+[SQUEEZE] SQUEEZE LONG @ $29120.46 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28350.33 | Stop entry: $28298.30
+[ENTRY] SHORT @ $28190.69 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28255.94 (0.23%) | Pos Size: 281.9%
+[SQUEEZE] SQUEEZE SHORT @ $27841.78 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27781.91 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27890.26 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $28168.38 | Stop entry: $28137.05
+[ENTRY] SHORT @ $28089.18 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28145.98 (0.20%) | Pos Size: 280.9%
+[SIGNAL] ADX SHORT signal @ $27811.55 | Stop entry: $27679.90
+[ENTRY] SHORT @ $27661.85 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27732.26 (0.25%) | Pos Size: 276.6%
+[SQUEEZE] SQUEEZE SHORT @ $27661.85 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27754.03 | Qty: 1
+[SIGNAL] ADX LONG signal @ $28198.89 | Stop entry: $28228.79
+[ENTRY] LONG @ $28288.00 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28223.78 (0.23%) | Pos Size: 282.9%
+[SQUEEZE] SQUEEZE LONG @ $28473.43 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $28450.69 | Stop entry: $28422.33
+[SIGNAL] ADX SHORT signal @ $28453.66 | Stop entry: $28450.45
+[ENTRY] SHORT @ $28443.93 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28541.79 (0.34%) | Pos Size: 284.4%
+[SIGNAL] ADX SHORT signal @ $28388.80 | Stop entry: $28374.02
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28457.26 | Stop entry: $28528.57
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28276.04 | Stop entry: $28251.60
+[ENTRY] SHORT @ $28121.01 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28165.61 (0.16%) | Pos Size: 281.2%
+[SQUEEZE] SQUEEZE SHORT @ $27731.78 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $28133.98 | Qty: 1
+[SIGNAL] ADX LONG signal @ $28400.50 | Stop entry: $28443.23
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28061.18 | Stop entry: $27999.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27767.55 | Stop entry: $27629.54
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28046.04 | Stop entry: $28126.40
+[ENTRY] LONG @ $28166.95 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28121.32 (0.16%) | Pos Size: 281.7%
+[SIGNAL] ADX LONG signal @ $28111.74 | Stop entry: $28148.69
+[ENTRY] LONG @ $28155.28 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28107.00 (0.17%) | Pos Size: 281.6%
+[SIGNAL] ADX LONG signal @ $28267.55 | Stop entry: $28323.59
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28660.61 | Stop entry: $28750.10
+[SQUEEZE] SQUEEZE LONG @ $28660.61 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28579.67 | Stop entry: $28612.50
+[SIGNAL] ADX SHORT signal @ $28148.09 | Stop entry: $28095.44
+[SQUEEZE] SQUEEZE SHORT @ $28184.91 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28158.81 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28114.24 | Qty: 1
+[ENTRY] SHORT @ $28050.23 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28130.28 (0.29%) | Pos Size: 280.5%
+[SQUEEZE] SQUEEZE SHORT @ $28050.23 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28020.93 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $28045.45 | Stop entry: $27901.82
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28010.41 | Stop entry: $27975.29
+[ENTRY] SHORT @ $27927.36 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27956.63 (0.10%) | Pos Size: 558.5%
+[SIGNAL] ADX SHORT signal @ $27918.58 | Stop entry: $27865.93
+[SIGNAL] ADX SHORT signal @ $27859.02 | Stop entry: $27800.90
+[SIGNAL] ADX LONG signal @ $28150.70 | Stop entry: $28199.21
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27985.04 | Stop entry: $27899.90
+[ENTRY] SHORT @ $27898.26 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27931.88 (0.12%) | Pos Size: 279.0%
+[SIGNAL] ADX LONG signal @ $28060.76 | Stop entry: $28084.70
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28003.64 | Stop entry: $27968.62
+[SIGNAL] ADX LONG signal @ $28066.56 | Stop entry: $28076.71
+[SIGNAL] ADX SHORT signal @ $28025.01 | Stop entry: $28019.14
+[SIGNAL] ADX SHORT signal @ $28004.63 | Stop entry: $27995.65
+[ENTRY] SHORT @ $27956.99 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28034.50 (0.28%) | Pos Size: 279.6%
+[SIGNAL] ADX SHORT signal @ $27955.96 | Stop entry: $27944.02
+[SIGNAL] ADX LONG signal @ $28054.35 | Stop entry: $28096.55
+[ENTRY] LONG @ $28101.85 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $28081.40 (0.07%) | Pos Size: 562.0%
+[SIGNAL] ADX SHORT signal @ $27938.51 | Stop entry: $27937.87
+[ENTRY] SHORT @ $27898.96 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27923.21 (0.09%) | Pos Size: 558.0%
+[SQUEEZE] SQUEEZE SHORT @ $27898.96 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $27891.41 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $27952.30 | Stop entry: $27939.36
+[ENTRY] SHORT @ $27937.09 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $27955.07 (0.06%) | Pos Size: 838.1%
+[SIGNAL] ADX LONG signal @ $28043.74 | Stop entry: $28074.00
+[ENTRY] LONG @ $28100.12 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $28074.04 (0.09%) | Pos Size: 562.0%
+[SQUEEZE] SQUEEZE LONG @ $28100.12 | Qty: 2
+[SIGNAL] ADX LONG signal @ $28305.24 | Stop entry: $28320.65
+[ENTRY] LONG @ $28357.46 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $28336.22 (0.07%) | Pos Size: 567.1%
+[SIGNAL] ADX LONG signal @ $28351.23 | Stop entry: $28381.36
+[SIGNAL] ADX SHORT signal @ $28265.66 | Stop entry: $28203.55
+[SIGNAL] ADX LONG signal @ $28438.10 | Stop entry: $28528.09
+[SQUEEZE] SQUEEZE LONG @ $28519.49 | Qty: 1
+[ENTRY] LONG @ $28583.58 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28531.56 (0.18%) | Pos Size: 285.8%
+[SIGNAL] ADX LONG signal @ $30038.48 | Stop entry: $30112.21
+[ENTRY] LONG @ $30137.31 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30102.46 (0.12%) | Pos Size: 301.4%
+[SIGNAL] ADX LONG signal @ $30132.78 | Stop entry: $30141.78
+[ENTRY] LONG @ $30196.34 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30158.30 (0.13%) | Pos Size: 302.0%
+[SIGNAL] ADX LONG signal @ $30242.38 | Stop entry: $30279.60
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29959.60 | Stop entry: $29956.61
+[ENTRY] SHORT @ $29956.17 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30005.20 (0.16%) | Pos Size: 299.6%
+[SIGNAL] ADX SHORT signal @ $30011.97 | Stop entry: $29993.44
+[ENTRY] SHORT @ $29938.18 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29970.14 (0.11%) | Pos Size: 598.8%
+[SIGNAL] ADX LONG signal @ $30262.16 | Stop entry: $30298.51
+[SIGNAL] ADX SHORT signal @ $29949.34 | Stop entry: $29813.96
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29905.85 | Stop entry: $29889.63
+[ENTRY] SHORT @ $29866.29 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29909.79 (0.15%) | Pos Size: 298.7%
+[SIGNAL] ADX LONG signal @ $30144.57 | Stop entry: $30185.34
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30222.40 | Stop entry: $30292.97
+[ENTRY] LONG @ $30324.82 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30281.03 (0.14%) | Pos Size: 303.2%
+[SIGNAL] ADX LONG signal @ $30415.34 | Stop entry: $30478.09
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $30763.14 | Qty: 1
+[SIGNAL] ADX LONG signal @ $30856.29 | Stop entry: $30882.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30630.37 | Stop entry: $30536.98
+[ENTRY] SHORT @ $30446.87 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30513.86 (0.22%) | Pos Size: 304.5%
+[SQUEEZE] SQUEEZE SHORT @ $30258.73 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30301.21 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30260.76 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30295.14 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30219.91 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30147.46 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $30482.14 | Stop entry: $30435.00
+[ENTRY] SHORT @ $30420.54 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30453.95 (0.11%) | Pos Size: 304.2%
+[SIGNAL] ADX SHORT signal @ $30344.85 | Stop entry: $30294.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30351.24 | Stop entry: $30360.27
+[ENTRY] LONG @ $30371.17 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30295.21 (0.25%) | Pos Size: 303.7%
+[SIGNAL] ADX SHORT signal @ $30298.32 | Stop entry: $30277.43
+[ENTRY] SHORT @ $30275.14 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30359.09 (0.28%) | Pos Size: 302.8%
+[SIGNAL] ADX SHORT signal @ $30279.39 | Stop entry: $30183.85
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $30521.69 | Qty: 1
+[SIGNAL] ADX LONG signal @ $30487.91 | Stop entry: $30570.69
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30322.23 | Stop entry: $30267.09
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE SHORT @ $29585.53 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $29589.47 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $29574.05 | Qty: 1
+[SIGNAL] ADX LONG signal @ $29560.88 | Stop entry: $29615.83
+[ENTRY] LONG @ $29715.78 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29680.27 (0.12%) | Pos Size: 297.2%
+[SQUEEZE] SQUEEZE LONG @ $30326.67 | Qty: 1
+[SIGNAL] ADX LONG signal @ $30167.70 | Stop entry: $30250.10
+[SIGNAL] ADX LONG signal @ $30252.63 | Stop entry: $30257.53
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30341.97 | Stop entry: $30414.99
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30120.61 | Stop entry: $30040.48
+[ENTRY] SHORT @ $29493.59 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29578.90 (0.29%) | Pos Size: 294.9%
+[SQUEEZE] SQUEEZE SHORT @ $29493.59 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $29403.39 | Stop entry: $29351.49
+[ENTRY] SHORT @ $29257.35 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29316.22 (0.20%) | Pos Size: 292.6%
+[SIGNAL] ADX SHORT signal @ $28957.90 | Stop entry: $28955.23
+[ENTRY] SHORT @ $28945.90 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28989.19 (0.15%) | Pos Size: 289.5%
+[SIGNAL] ADX SHORT signal @ $27367.20 | Stop entry: $27259.90
+[SQUEEZE] SQUEEZE SHORT @ $27367.20 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27375.56 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27331.61 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27264.40 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27310.72 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27367.50 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27305.49 | Stop entry: $27300.99
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27239.57 | Stop entry: $27233.82
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27437.10 | Stop entry: $27565.61
+[ENTRY] LONG @ $27645.87 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27597.04 (0.18%) | Pos Size: 276.5%
+[SIGNAL] ADX SHORT signal @ $27566.94 | Stop entry: $27545.18
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27484.35 | Stop entry: $27413.53
+[ENTRY] SHORT @ $27410.15 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27457.85 (0.17%) | Pos Size: 274.1%
+[SQUEEZE] SQUEEZE LONG @ $27900.21 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27821.55 | Stop entry: $28000.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27471.51 | Stop entry: $27346.17
+[ENTRY] SHORT @ $27314.30 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27369.48 (0.20%) | Pos Size: 273.1%
+[SQUEEZE] SQUEEZE SHORT @ $27180.78 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27652.30 | Stop entry: $27690.10
+[SIGNAL] ADX SHORT signal @ $27331.54 | Stop entry: $27277.73
+[ENTRY] SHORT @ $27247.15 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27313.52 (0.24%) | Pos Size: 272.5%
+[SIGNAL] ADX LONG signal @ $27488.71 | Stop entry: $27595.79
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27324.73 | Stop entry: $27297.47
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $27668.10 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27622.74 | Stop entry: $27790.04
+[ENTRY] LONG @ $27867.30 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27796.75 (0.25%) | Pos Size: 278.7%
+[SQUEEZE] SQUEEZE LONG @ $27935.55 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $28735.01 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $28979.14 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $29008.92 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27894.99 | Stop entry: $27700.73
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28853.99 | Stop entry: $28548.99
+[SIGNAL] ADX LONG signal @ $28962.41 | Stop entry: $29112.43
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29343.67 | Stop entry: $29397.32
+[ENTRY] LONG @ $29631.28 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29533.70 (0.33%) | Pos Size: 296.3%
+[SIGNAL] ADX SHORT signal @ $29250.21 | Stop entry: $29208.78
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29357.01 | Stop entry: $29395.07
+[ENTRY] LONG @ $29408.36 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29370.66 (0.13%) | Pos Size: 294.1%
+[SIGNAL] ADX LONG signal @ $29437.22 | Stop entry: $29470.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29287.81 | Stop entry: $29263.30
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29305.28 | Stop entry: $29286.10
+[ENTRY] SHORT @ $29278.81 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29377.06 (0.34%) | Pos Size: 292.8%
+[SIGNAL] ADX LONG signal @ $29276.48 | Stop entry: $29284.56
+[ENTRY] LONG @ $29293.16 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29214.10 (0.27%) | Pos Size: 292.9%
+[SIGNAL] ADX LONG signal @ $29413.96 | Stop entry: $29430.97
+[ENTRY] LONG @ $29588.52 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29544.82 (0.15%) | Pos Size: 295.9%
+[SQUEEZE] SQUEEZE LONG @ $29588.52 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $29335.58 | Stop entry: $29288.61
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE SHORT @ $28120.18 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28116.37 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28179.14 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28142.48 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $28077.27 | Stop entry: $28065.82
+[ENTRY] SHORT @ $28051.81 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28101.74 (0.18%) | Pos Size: 280.5%
+[SIGNAL] ADX LONG signal @ $28547.53 | Stop entry: $28645.04
+[SQUEEZE] SQUEEZE LONG @ $28547.53 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28527.31 | Stop entry: $28454.36
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28611.26 | Stop entry: $28690.34
+[ENTRY] LONG @ $28719.70 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28680.67 (0.14%) | Pos Size: 287.2%
+[SIGNAL] ADX LONG signal @ $28637.85 | Stop entry: $28655.33
+[SIGNAL] ADX SHORT signal @ $28337.79 | Stop entry: $28274.11
+[ENTRY] SHORT @ $28261.59 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28319.36 (0.20%) | Pos Size: 282.6%
+[SQUEEZE] SQUEEZE SHORT @ $28261.59 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28242.20 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $28734.02 | Qty: 1
+[SIGNAL] ADX LONG signal @ $28580.37 | Stop entry: $28764.26
+[SIGNAL] ADX SHORT signal @ $28308.02 | Stop entry: $28214.67
+[SIGNAL] ADX LONG signal @ $28857.49 | Stop entry: $29015.56
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29276.77 | Stop entry: $29276.87
+[SIGNAL] ADX SHORT signal @ $28714.68 | Stop entry: $28674.48
+[SQUEEZE] SQUEEZE SHORT @ $28714.68 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28772.31 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28795.01 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29340.31 | Stop entry: $29364.05
+[SQUEEZE] SQUEEZE LONG @ $29340.31 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29095.41 | Stop entry: $29133.40
+[ENTRY] LONG @ $29144.19 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29111.98 (0.11%) | Pos Size: 582.9%
+[SIGNAL] ADX SHORT signal @ $28967.46 | Stop entry: $28942.62
+[SIGNAL] ADX LONG signal @ $29191.34 | Stop entry: $29260.36
+[ENTRY] LONG @ $29373.39 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29300.65 (0.25%) | Pos Size: 293.7%
+[SIGNAL] ADX LONG signal @ $29277.65 | Stop entry: $29460.44
+[SIGNAL] ADX LONG signal @ $29607.83 | Stop entry: $29676.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29620.30 | Stop entry: $29680.60
+[ENTRY] LONG @ $29727.69 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29678.48 (0.17%) | Pos Size: 297.3%
+[SIGNAL] ADX SHORT signal @ $29378.07 | Stop entry: $29371.27
+[ENTRY] SHORT @ $29290.72 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29330.33 (0.14%) | Pos Size: 292.9%
+[SQUEEZE] SQUEEZE SHORT @ $28742.62 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28681.68 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28665.23 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28652.12 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28597.74 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28631.04 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $28897.58 | Stop entry: $28892.47
+[ENTRY] SHORT @ $28881.20 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28922.89 (0.14%) | Pos Size: 288.8%
+[SIGNAL] ADX LONG signal @ $29052.49 | Stop entry: $29167.64
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28690.61 | Stop entry: $28690.51
+[ENTRY] SHORT @ $28474.53 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28533.69 (0.21%) | Pos Size: 284.7%
+[SQUEEZE] SQUEEZE SHORT @ $28474.53 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28137.44 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28267.27 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $28299.00 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27738.35 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27831.08 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27469.65 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27533.81 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27621.61 | Stop entry: $27601.90
+[ENTRY] SHORT @ $27600.00 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27639.48 (0.14%) | Pos Size: 276.0%
+[SIGNAL] ADX LONG signal @ $27789.89 | Stop entry: $27833.74
+[SIGNAL] ADX SHORT signal @ $27439.78 | Stop entry: $27431.61
+[ENTRY] SHORT @ $27409.33 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27463.06 (0.20%) | Pos Size: 274.1%
+[SIGNAL] ADX LONG signal @ $27757.13 | Stop entry: $27795.36
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27644.66 | Stop entry: $27591.97
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27720.40 | Stop entry: $27773.64
+[ENTRY] LONG @ $28016.91 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27966.50 (0.18%) | Pos Size: 280.2%
+[SQUEEZE] SQUEEZE LONG @ $28016.91 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27518.37 | Stop entry: $27289.34
+[SIGNAL] ADX SHORT signal @ $27796.91 | Stop entry: $27786.00
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27365.53 | Stop entry: $27315.91
+[ENTRY] SHORT @ $27223.17 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27298.70 (0.28%) | Pos Size: 272.2%
+[SQUEEZE] SQUEEZE SHORT @ $26162.69 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26190.45 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26274.27 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $26353.41 | Stop entry: $26347.69
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26312.50 | Stop entry: $26288.44
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $26817.60 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26873.29 | Stop entry: $26909.48
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26808.05 | Stop entry: $26819.37
+[ENTRY] LONG @ $26839.32 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26742.92 (0.36%) | Pos Size: 268.4%
+[SIGNAL] ADX LONG signal @ $26924.58 | Stop entry: $26969.21
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26796.74 | Stop entry: $26749.73
+[ENTRY] SHORT @ $26698.17 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26743.76 (0.17%) | Pos Size: 267.0%
+[SIGNAL] ADX LONG signal @ $26855.01 | Stop entry: $26891.82
+[ENTRY] LONG @ $26901.58 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26878.76 (0.08%) | Pos Size: 538.0%
+[SIGNAL] ADX LONG signal @ $27074.14 | Stop entry: $27148.97
+[SQUEEZE] SQUEEZE LONG @ $27074.14 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26985.02 | Stop entry: $26986.48
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26810.08 | Stop entry: $26749.34
+[SIGNAL] ADX LONG signal @ $27138.99 | Stop entry: $27204.10
+[ENTRY] LONG @ $27222.64 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27161.53 (0.22%) | Pos Size: 272.2%
+[SQUEEZE] SQUEEZE LONG @ $27222.64 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27417.64 | Stop entry: $27549.76
+[ENTRY] LONG @ $27623.87 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27567.60 (0.20%) | Pos Size: 276.2%
+[SIGNAL] ADX LONG signal @ $27432.09 | Stop entry: $27436.94
+[SIGNAL] ADX SHORT signal @ $27355.07 | Stop entry: $27328.77
+[ENTRY] SHORT @ $27321.69 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27352.26 (0.11%) | Pos Size: 546.4%
+[SQUEEZE] SQUEEZE SHORT @ $26906.63 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26984.00 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27210.67 | Stop entry: $27175.30
+[ENTRY] SHORT @ $27149.36 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27181.57 (0.12%) | Pos Size: 543.0%
+[SIGNAL] ADX SHORT signal @ $27036.85 | Stop entry: $27005.04
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26991.08 | Stop entry: $26979.90
+[ENTRY] SHORT @ $26957.88 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27007.08 (0.18%) | Pos Size: 269.6%
+[SIGNAL] ADX SHORT signal @ $26848.68 | Stop entry: $26766.44
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE SHORT @ $26583.03 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26636.89 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26960.64 | Stop entry: $26980.41
+[ENTRY] LONG @ $27087.17 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27034.68 (0.19%) | Pos Size: 270.9%
+[SQUEEZE] SQUEEZE LONG @ $27089.76 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $27300.67 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27207.53 | Stop entry: $27200.00
+[SIGNAL] ADX LONG signal @ $27354.98 | Stop entry: $27362.41
+[ENTRY] LONG @ $27392.37 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27357.21 (0.13%) | Pos Size: 273.9%
+[SIGNAL] ADX SHORT signal @ $27200.61 | Stop entry: $27185.16
+[SIGNAL] ADX SHORT signal @ $27243.98 | Stop entry: $27026.22
+[SIGNAL] ADX SHORT signal @ $27104.43 | Stop entry: $26982.79
+[ENTRY] SHORT @ $26722.51 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26791.59 (0.26%) | Pos Size: 267.2%
+[SQUEEZE] SQUEEZE SHORT @ $26722.51 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26934.20 | Stop entry: $26955.36
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $27242.92 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $27067.54 | Stop entry: $27060.09
+[ENTRY] SHORT @ $27058.15 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $27072.84 (0.05%) | Pos Size: 811.7%
+[SQUEEZE] SQUEEZE SHORT @ $26911.37 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $26905.70 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $26905.31 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $26841.22 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $26833.29 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $26860.16 | Qty: 2
+[SIGNAL] ADX LONG signal @ $26845.69 | Stop entry: $26916.26
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26830.74 | Stop entry: $26831.65
+[ENTRY] LONG @ $26834.52 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26814.32 (0.08%) | Pos Size: 536.7%
+[SIGNAL] ADX SHORT signal @ $26774.68 | Stop entry: $26704.59
+[SIGNAL] ADX LONG signal @ $27028.55 | Stop entry: $27105.73
+[SQUEEZE] SQUEEZE LONG @ $27005.71 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27051.18 | Stop entry: $27093.64
+[ENTRY] LONG @ $27138.65 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27097.58 (0.15%) | Pos Size: 271.4%
+[SQUEEZE] SQUEEZE LONG @ $27182.75 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27293.92 | Stop entry: $27365.60
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27128.69 | Stop entry: $27120.91
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27167.82 | Stop entry: $27151.80
+[ENTRY] SHORT @ $27137.41 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27159.78 (0.08%) | Pos Size: 542.7%
+[SQUEEZE] SQUEEZE SHORT @ $26927.08 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26749.92 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26789.17 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26724.76 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26767.83 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26793.51 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26811.62 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26438.56 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26329.92 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26295.96 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26344.37 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26247.98 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $26363.05 | Stop entry: $26304.48
+[SIGNAL] ADX SHORT signal @ $26345.94 | Stop entry: $26306.52
+[ENTRY] SHORT @ $26282.78 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26316.97 (0.13%) | Pos Size: 262.8%
+[SQUEEZE] SQUEEZE SHORT @ $25964.84 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $26096.28 | Stop entry: $25947.07
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26398.85 | Stop entry: $26418.93
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26535.52 | Stop entry: $26626.03
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26496.51 | Stop entry: $26513.51
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26805.23 | Stop entry: $26861.21
+[SQUEEZE] SQUEEZE LONG @ $26805.23 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26781.96 | Stop entry: $26793.84
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26683.30 | Stop entry: $26669.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26825.97 | Stop entry: $26832.93
+[ENTRY] LONG @ $26834.85 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $26817.36 (0.07%) | Pos Size: 805.0%
+[SQUEEZE] SQUEEZE LONG @ $27088.79 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $27604.15 | Qty: 1
+[SIGNAL] ADX LONG signal @ $28000.92 | Stop entry: $28001.06
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27879.71 | Stop entry: $27868.44
+[SIGNAL] ADX SHORT signal @ $27815.05 | Stop entry: $27774.40
+[ENTRY] SHORT @ $27657.29 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27703.55 (0.17%) | Pos Size: 276.6%
+[SIGNAL] ADX SHORT signal @ $27686.63 | Stop entry: $27683.45
+[ENTRY] SHORT @ $27678.41 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27717.23 (0.14%) | Pos Size: 276.8%
+[SIGNAL] ADX LONG signal @ $27913.79 | Stop entry: $28017.39
+[ENTRY] LONG @ $28040.21 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28004.27 (0.13%) | Pos Size: 280.4%
+[SIGNAL] ADX LONG signal @ $27941.86 | Stop entry: $27974.96
+[ENTRY] LONG @ $27976.40 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27935.74 (0.15%) | Pos Size: 279.8%
+[SIGNAL] ADX SHORT signal @ $27628.51 | Stop entry: $27626.13
+[SQUEEZE] SQUEEZE SHORT @ $27628.51 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27700.15 | Stop entry: $27689.41
+[ENTRY] SHORT @ $27657.49 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27690.65 (0.12%) | Pos Size: 553.1%
+[SIGNAL] ADX SHORT signal @ $27668.50 | Stop entry: $27652.38
+[ENTRY] SHORT @ $27652.03 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27685.93 (0.12%) | Pos Size: 276.5%
+[SQUEEZE] SQUEEZE SHORT @ $27265.04 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27177.09 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27180.97 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27157.07 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27094.07 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27072.04 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27152.25 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27156.10 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27188.36 | Stop entry: $27200.77
+[ENTRY] LONG @ $27206.94 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27181.28 (0.09%) | Pos Size: 544.1%
+[SIGNAL] ADX LONG signal @ $27128.42 | Stop entry: $27177.04
+[SIGNAL] ADX SHORT signal @ $27084.90 | Stop entry: $27046.72
+[ENTRY] SHORT @ $27043.72 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27081.47 (0.14%) | Pos Size: 270.4%
+[SIGNAL] ADX SHORT signal @ $26724.29 | Stop entry: $26654.13
+[SQUEEZE] SQUEEZE SHORT @ $26724.29 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26768.25 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26766.99 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26786.49 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26782.18 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26800.70 | Stop entry: $26765.06
+[ENTRY] SHORT @ $26713.85 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26750.59 (0.14%) | Pos Size: 267.1%
+[SIGNAL] ADX LONG signal @ $27002.75 | Stop entry: $27024.05
+[ENTRY] LONG @ $27099.56 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27059.01 (0.15%) | Pos Size: 271.0%
+[SIGNAL] ADX LONG signal @ $27154.74 | Stop entry: $27195.36
+[SIGNAL] ADX SHORT signal @ $26932.71 | Stop entry: $26896.57
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27249.99 | Stop entry: $27289.82
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27134.21 | Stop entry: $27121.31
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27293.68 | Stop entry: $27333.10
+[SIGNAL] ADX SHORT signal @ $27161.34 | Stop entry: $27134.80
+[ENTRY] SHORT @ $27107.52 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27133.87 (0.10%) | Pos Size: 542.2%
+[SIGNAL] ADX LONG signal @ $27158.90 | Stop entry: $27164.47
+[ENTRY] LONG @ $27202.44 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $27186.71 (0.06%) | Pos Size: 816.1%
+[SIGNAL] ADX LONG signal @ $27217.27 | Stop entry: $27226.50
+[ENTRY] LONG @ $27232.65 | Qty: 4 | Risk: 0.5% ($50.00)
+   Stop: $27218.63 (0.05%) | Pos Size: 1089.3%
+[SIGNAL] ADX LONG signal @ $27259.48 | Stop entry: $27274.21
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27255.75 | Stop entry: $27466.93
+[SIGNAL] ADX SHORT signal @ $27098.42 | Stop entry: $27068.96
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25548.81 | Stop entry: $25453.45
+[SQUEEZE] SQUEEZE LONG @ $25919.98 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26008.59 | Stop entry: $26042.52
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26939.12 | Stop entry: $26966.29
+[ENTRY] LONG @ $26971.60 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26934.61 (0.14%) | Pos Size: 269.7%
+[SIGNAL] ADX LONG signal @ $26912.21 | Stop entry: $26952.05
+[SIGNAL] ADX SHORT signal @ $26730.00 | Stop entry: $26697.20
+[ENTRY] SHORT @ $26500.01 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26551.74 (0.20%) | Pos Size: 265.0%
+[SIGNAL] ADX SHORT signal @ $26767.89 | Stop entry: $26725.59
+[ENTRY] SHORT @ $26724.07 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26785.74 (0.23%) | Pos Size: 267.2%
+[SIGNAL] ADX SHORT signal @ $26445.13 | Stop entry: $26350.20
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26730.66 | Stop entry: $26764.43
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26492.65 | Stop entry: $26447.90
+[SIGNAL] ADX SHORT signal @ $26414.72 | Stop entry: $26355.85
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26640.32 | Stop entry: $26652.39
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26607.01 | Stop entry: $26624.14
+[SIGNAL] ADX SHORT signal @ $26490.51 | Stop entry: $26445.63
+[ENTRY] SHORT @ $26425.97 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26461.44 (0.13%) | Pos Size: 264.3%
+[SIGNAL] ADX SHORT signal @ $26464.02 | Stop entry: $26459.97
+[ENTRY] SHORT @ $26459.86 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $26478.73 (0.07%) | Pos Size: 793.8%
+[SIGNAL] ADX SHORT signal @ $26401.01 | Stop entry: $26310.88
+[ENTRY] SHORT @ $25870.22 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25939.08 (0.27%) | Pos Size: 258.7%
+[SQUEEZE] SQUEEZE SHORT @ $25870.22 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25852.26 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25782.94 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25628.82 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $26152.08 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26032.27 | Stop entry: $26167.81
+[SIGNAL] ADX SHORT signal @ $25708.37 | Stop entry: $25602.58
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $25875.14 | Stop entry: $25909.95
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $25946.98 | Stop entry: $25955.09
+[ENTRY] LONG @ $25996.21 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25951.38 (0.17%) | Pos Size: 260.0%
+[SIGNAL] ADX SHORT signal @ $25743.83 | Stop entry: $25616.88
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26022.53 | Stop entry: $26108.74
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25801.61 | Stop entry: $25785.25
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26066.97 | Stop entry: $26152.26
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25944.54 | Stop entry: $25920.68
+[ENTRY] SHORT @ $25820.41 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25861.70 (0.16%) | Pos Size: 258.2%
+[SIGNAL] ADX LONG signal @ $25985.62 | Stop entry: $26009.80
+[ENTRY] LONG @ $26038.63 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26012.58 (0.10%) | Pos Size: 520.8%
+[SIGNAL] ADX SHORT signal @ $25877.15 | Stop entry: $25837.05
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $25988.30 | Stop entry: $25989.56
+[SIGNAL] ADX LONG signal @ $25975.06 | Stop entry: $25980.80
+[ENTRY] LONG @ $26008.94 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25928.64 (0.31%) | Pos Size: 260.1%
+[SIGNAL] ADX SHORT signal @ $25871.39 | Stop entry: $25803.28
+[SIGNAL] ADX SHORT signal @ $25579.85 | Stop entry: $25399.10
+[SQUEEZE] SQUEEZE SHORT @ $25579.85 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25530.10 | Qty: 1
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25040.36 | Stop entry: $24960.00
+[ENTRY] SHORT @ $24955.22 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $24988.16 (0.13%) | Pos Size: 499.1%
+[SIGNAL] ADX LONG signal @ $25100.18 | Stop entry: $25153.87
+[ENTRY] LONG @ $25365.33 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25321.63 (0.17%) | Pos Size: 253.7%
+[SQUEEZE] SQUEEZE LONG @ $25365.33 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $25647.03 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $25791.78 | Qty: 1
+[SIGNAL] ADX LONG signal @ $25784.50 | Stop entry: $25886.04
+[ENTRY] LONG @ $25936.77 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25867.76 (0.27%) | Pos Size: 259.4%
+[SQUEEZE] SQUEEZE LONG @ $25936.77 | Qty: 1
+[SIGNAL] ADX LONG signal @ $25958.66 | Stop entry: $26055.79
+[ENTRY] LONG @ $26185.25 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26108.72 (0.29%) | Pos Size: 261.9%
+[SIGNAL] ADX LONG signal @ $26254.25 | Stop entry: $26262.13
+[ENTRY] LONG @ $26281.48 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $26262.81 (0.07%) | Pos Size: 788.4%
+[SIGNAL] ADX LONG signal @ $26696.51 | Stop entry: $26783.30
+[SQUEEZE] SQUEEZE LONG @ $26696.51 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26454.87 | Stop entry: $26430.81
+[SIGNAL] ADX SHORT signal @ $26430.77 | Stop entry: $26409.39
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26560.30 | Stop entry: $26564.43
+[SIGNAL] ADX SHORT signal @ $26441.54 | Stop entry: $26367.80
+[SIGNAL] ADX LONG signal @ $26532.81 | Stop entry: $26534.11
+[ENTRY] LONG @ $26547.19 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26475.92 (0.27%) | Pos Size: 265.5%
+[SIGNAL] ADX LONG signal @ $26631.02 | Stop entry: $26643.23
+[ENTRY] LONG @ $26645.81 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26625.41 (0.08%) | Pos Size: 532.9%
+[SIGNAL] ADX SHORT signal @ $26469.12 | Stop entry: $26438.31
+[ENTRY] SHORT @ $26432.57 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26465.80 (0.13%) | Pos Size: 528.7%
+[SIGNAL] ADX LONG signal @ $26518.73 | Stop entry: $26546.34
+[SIGNAL] ADX SHORT signal @ $26400.00 | Stop entry: $26364.24
+[SIGNAL] ADX LONG signal @ $26628.33 | Stop entry: $26688.46
+[SQUEEZE] SQUEEZE LONG @ $26628.33 | Qty: 1
+[ENTRY] LONG @ $26957.77 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26901.49 (0.21%) | Pos Size: 269.6%
+[SIGNAL] ADX LONG signal @ $26803.24 | Stop entry: $26850.02
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26989.49 | Stop entry: $27156.73
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26744.83 | Stop entry: $26727.31
+[SIGNAL] ADX LONG signal @ $26895.14 | Stop entry: $26899.30
+[ENTRY] LONG @ $26905.51 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26877.42 (0.10%) | Pos Size: 538.1%
+[SIGNAL] ADX SHORT signal @ $26661.05 | Stop entry: $26656.56
+[SIGNAL] ADX LONG signal @ $27085.51 | Stop entry: $27151.00
+[SQUEEZE] SQUEEZE LONG @ $27124.72 | Qty: 1
+[ENTRY] LONG @ $27225.13 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27164.48 (0.22%) | Pos Size: 272.3%
+[SIGNAL] ADX LONG signal @ $29949.62 | Stop entry: $30042.17
+[SIGNAL] ADX LONG signal @ $29963.80 | Stop entry: $29987.75
+[SIGNAL] ADX LONG signal @ $30176.36 | Stop entry: $30205.10
+[ENTRY] LONG @ $30283.31 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30222.57 (0.20%) | Pos Size: 302.8%
+[SIGNAL] ADX SHORT signal @ $29928.31 | Stop entry: $29855.37
+[SIGNAL] ADX LONG signal @ $30253.01 | Stop entry: $30333.30
+[SIGNAL] ADX SHORT signal @ $29752.96 | Stop entry: $29662.80
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $30666.34 | Qty: 1
+[SIGNAL] ADX LONG signal @ $31248.74 | Stop entry: $31443.77
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30558.57 | Stop entry: $30459.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30641.86 | Stop entry: $30572.78
+[SIGNAL] ADX LONG signal @ $30760.38 | Stop entry: $30763.23
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30417.76 | Stop entry: $30371.55
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30530.15 | Stop entry: $30501.40
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30669.01 | Stop entry: $30702.65
+[ENTRY] LONG @ $30902.29 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30856.58 (0.15%) | Pos Size: 309.0%
+[SIGNAL] ADX LONG signal @ $30758.10 | Stop entry: $30775.46
+[SIGNAL] ADX SHORT signal @ $30663.96 | Stop entry: $30663.81
+[ENTRY] SHORT @ $30632.52 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30670.02 (0.12%) | Pos Size: 306.3%
+[SIGNAL] ADX SHORT signal @ $30411.97 | Stop entry: $30357.88
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30413.12 | Stop entry: $30405.51
+[ENTRY] SHORT @ $30183.59 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30247.14 (0.21%) | Pos Size: 301.8%
+[SQUEEZE] SQUEEZE LONG @ $30559.84 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $30371.85 | Stop entry: $30286.48
+[SIGNAL] ADX SHORT signal @ $30338.77 | Stop entry: $30325.45
+[ENTRY] SHORT @ $30270.82 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30315.51 (0.15%) | Pos Size: 302.7%
+[SQUEEZE] SQUEEZE SHORT @ $30022.98 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $30132.72 | Stop entry: $29899.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30485.99 | Stop entry: $30503.89
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30412.58 | Stop entry: $30420.50
+[ENTRY] LONG @ $30634.03 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30590.32 (0.14%) | Pos Size: 306.3%
+[SIGNAL] ADX LONG signal @ $30510.55 | Stop entry: $30700.10
+[ENTRY] LONG @ $30731.34 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30677.14 (0.18%) | Pos Size: 307.3%
+[SIGNAL] ADX LONG signal @ $30729.04 | Stop entry: $30737.39
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30405.60 | Stop entry: $30397.75
+[ENTRY] SHORT @ $30395.71 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30430.62 (0.11%) | Pos Size: 304.0%
+[SIGNAL] ADX LONG signal @ $30381.72 | Stop entry: $30452.78
+[SIGNAL] ADX SHORT signal @ $30305.42 | Stop entry: $30292.91
+[ENTRY] SHORT @ $30260.04 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30310.64 (0.17%) | Pos Size: 302.6%
+[SIGNAL] ADX LONG signal @ $30337.12 | Stop entry: $30357.95
+[ENTRY] LONG @ $30379.74 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30349.55 (0.10%) | Pos Size: 607.6%
+[SQUEEZE] SQUEEZE LONG @ $30679.81 | Qty: 1
+[SIGNAL] ADX LONG signal @ $30452.95 | Stop entry: $30613.38
+[ENTRY] LONG @ $30637.33 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30579.91 (0.19%) | Pos Size: 306.4%
+[SIGNAL] ADX LONG signal @ $30749.11 | Stop entry: $30779.99
+[ENTRY] LONG @ $31157.46 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $31085.39 (0.23%) | Pos Size: 311.6%
+[SQUEEZE] SQUEEZE LONG @ $31157.46 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $30129.64 | Stop entry: $29417.04
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30435.64 | Stop entry: $30402.79
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30385.06 | Stop entry: $30357.67
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30575.17 | Stop entry: $30632.73
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30545.24 | Stop entry: $30522.91
+[ENTRY] SHORT @ $30521.51 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30620.84 (0.33%) | Pos Size: 305.2%
+[SIGNAL] ADX SHORT signal @ $30497.23 | Stop entry: $30488.63
+[ENTRY] SHORT @ $30482.15 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30550.44 (0.22%) | Pos Size: 304.8%
+[SIGNAL] ADX SHORT signal @ $30476.23 | Stop entry: $30409.94
+[SIGNAL] ADX SHORT signal @ $30443.36 | Stop entry: $30427.58
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30691.00 | Stop entry: $30790.52
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30775.28 | Stop entry: $30783.91
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $30915.83 | Qty: 1
+[SIGNAL] ADX LONG signal @ $30971.38 | Stop entry: $30971.48
+[ENTRY] LONG @ $31072.31 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $31026.65 (0.15%) | Pos Size: 310.7%
+[SIGNAL] ADX LONG signal @ $31264.49 | Stop entry: $31333.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30975.81 | Stop entry: $30972.00
+[ENTRY] SHORT @ $30911.80 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30941.09 (0.09%) | Pos Size: 618.2%
+[SIGNAL] ADX SHORT signal @ $30964.80 | Stop entry: $30808.53
+[ENTRY] SHORT @ $30791.05 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30834.62 (0.14%) | Pos Size: 307.9%
+[SIGNAL] ADX SHORT signal @ $30761.16 | Stop entry: $30750.91
+[ENTRY] SHORT @ $30740.25 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30836.42 (0.31%) | Pos Size: 307.4%
+[SQUEEZE] SQUEEZE SHORT @ $30432.75 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30448.47 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30436.19 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30459.58 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30407.36 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30376.14 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30226.34 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $30466.86 | Stop entry: $30449.45
+[ENTRY] SHORT @ $30445.55 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30483.77 (0.13%) | Pos Size: 304.5%
+[SIGNAL] ADX SHORT signal @ $30441.03 | Stop entry: $30430.20
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30750.08 | Stop entry: $30752.67
+[SQUEEZE] SQUEEZE LONG @ $30750.08 | Qty: 2
+[ENTRY] LONG @ $30778.73 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30746.68 (0.10%) | Pos Size: 615.6%
+[SQUEEZE] SQUEEZE LONG @ $30975.08 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $30479.89 | Stop entry: $30445.80
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30143.67 | Stop entry: $30105.97
+[ENTRY] SHORT @ $30092.75 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30127.73 (0.12%) | Pos Size: 300.9%
+[SIGNAL] ADX SHORT signal @ $30005.60 | Stop entry: $29927.39
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30384.95 | Stop entry: $30393.52
+[ENTRY] LONG @ $30433.11 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30379.74 (0.18%) | Pos Size: 304.3%
+[SIGNAL] ADX SHORT signal @ $30187.32 | Stop entry: $30170.27
+[SIGNAL] ADX LONG signal @ $30348.00 | Stop entry: $30348.88
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30199.14 | Stop entry: $30148.50
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30175.74 | Stop entry: $30168.12
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30252.65 | Stop entry: $30265.64
+[SIGNAL] ADX SHORT signal @ $30128.61 | Stop entry: $30076.83
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30263.36 | Stop entry: $30266.92
+[ENTRY] LONG @ $30291.69 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30203.68 (0.29%) | Pos Size: 302.9%
+[SIGNAL] ADX LONG signal @ $30337.83 | Stop entry: $30357.59
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30182.93 | Stop entry: $30181.21
+[ENTRY] SHORT @ $30159.08 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30181.84 (0.08%) | Pos Size: 603.2%
+[SIGNAL] ADX SHORT signal @ $30147.69 | Stop entry: $30124.13
+[SIGNAL] ADX SHORT signal @ $30120.29 | Stop entry: $30109.42
+[ENTRY] SHORT @ $30105.73 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30129.07 (0.08%) | Pos Size: 602.1%
+[SIGNAL] ADX LONG signal @ $30277.69 | Stop entry: $30323.05
+[ENTRY] LONG @ $30323.67 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30287.86 (0.12%) | Pos Size: 303.2%
+[SQUEEZE] SQUEEZE LONG @ $30531.97 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $30565.54 | Qty: 1
+[SIGNAL] ADX LONG signal @ $30451.65 | Stop entry: $30459.29
+[SIGNAL] ADX LONG signal @ $30458.70 | Stop entry: $30489.26
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30424.47 | Stop entry: $30373.60
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30608.73 | Stop entry: $30648.82
+[ENTRY] LONG @ $30649.91 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30596.70 (0.17%) | Pos Size: 306.5%
+[SIGNAL] ADX LONG signal @ $30562.15 | Stop entry: $30577.91
+[ENTRY] LONG @ $30587.47 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30551.94 (0.12%) | Pos Size: 305.9%
+[SIGNAL] ADX LONG signal @ $30604.76 | Stop entry: $30623.43
+[ENTRY] LONG @ $30641.80 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $30621.89 (0.06%) | Pos Size: 919.3%
+[SIGNAL] ADX LONG signal @ $30728.20 | Stop entry: $30737.79
+[ENTRY] LONG @ $30778.12 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30753.66 (0.08%) | Pos Size: 615.6%
+[SIGNAL] ADX LONG signal @ $30805.56 | Stop entry: $30842.96
+[SIGNAL] ADX SHORT signal @ $30516.52 | Stop entry: $30463.74
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30359.85 | Stop entry: $30250.94
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30359.99 | Stop entry: $30358.10
+[ENTRY] SHORT @ $30357.41 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30378.42 (0.07%) | Pos Size: 607.1%
+[SIGNAL] ADX LONG signal @ $30487.54 | Stop entry: $30533.90
+[ENTRY] LONG @ $30589.02 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30559.52 (0.10%) | Pos Size: 611.8%
+[SIGNAL] ADX LONG signal @ $30591.46 | Stop entry: $30627.83
+[ENTRY] LONG @ $30838.31 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30785.43 (0.17%) | Pos Size: 308.4%
+[SQUEEZE] SQUEEZE LONG @ $31034.90 | Qty: 1
+[SIGNAL] ADX LONG signal @ $31269.88 | Stop entry: $31286.39
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $31200.54 | Stop entry: $31195.16
+[ENTRY] SHORT @ $31175.92 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $31207.45 (0.10%) | Pos Size: 623.5%
+[SIGNAL] ADX LONG signal @ $31317.13 | Stop entry: $31328.54
+[ENTRY] LONG @ $31342.89 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $31297.71 (0.14%) | Pos Size: 313.4%
+[SIGNAL] ADX SHORT signal @ $31240.94 | Stop entry: $31071.51
+[ENTRY] SHORT @ $30931.88 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30993.06 (0.20%) | Pos Size: 309.3%
+[SQUEEZE] SQUEEZE SHORT @ $30892.38 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30700.13 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30751.22 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $30410.01 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $30317.67 | Stop entry: $30259.85
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30307.26 | Stop entry: $30290.15
+[ENTRY] SHORT @ $30289.99 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30340.77 (0.17%) | Pos Size: 302.9%
+[SIGNAL] ADX SHORT signal @ $30286.25 | Stop entry: $30268.28
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30327.96 | Stop entry: $30344.02
+[SIGNAL] ADX LONG signal @ $30330.29 | Stop entry: $30352.87
+[SIGNAL] ADX LONG signal @ $30422.28 | Stop entry: $30457.13
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30250.74 | Stop entry: $30216.36
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30230.16 | Stop entry: $30223.65
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $30190.51 | Stop entry: $30158.57
+[ENTRY] SHORT @ $30140.62 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30173.05 (0.11%) | Pos Size: 602.8%
+[SQUEEZE] SQUEEZE SHORT @ $30095.89 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $30262.22 | Stop entry: $30238.97
+[SIGNAL] ADX SHORT signal @ $30182.33 | Stop entry: $30115.63
+[SIGNAL] ADX SHORT signal @ $30104.58 | Stop entry: $30077.67
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30140.10 | Stop entry: $30178.08
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29966.33 | Stop entry: $29931.96
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29885.01 | Stop entry: $29810.90
+[ENTRY] SHORT @ $29781.00 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29823.46 (0.14%) | Pos Size: 297.8%
+[SIGNAL] ADX SHORT signal @ $29978.51 | Stop entry: $29815.72
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29999.28 | Stop entry: $30056.93
+[ENTRY] LONG @ $30071.45 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30043.15 (0.09%) | Pos Size: 601.4%
+[SIGNAL] ADX LONG signal @ $30046.85 | Stop entry: $30082.92
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29952.33 | Stop entry: $29822.20
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30064.96 | Stop entry: $30098.87
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29875.22 | Stop entry: $29850.13
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30192.85 | Stop entry: $30199.57
+[ENTRY] LONG @ $30210.76 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30175.57 (0.12%) | Pos Size: 302.1%
+[SIGNAL] ADX LONG signal @ $30235.08 | Stop entry: $30281.78
+[SIGNAL] ADX SHORT signal @ $29803.65 | Stop entry: $29785.21
+[SQUEEZE] SQUEEZE SHORT @ $29803.65 | Qty: 1
+[ENTRY] SHORT @ $29780.88 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29841.77 (0.20%) | Pos Size: 297.8%
+[SQUEEZE] SQUEEZE SHORT @ $29780.88 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $29815.74 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $29835.03 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $29819.58 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $29803.82 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $29831.00 | Stop entry: $29749.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29896.51 | Stop entry: $29945.33
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30007.39 | Stop entry: $30060.38
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29957.64 | Stop entry: $29983.13
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29847.28 | Stop entry: $29832.24
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29817.81 | Stop entry: $29807.83
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29817.77 | Stop entry: $29811.61
+[SIGNAL] ADX LONG signal @ $29888.98 | Stop entry: $29899.92
+[ENTRY] LONG @ $29907.00 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29889.06 (0.06%) | Pos Size: 897.2%
+[SIGNAL] ADX LONG signal @ $29931.87 | Stop entry: $29936.84
+[ENTRY] LONG @ $29971.65 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29952.24 (0.06%) | Pos Size: 899.1%
+[SIGNAL] ADX LONG signal @ $29946.48 | Stop entry: $29955.10
+[ENTRY] LONG @ $29963.35 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29948.40 (0.05%) | Pos Size: 898.9%
+[SQUEEZE] SQUEEZE LONG @ $30117.25 | Qty: 2
+[SIGNAL] ADX LONG signal @ $30059.68 | Stop entry: $30073.38
+[SIGNAL] ADX SHORT signal @ $29880.23 | Stop entry: $29862.74
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29166.79 | Stop entry: $29148.98
+[ENTRY] SHORT @ $29123.02 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29141.51 (0.06%) | Pos Size: 873.7%
+[SIGNAL] ADX SHORT signal @ $29071.08 | Stop entry: $29062.23
+[ENTRY] SHORT @ $29060.76 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29080.13 (0.07%) | Pos Size: 871.8%
+[SIGNAL] ADX LONG signal @ $29206.00 | Stop entry: $29278.33
+[SIGNAL] ADX SHORT signal @ $29114.57 | Stop entry: $29099.91
+[SIGNAL] ADX LONG signal @ $29317.97 | Stop entry: $29334.36
+[SQUEEZE] SQUEEZE LONG @ $29313.82 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29138.19 | Stop entry: $29089.44
+[SIGNAL] ADX LONG signal @ $29304.11 | Stop entry: $29402.90
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29319.44 | Stop entry: $29336.97
+[ENTRY] LONG @ $29339.74 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29304.11 (0.12%) | Pos Size: 293.4%
+[SIGNAL] ADX LONG signal @ $29408.60 | Stop entry: $29500.26
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29556.13 | Stop entry: $29560.23
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29264.07 | Stop entry: $29230.81
+[SQUEEZE] SQUEEZE SHORT @ $29264.07 | Qty: 2
+[ENTRY] SHORT @ $29215.30 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29246.73 (0.11%) | Pos Size: 584.3%
+[SIGNAL] ADX SHORT signal @ $29182.98 | Stop entry: $29181.12
+[ENTRY] SHORT @ $29172.63 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29190.41 (0.06%) | Pos Size: 875.2%
+[SIGNAL] ADX SHORT signal @ $29126.94 | Stop entry: $29116.16
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29300.00 | Stop entry: $29320.24
+[ENTRY] LONG @ $29341.14 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29317.37 (0.08%) | Pos Size: 586.8%
+[SQUEEZE] SQUEEZE LONG @ $29428.37 | Qty: 2
+[SIGNAL] ADX LONG signal @ $29376.13 | Stop entry: $29389.35
+[ENTRY] LONG @ $29402.24 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29360.31 (0.14%) | Pos Size: 294.0%
+[SIGNAL] ADX SHORT signal @ $29314.56 | Stop entry: $29290.14
+[ENTRY] SHORT @ $29273.17 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29330.93 (0.20%) | Pos Size: 292.7%
+[SIGNAL] ADX SHORT signal @ $29289.66 | Stop entry: $29258.01
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29353.33 | Stop entry: $29373.90
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29308.73 | Stop entry: $29305.82
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29274.78 | Stop entry: $29267.75
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29289.48 | Stop entry: $29276.26
+[SIGNAL] ADX LONG signal @ $29389.93 | Stop entry: $29422.18
+[SQUEEZE] SQUEEZE LONG @ $29399.02 | Qty: 3
+[ENTRY] LONG @ $29424.04 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29404.99 (0.06%) | Pos Size: 882.7%
+[SQUEEZE] SQUEEZE SHORT @ $29198.44 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $29148.45 | Stop entry: $29032.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29458.24 | Stop entry: $29527.09
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29461.64 | Stop entry: $29469.94
+[SIGNAL] ADX SHORT signal @ $29315.72 | Stop entry: $29261.16
+[ENTRY] SHORT @ $29241.48 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29269.56 (0.10%) | Pos Size: 584.8%
+[SQUEEZE] SQUEEZE SHORT @ $29199.53 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $29195.57 | Stop entry: $29167.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29082.46 | Stop entry: $29133.47
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29411.53 | Stop entry: $29404.53
+[SIGNAL] ADX LONG signal @ $29552.73 | Stop entry: $29557.97
+[ENTRY] LONG @ $29560.01 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29535.76 (0.08%) | Pos Size: 591.2%
+[SIGNAL] ADX SHORT signal @ $29450.98 | Stop entry: $29449.92
+[ENTRY] SHORT @ $29402.66 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29428.17 (0.09%) | Pos Size: 588.1%
+[SIGNAL] ADX LONG signal @ $29180.09 | Stop entry: $29228.93
+[ENTRY] LONG @ $29273.30 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29241.60 (0.11%) | Pos Size: 585.5%
+[SQUEEZE] SQUEEZE LONG @ $29358.76 | Qty: 1
+[SIGNAL] ADX LONG signal @ $29244.27 | Stop entry: $29249.10
+[ENTRY] LONG @ $29252.33 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29224.05 (0.10%) | Pos Size: 585.0%
+[SIGNAL] ADX SHORT signal @ $29134.23 | Stop entry: $29125.20
+[ENTRY] SHORT @ $29122.60 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29140.44 (0.06%) | Pos Size: 873.7%
+[SIGNAL] ADX LONG signal @ $29214.32 | Stop entry: $29312.38
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29091.03 | Stop entry: $29063.62
+[ENTRY] SHORT @ $29012.96 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29041.06 (0.10%) | Pos Size: 580.3%
+[SQUEEZE] SQUEEZE SHORT @ $29012.96 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $29032.33 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $29033.25 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $29023.50 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $29008.47 | Stop entry: $29006.20
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28961.97 | Stop entry: $28959.78
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $29146.94 | Qty: 3
+[SIGNAL] ADX SHORT signal @ $29016.56 | Stop entry: $29016.04
+[ENTRY] SHORT @ $29010.34 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29104.72 (0.33%) | Pos Size: 290.1%
+[SIGNAL] ADX SHORT signal @ $28839.97 | Stop entry: $28779.90
+[SIGNAL] ADX LONG signal @ $29055.69 | Stop entry: $29109.64
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $29314.92 | Qty: 3
+[SIGNAL] ADX LONG signal @ $29929.44 | Stop entry: $29960.01
+[ENTRY] LONG @ $30059.96 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30027.40 (0.11%) | Pos Size: 601.2%
+[SQUEEZE] SQUEEZE LONG @ $30059.96 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $29742.88 | Stop entry: $29732.29
+[ENTRY] SHORT @ $29690.84 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29731.26 (0.14%) | Pos Size: 296.9%
+[SQUEEZE] SQUEEZE SHORT @ $29495.67 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $29561.14 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $29453.70 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $29459.01 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $29562.76 | Stop entry: $29543.02
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29496.02 | Stop entry: $29481.69
+[ENTRY] SHORT @ $29478.60 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29495.29 (0.06%) | Pos Size: 884.4%
+[SIGNAL] ADX LONG signal @ $29653.64 | Stop entry: $29666.18
+[SIGNAL] ADX SHORT signal @ $29465.63 | Stop entry: $29365.50
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29385.96 | Stop entry: $29369.68
+[ENTRY] SHORT @ $29365.53 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29389.67 (0.08%) | Pos Size: 587.3%
+[SIGNAL] ADX SHORT signal @ $29372.31 | Stop entry: $29352.57
+[ENTRY] SHORT @ $29348.57 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29406.96 (0.20%) | Pos Size: 293.5%
+[SIGNAL] ADX SHORT signal @ $29296.83 | Stop entry: $29285.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29474.58 | Stop entry: $29475.00
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29405.26 | Stop entry: $29404.39
+[ENTRY] SHORT @ $29400.86 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29422.94 (0.08%) | Pos Size: 588.0%
+[SIGNAL] ADX LONG signal @ $29434.73 | Stop entry: $29434.83
+[ENTRY] LONG @ $29436.99 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29418.85 (0.06%) | Pos Size: 883.1%
+[SIGNAL] ADX SHORT signal @ $29393.56 | Stop entry: $29389.58
+[ENTRY] SHORT @ $29383.37 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29411.85 (0.10%) | Pos Size: 587.7%
+[SIGNAL] ADX SHORT signal @ $29357.19 | Stop entry: $29356.66
+[ENTRY] SHORT @ $29354.87 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $29378.69 (0.08%) | Pos Size: 587.1%
+[SIGNAL] ADX LONG signal @ $29393.57 | Stop entry: $29400.09
+[ENTRY] LONG @ $29408.77 | Qty: 6 | Risk: 0.5% ($50.00)
+   Stop: $29399.94 (0.03%) | Pos Size: 1764.5%
+[SQUEEZE] SQUEEZE LONG @ $29408.77 | Qty: 6
+[SQUEEZE] SQUEEZE SHORT @ $29347.17 | Qty: 5
+[SIGNAL] ADX SHORT signal @ $29322.99 | Stop entry: $29320.91
+[SQUEEZE] SQUEEZE SHORT @ $29322.99 | Qty: 5
+[SQUEEZE] SQUEEZE SHORT @ $29334.24 | Qty: 4
+[ENTRY] SHORT @ $29293.64 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $29311.57 (0.06%) | Pos Size: 878.8%
+[SQUEEZE] SQUEEZE SHORT @ $29293.64 | Qty: 3
+[SQUEEZE] SQUEEZE SHORT @ $29292.68 | Qty: 3
+[SIGNAL] ADX LONG signal @ $29387.82 | Stop entry: $29406.83
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29406.80 | Stop entry: $29456.17
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29472.30 | Stop entry: $29505.74
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29314.34 | Stop entry: $29285.02
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29402.31 | Stop entry: $29408.03
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29282.92 | Stop entry: $29264.84
+[SIGNAL] ADX SHORT signal @ $29128.87 | Stop entry: $29046.48
+[SQUEEZE] SQUEEZE SHORT @ $29136.41 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $29145.91 | Qty: 2
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29106.71 | Stop entry: $29099.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE SHORT @ $28935.57 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $28984.19 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $29104.45 | Stop entry: $29088.06
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26444.23 | Stop entry: $26416.04
+[ENTRY] SHORT @ $26409.92 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26446.95 (0.14%) | Pos Size: 264.1%
+[SIGNAL] ADX SHORT signal @ $26358.22 | Stop entry: $26334.41
+[ENTRY] SHORT @ $26317.71 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26355.45 (0.14%) | Pos Size: 263.2%
+[SIGNAL] ADX SHORT signal @ $26050.01 | Stop entry: $26006.75
+[ENTRY] SHORT @ $26003.47 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26077.29 (0.28%) | Pos Size: 260.0%
+[SIGNAL] ADX SHORT signal @ $26069.77 | Stop entry: $26056.74
+[ENTRY] SHORT @ $26049.24 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26098.81 (0.19%) | Pos Size: 260.5%
+[SIGNAL] ADX SHORT signal @ $25897.78 | Stop entry: $25859.90
+[SIGNAL] ADX SHORT signal @ $25926.21 | Stop entry: $25898.91
+[ENTRY] SHORT @ $25895.66 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25982.95 (0.34%) | Pos Size: 259.0%
+[SIGNAL] ADX LONG signal @ $26055.46 | Stop entry: $26091.83
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26080.01 | Stop entry: $26080.94
+[ENTRY] LONG @ $26085.03 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26007.24 (0.30%) | Pos Size: 260.9%
+[SIGNAL] ADX LONG signal @ $26175.49 | Stop entry: $26186.86
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26061.60 | Stop entry: $26031.80
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26106.15 | Stop entry: $26066.02
+[ENTRY] SHORT @ $26055.73 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $26074.04 (0.07%) | Pos Size: 781.7%
+[SIGNAL] ADX SHORT signal @ $26062.33 | Stop entry: $26047.93
+[ENTRY] SHORT @ $26025.50 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26047.64 (0.09%) | Pos Size: 520.5%
+[SIGNAL] ADX SHORT signal @ $25962.37 | Stop entry: $25942.73
+[ENTRY] SHORT @ $25932.24 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $25959.80 (0.11%) | Pos Size: 518.6%
+[SIGNAL] ADX LONG signal @ $26100.39 | Stop entry: $26128.30
+[SIGNAL] ADX SHORT signal @ $25873.81 | Stop entry: $25813.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26102.33 | Stop entry: $26122.12
+[ENTRY] LONG @ $26197.70 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26165.58 (0.12%) | Pos Size: 524.0%
+[SIGNAL] ADX SHORT signal @ $26046.42 | Stop entry: $26035.71
+[ENTRY] SHORT @ $26024.33 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $26040.49 (0.06%) | Pos Size: 780.7%
+[SIGNAL] ADX LONG signal @ $26095.18 | Stop entry: $26107.55
+[SIGNAL] ADX SHORT signal @ $26037.99 | Stop entry: $26032.15
+[ENTRY] SHORT @ $26027.48 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26085.28 (0.22%) | Pos Size: 260.3%
+[SIGNAL] ADX SHORT signal @ $25989.80 | Stop entry: $25976.22
+[ENTRY] SHORT @ $25966.17 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $25990.82 (0.09%) | Pos Size: 519.3%
+[SQUEEZE] SQUEEZE SHORT @ $25853.02 | Qty: 2
+[SIGNAL] ADX LONG signal @ $26151.09 | Stop entry: $26158.88
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26053.78 | Stop entry: $26178.72
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25826.88 | Stop entry: $25825.86
+[ENTRY] SHORT @ $25816.51 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $25840.55 (0.09%) | Pos Size: 516.3%
+[SIGNAL] ADX LONG signal @ $26109.81 | Stop entry: $26112.60
+[ENTRY] LONG @ $26128.05 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26083.52 (0.17%) | Pos Size: 261.3%
+[SQUEEZE] SQUEEZE LONG @ $26327.40 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26460.95 | Stop entry: $26485.90
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26187.27 | Stop entry: $26184.63
+[ENTRY] SHORT @ $26060.28 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26098.60 (0.15%) | Pos Size: 260.6%
+[SQUEEZE] SQUEEZE SHORT @ $26060.28 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26100.85 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26080.20 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26049.05 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26078.13 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25978.86 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $26054.40 | Stop entry: $26025.90
+[ENTRY] SHORT @ $26017.73 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26038.49 (0.08%) | Pos Size: 520.4%
+[SIGNAL] ADX LONG signal @ $26148.39 | Stop entry: $26231.20
+[SQUEEZE] SQUEEZE SHORT @ $25796.50 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26050.65 | Stop entry: $26115.54
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26031.55 | Stop entry: $26006.53
+[ENTRY] SHORT @ $25998.69 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26049.41 (0.20%) | Pos Size: 260.0%
+[SIGNAL] ADX SHORT signal @ $26033.45 | Stop entry: $26024.80
+[ENTRY] SHORT @ $25997.88 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26032.52 (0.13%) | Pos Size: 260.0%
+[SIGNAL] ADX SHORT signal @ $25988.21 | Stop entry: $25971.34
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25993.38 | Stop entry: $25988.43
+[ENTRY] SHORT @ $25969.58 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26015.62 (0.18%) | Pos Size: 259.7%
+[SIGNAL] ADX LONG signal @ $26078.59 | Stop entry: $26084.97
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26129.12 | Stop entry: $26160.02
+[SQUEEZE] SQUEEZE LONG @ $26129.12 | Qty: 1
+[ENTRY] LONG @ $26161.10 | Qty: 4 | Risk: 0.5% ($50.00)
+   Stop: $26148.29 (0.05%) | Pos Size: 1046.4%
+[SIGNAL] ADX LONG signal @ $26127.87 | Stop entry: $26155.60
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26020.33 | Stop entry: $26007.51
+[ENTRY] SHORT @ $26007.17 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $26024.98 (0.07%) | Pos Size: 780.2%
+[SIGNAL] ADX LONG signal @ $26148.61 | Stop entry: $26232.98
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25974.54 | Stop entry: $25960.05
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26099.45 | Stop entry: $26125.61
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25943.51 | Stop entry: $25937.73
+[SIGNAL] ADX SHORT signal @ $25950.31 | Stop entry: $25945.74
+[SIGNAL] ADX LONG signal @ $26180.81 | Stop entry: $26225.10
+[SQUEEZE] SQUEEZE LONG @ $26180.81 | Qty: 2
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27675.28 | Stop entry: $27707.81
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27340.51 | Stop entry: $27337.58
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27252.83 | Stop entry: $27252.72
+[ENTRY] SHORT @ $27238.11 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27263.01 (0.09%) | Pos Size: 544.8%
+[SIGNAL] ADX SHORT signal @ $27186.18 | Stop entry: $27177.64
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27467.48 | Stop entry: $27577.09
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26909.51 | Stop entry: $26787.43
+[SQUEEZE] SQUEEZE SHORT @ $26918.12 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26845.56 | Qty: 1
+[ENTRY] SHORT @ $26713.64 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26774.95 (0.23%) | Pos Size: 267.1%
+[SQUEEZE] SQUEEZE SHORT @ $26713.64 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26483.92 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26232.70 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $25977.91 | Stop entry: $25977.26
+[ENTRY] SHORT @ $25970.74 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26046.39 (0.29%) | Pos Size: 259.7%
+[SIGNAL] ADX SHORT signal @ $25980.54 | Stop entry: $25966.09
+[ENTRY] SHORT @ $25844.23 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25881.28 (0.14%) | Pos Size: 258.4%
+[SQUEEZE] SQUEEZE SHORT @ $25706.08 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25777.26 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25371.63 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25410.03 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25445.05 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25511.22 | Qty: 1
+[SIGNAL] ADX LONG signal @ $25942.13 | Stop entry: $25956.77
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $25868.87 | Stop entry: $25872.27
+[ENTRY] LONG @ $25894.07 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25835.19 (0.23%) | Pos Size: 258.9%
+[SIGNAL] ADX LONG signal @ $25876.77 | Stop entry: $25897.48
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $25929.51 | Stop entry: $25943.94
+[ENTRY] LONG @ $25949.96 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25893.69 (0.22%) | Pos Size: 259.5%
+[SIGNAL] ADX LONG signal @ $25951.40 | Stop entry: $25962.37
+[ENTRY] LONG @ $25992.13 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $25965.90 (0.10%) | Pos Size: 519.8%
+[SIGNAL] ADX LONG signal @ $26034.35 | Stop entry: $26065.18
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25909.79 | Stop entry: $25869.07
+[ENTRY] SHORT @ $25864.74 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $25884.20 (0.08%) | Pos Size: 775.9%
+[SIGNAL] ADX SHORT signal @ $25837.24 | Stop entry: $25799.89
+[SIGNAL] ADX SHORT signal @ $25763.87 | Stop entry: $25753.93
+[ENTRY] SHORT @ $25731.32 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $25762.64 (0.12%) | Pos Size: 514.6%
+[SQUEEZE] SQUEEZE SHORT @ $25671.44 | Qty: 1
+[SIGNAL] ADX LONG signal @ $25832.50 | Stop entry: $25856.53
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE SHORT @ $25557.77 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $25594.86 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $25554.88 | Stop entry: $25540.26
+[ENTRY] SHORT @ $25513.25 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25554.60 (0.16%) | Pos Size: 255.1%
+[SIGNAL] ADX SHORT signal @ $25691.78 | Stop entry: $25674.81
+[ENTRY] SHORT @ $25654.39 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25720.07 (0.26%) | Pos Size: 256.5%
+[SIGNAL] ADX SHORT signal @ $25669.44 | Stop entry: $25595.70
+[SIGNAL] ADX LONG signal @ $25758.24 | Stop entry: $25782.50
+[ENTRY] LONG @ $25790.10 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $25759.08 (0.12%) | Pos Size: 515.8%
+[SQUEEZE] SQUEEZE LONG @ $26219.51 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26250.70 | Stop entry: $26253.31
+[ENTRY] LONG @ $26275.79 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26251.24 (0.09%) | Pos Size: 525.5%
+[SIGNAL] ADX SHORT signal @ $26037.79 | Stop entry: $26021.26
+[ENTRY] SHORT @ $25729.44 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25782.45 (0.21%) | Pos Size: 257.3%
+[SQUEEZE] SQUEEZE SHORT @ $25729.44 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25793.28 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25832.58 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $25821.47 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $25880.01 | Stop entry: $25865.28
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $25896.32 | Stop entry: $25903.05
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $25875.98 | Stop entry: $25887.88
+[SIGNAL] ADX LONG signal @ $25890.88 | Stop entry: $25898.70
+[ENTRY] LONG @ $25901.09 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25845.88 (0.21%) | Pos Size: 259.0%
+[SIGNAL] ADX SHORT signal @ $25847.10 | Stop entry: $25827.00
+[ENTRY] SHORT @ $25779.10 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $25847.77 (0.27%) | Pos Size: 257.8%
+[SIGNAL] ADX SHORT signal @ $25796.84 | Stop entry: $25782.58
+[SIGNAL] ADX LONG signal @ $25875.64 | Stop entry: $25879.57
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25722.33 | Stop entry: $25645.15
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $25850.98 | Stop entry: $25883.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25700.31 | Stop entry: $25680.13
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25156.74 | Stop entry: $25156.40
+[ENTRY] SHORT @ $25140.20 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $25163.45 (0.09%) | Pos Size: 502.8%
+[SIGNAL] ADX LONG signal @ $25858.86 | Stop entry: $25946.79
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $25974.32 | Stop entry: $26017.68
+[ENTRY] LONG @ $26121.28 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26082.46 (0.15%) | Pos Size: 261.2%
+[SIGNAL] ADX SHORT signal @ $25856.89 | Stop entry: $25799.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $25875.14 | Stop entry: $25838.60
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26019.29 | Stop entry: $26049.80
+[ENTRY] LONG @ $26079.58 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26041.67 (0.15%) | Pos Size: 260.8%
+[SIGNAL] ADX LONG signal @ $26192.90 | Stop entry: $26205.94
+[ENTRY] LONG @ $26224.42 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26192.13 (0.12%) | Pos Size: 524.5%
+[SIGNAL] ADX LONG signal @ $26248.09 | Stop entry: $26287.64
+[ENTRY] LONG @ $26290.46 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26264.25 (0.10%) | Pos Size: 525.8%
+[SIGNAL] ADX LONG signal @ $26331.40 | Stop entry: $26345.53
+[SIGNAL] ADX LONG signal @ $26335.33 | Stop entry: $26338.80
+[ENTRY] LONG @ $26350.78 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26267.52 (0.32%) | Pos Size: 263.5%
+[SQUEEZE] SQUEEZE LONG @ $26671.62 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26587.13 | Stop entry: $26587.23
+[ENTRY] LONG @ $26624.47 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26591.99 (0.12%) | Pos Size: 532.5%
+[SIGNAL] ADX SHORT signal @ $26490.01 | Stop entry: $26484.13
+[ENTRY] SHORT @ $26481.79 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26508.89 (0.10%) | Pos Size: 529.6%
+[SIGNAL] ADX LONG signal @ $26626.34 | Stop entry: $26646.88
+[SIGNAL] ADX SHORT signal @ $26431.68 | Stop entry: $26385.18
+[ENTRY] SHORT @ $26367.02 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26399.82 (0.12%) | Pos Size: 527.3%
+[SQUEEZE] SQUEEZE SHORT @ $26367.02 | Qty: 2
+[SQUEEZE] SQUEEZE LONG @ $26711.82 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26773.47 | Stop entry: $26841.82
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26488.73 | Stop entry: $26485.45
+[ENTRY] SHORT @ $26481.74 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $26499.10 (0.07%) | Pos Size: 794.5%
+[SIGNAL] ADX LONG signal @ $26587.25 | Stop entry: $26588.95
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26528.43 | Stop entry: $26508.64
+[ENTRY] SHORT @ $26473.83 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26564.59 (0.34%) | Pos Size: 264.7%
+[SIGNAL] ADX LONG signal @ $26617.09 | Stop entry: $26619.34
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26518.42 | Stop entry: $26470.95
+[ENTRY] SHORT @ $26441.41 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26501.16 (0.23%) | Pos Size: 264.4%
+[SIGNAL] ADX SHORT signal @ $26492.16 | Stop entry: $26488.48
+[ENTRY] SHORT @ $26467.62 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26494.55 (0.10%) | Pos Size: 529.4%
+[SIGNAL] ADX LONG signal @ $26658.96 | Stop entry: $26717.42
+[SQUEEZE] SQUEEZE LONG @ $26625.35 | Qty: 1
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26722.21 | Stop entry: $26717.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26940.12 | Stop entry: $26945.10
+[ENTRY] LONG @ $26997.93 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26975.44 (0.08%) | Pos Size: 540.0%
+[SQUEEZE] SQUEEZE LONG @ $27068.67 | Qty: 2
+[SIGNAL] ADX LONG signal @ $27229.28 | Stop entry: $27283.79
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27055.34 | Stop entry: $27027.30
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26986.92 | Stop entry: $26978.15
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27177.16 | Stop entry: $27059.34
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE SHORT @ $26900.76 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $26933.69 | Stop entry: $26846.42
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26822.28 | Stop entry: $26822.18
+[ENTRY] SHORT @ $26798.01 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26830.96 (0.12%) | Pos Size: 536.0%
+[SQUEEZE] SQUEEZE SHORT @ $26743.01 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26744.54 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26404.92 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26407.99 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $26572.69 | Stop entry: $26561.47
+[ENTRY] SHORT @ $26549.29 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26575.86 (0.10%) | Pos Size: 531.0%
+[SIGNAL] ADX SHORT signal @ $26550.03 | Stop entry: $26541.74
+[ENTRY] SHORT @ $26532.29 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26592.73 (0.23%) | Pos Size: 265.3%
+[SIGNAL] ADX LONG signal @ $26629.01 | Stop entry: $26638.68
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26572.42 | Stop entry: $26569.32
+[ENTRY] SHORT @ $26567.29 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26606.22 (0.15%) | Pos Size: 265.7%
+[SIGNAL] ADX SHORT signal @ $26568.56 | Stop entry: $26556.02
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26605.65 | Stop entry: $26612.97
+[SIGNAL] ADX LONG signal @ $26592.13 | Stop entry: $26592.75
+[ENTRY] LONG @ $26605.13 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26577.63 (0.10%) | Pos Size: 532.1%
+[SQUEEZE] SQUEEZE LONG @ $26673.89 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26688.79 | Stop entry: $26731.20
+[SIGNAL] ADX SHORT signal @ $26441.14 | Stop entry: $26333.93
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26257.24 | Stop entry: $26300.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26267.73 | Stop entry: $26245.49
+[ENTRY] SHORT @ $26224.27 | Qty: 4 | Risk: 0.5% ($50.00)
+   Stop: $26237.76 (0.05%) | Pos Size: 1049.0%
+[SIGNAL] ADX SHORT signal @ $26244.32 | Stop entry: $26242.31
+[ENTRY] SHORT @ $26238.61 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $26256.40 (0.07%) | Pos Size: 787.2%
+[SIGNAL] ADX SHORT signal @ $26188.38 | Stop entry: $26178.32
+[ENTRY] SHORT @ $26175.38 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26203.50 (0.11%) | Pos Size: 523.5%
+[SQUEEZE] SQUEEZE LONG @ $26408.01 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26392.57 | Stop entry: $26409.07
+[ENTRY] LONG @ $26411.31 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26385.24 (0.10%) | Pos Size: 528.2%
+[SIGNAL] ADX SHORT signal @ $26282.55 | Stop entry: $26230.95
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26357.62 | Stop entry: $26370.45
+[ENTRY] LONG @ $26399.51 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26376.56 (0.09%) | Pos Size: 528.0%
+[SIGNAL] ADX LONG signal @ $26544.39 | Stop entry: $26577.65
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $26775.04 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27036.19 | Stop entry: $27079.42
+[ENTRY] LONG @ $27148.35 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27117.31 (0.11%) | Pos Size: 543.0%
+[SIGNAL] ADX SHORT signal @ $26794.65 | Stop entry: $26661.61
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26982.45 | Stop entry: $26983.94
+[ENTRY] LONG @ $27000.17 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26937.67 (0.23%) | Pos Size: 270.0%
+[SIGNAL] ADX LONG signal @ $26997.07 | Stop entry: $27010.10
+[ENTRY] LONG @ $27025.19 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26953.01 (0.27%) | Pos Size: 270.3%
+[SIGNAL] ADX SHORT signal @ $26961.00 | Stop entry: $26958.67
+[SIGNAL] ADX LONG signal @ $27018.78 | Stop entry: $27027.66
+[ENTRY] LONG @ $27030.51 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26963.89 (0.25%) | Pos Size: 270.3%
+[SIGNAL] ADX LONG signal @ $27075.19 | Stop entry: $27077.21
+[ENTRY] LONG @ $27079.90 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27032.08 (0.18%) | Pos Size: 270.8%
+[SQUEEZE] SQUEEZE LONG @ $27261.85 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $27089.06 | Stop entry: $27081.90
+[ENTRY] SHORT @ $27078.00 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27098.81 (0.08%) | Pos Size: 541.6%
+[SIGNAL] ADX LONG signal @ $27234.45 | Stop entry: $27242.60
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27948.85 | Stop entry: $27909.89
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27469.54 | Stop entry: $27435.73
+[ENTRY] SHORT @ $27432.07 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27475.67 (0.16%) | Pos Size: 274.3%
+[SIGNAL] ADX SHORT signal @ $27390.45 | Stop entry: $27386.73
+[ENTRY] SHORT @ $27378.43 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27401.88 (0.09%) | Pos Size: 547.6%
+[SIGNAL] ADX LONG signal @ $27541.34 | Stop entry: $27582.15
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27400.86 | Stop entry: $27348.80
+[SIGNAL] ADX LONG signal @ $27556.54 | Stop entry: $27560.55
+[ENTRY] LONG @ $27575.01 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27541.75 (0.12%) | Pos Size: 551.5%
+[SQUEEZE] SQUEEZE LONG @ $27762.34 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27610.46 | Stop entry: $27581.26
+[SIGNAL] ADX LONG signal @ $27720.09 | Stop entry: $27749.63
+[ENTRY] LONG @ $27767.33 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27680.94 (0.31%) | Pos Size: 277.7%
+[SQUEEZE] SQUEEZE LONG @ $28027.07 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27589.10 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27557.78 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27476.04 | Stop entry: $27421.01
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27571.57 | Stop entry: $27585.33
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27646.94 | Stop entry: $27664.44
+[ENTRY] LONG @ $27667.94 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27644.13 (0.09%) | Pos Size: 553.4%
+[SQUEEZE] SQUEEZE SHORT @ $27250.74 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27394.53 | Stop entry: $27173.31
+[SQUEEZE] SQUEEZE SHORT @ $27394.53 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27393.12 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27676.45 | Stop entry: $27694.86
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27892.75 | Stop entry: $27887.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28075.69 | Stop entry: $28110.04
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $27957.09 | Stop entry: $27921.58
+[ENTRY] SHORT @ $27910.70 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27996.90 (0.31%) | Pos Size: 279.1%
+[SIGNAL] ADX SHORT signal @ $27824.36 | Stop entry: $27824.25
+[ENTRY] SHORT @ $27798.82 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27820.82 (0.08%) | Pos Size: 556.0%
+[SQUEEZE] SQUEEZE SHORT @ $27551.86 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27549.45 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27554.90 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27508.72 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27536.63 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27501.13 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27515.10 | Qty: 1
+[SIGNAL] ADX LONG signal @ $27626.13 | Stop entry: $27644.45
+[SIGNAL] ADX LONG signal @ $27617.48 | Stop entry: $27632.91
+[ENTRY] LONG @ $27633.67 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27612.89 (0.08%) | Pos Size: 552.7%
+[SIGNAL] ADX LONG signal @ $27642.57 | Stop entry: $27670.49
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27652.66 | Stop entry: $27677.05
+[ENTRY] LONG @ $27691.17 | Qty: 3 | Risk: 0.5% ($50.00)
+   Stop: $27672.65 (0.07%) | Pos Size: 830.7%
+[SIGNAL] ADX SHORT signal @ $27563.37 | Stop entry: $27545.32
+[ENTRY] SHORT @ $27513.05 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $27536.09 (0.08%) | Pos Size: 550.3%
+[SQUEEZE] SQUEEZE SHORT @ $27406.69 | Qty: 2
+[SQUEEZE] SQUEEZE SHORT @ $27361.71 | Qty: 2
+[SIGNAL] ADX SHORT signal @ $27442.99 | Stop entry: $27356.10
+[SIGNAL] ADX SHORT signal @ $27377.02 | Stop entry: $27361.25
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE SHORT @ $27158.26 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27124.94 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27102.38 | Stop entry: $27069.76
+[SQUEEZE] SQUEEZE SHORT @ $27102.38 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27123.65 | Qty: 1
+[ENTRY] SHORT @ $27036.25 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $27076.64 (0.15%) | Pos Size: 270.4%
+[SQUEEZE] SQUEEZE SHORT @ $27036.25 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27013.73 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $27088.64 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $27132.28 | Stop entry: $27043.30
+[ENTRY] SHORT @ $26825.87 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26873.96 (0.18%) | Pos Size: 268.3%
+[SQUEEZE] SQUEEZE SHORT @ $26825.87 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26773.70 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26774.36 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $26742.14 | Qty: 1
+[SIGNAL] ADX SHORT signal @ $26761.14 | Stop entry: $26737.16
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26730.86 | Stop entry: $26729.29
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26747.78 | Stop entry: $26673.49
+[ENTRY] SHORT @ $26658.81 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26694.47 (0.13%) | Pos Size: 266.6%
+[SIGNAL] ADX LONG signal @ $26802.39 | Stop entry: $26828.83
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26834.85 | Stop entry: $26844.24
+[ENTRY] LONG @ $26860.11 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26776.35 (0.31%) | Pos Size: 268.6%
+[SIGNAL] ADX SHORT signal @ $26761.52 | Stop entry: $26746.54
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26691.51 | Stop entry: $26671.09
+[SIGNAL] ADX SHORT signal @ $26760.06 | Stop entry: $26726.42
+[SIGNAL] ADX LONG signal @ $26976.87 | Stop entry: $27066.41
+[SQUEEZE] SQUEEZE LONG @ $26993.40 | Qty: 1
+[SIGNAL] ADX LONG signal @ $26880.23 | Stop entry: $26889.43
+[ENTRY] LONG @ $26912.40 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $26886.38 (0.10%) | Pos Size: 538.2%
+[SIGNAL] ADX LONG signal @ $26930.86 | Stop entry: $26936.98
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $26930.94 | Stop entry: $26953.27
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $26832.40 | Stop entry: $26824.38
+[ENTRY] SHORT @ $26812.33 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26880.56 (0.25%) | Pos Size: 268.1%
+[SIGNAL] ADX LONG signal @ $26899.85 | Stop entry: $26905.43
+[SIGNAL] ADX SHORT signal @ $26855.67 | Stop entry: $26854.71
+[ENTRY] SHORT @ $26838.21 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $26871.84 (0.13%) | Pos Size: 268.4%
+[SIGNAL] ADX LONG signal @ $26906.67 | Stop entry: $26922.16
+[ENTRY] LONG @ $26927.21 | Qty: 4 | Risk: 0.5% ($50.00)
+   Stop: $26913.93 (0.05%) | Pos Size: 1077.1%
+[SQUEEZE] SQUEEZE LONG @ $27040.15 | Qty: 3
+[SQUEEZE] SQUEEZE LONG @ $27182.19 | Qty: 2
+[SIGNAL] ADX LONG signal @ $27133.09 | Stop entry: $27139.06
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $27759.49 | Stop entry: $27765.47
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28374.05 | Stop entry: $28379.70
+[SIGNAL] ADX SHORT signal @ $28206.64 | Stop entry: $28195.82
+[ENTRY] SHORT @ $28172.52 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28213.44 (0.15%) | Pos Size: 281.7%
+[SIGNAL] ADX LONG signal @ $28468.09 | Stop entry: $28532.15
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28306.66 | Stop entry: $28148.90
+[SIGNAL] ADX LONG signal @ $28445.85 | Stop entry: $28525.79
+[ENTRY] LONG @ $28576.93 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28516.92 (0.21%) | Pos Size: 285.8%
+[SIGNAL] ADX LONG signal @ $28748.22 | Stop entry: $29000.08
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28281.90 | Stop entry: $28253.61
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $28358.74 | Stop entry: $28278.13
+[ENTRY] SHORT @ $28274.79 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $28304.65 (0.11%) | Pos Size: 565.5%
+[SIGNAL] ADX SHORT signal @ $28149.79 | Stop entry: $28122.47
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $28458.41 | Stop entry: $28464.25
+[ENTRY] LONG @ $28470.79 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28433.53 (0.13%) | Pos Size: 284.7%
+[SIGNAL] ADX LONG signal @ $28930.72 | Stop entry: $28955.10
+[ENTRY] LONG @ $28998.44 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $28950.86 (0.16%) | Pos Size: 290.0%
+[SQUEEZE] SQUEEZE LONG @ $28998.44 | Qty: 1
+[SIGNAL] ADX LONG signal @ $29677.37 | Stop entry: $29689.62
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29594.76 | Stop entry: $29639.08
+[ENTRY] LONG @ $29643.39 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29602.08 (0.14%) | Pos Size: 296.4%
+[SIGNAL] ADX LONG signal @ $29769.87 | Stop entry: $29787.81
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29500.39 | Stop entry: $29480.81
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $29851.23 | Stop entry: $29869.06
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $30159.52 | Qty: 1
+[SIGNAL] ADX LONG signal @ $29970.65 | Stop entry: $29996.34
+[ENTRY] LONG @ $30073.28 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $30041.54 (0.11%) | Pos Size: 601.5%
+[SIGNAL] ADX LONG signal @ $30127.93 | Stop entry: $30275.10
+                                                        C:\Users\oo\AppData\Roaming\Python\Python311\site-packages\backtesting\_plotting.py:141: UserWarning: Data contains too many candlesticks to plot; downsampling to '1h'. See `Backtest.plot(resample=...)`
+  warnings.warn(f"Data contains too many candlesticks to plot; downsampling to {freq!r}. "
+[SIGNAL] ADX SHORT signal @ $29880.83 | Stop entry: $29802.08
+[SIGNAL] ADX SHORT signal @ $29928.27 | Stop entry: $29924.62
+[ENTRY] SHORT @ $29899.56 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29944.69 (0.15%) | Pos Size: 299.0%
+[SIGNAL] ADX SHORT signal @ $29845.75 | Stop entry: $29802.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $29818.23 | Stop entry: $29814.92
+[ENTRY] SHORT @ $29814.39 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $29903.93 (0.30%) | Pos Size: 298.1%
+[SIGNAL] ADX LONG signal @ $30003.73 | Stop entry: $30060.34
+[SIGNAL] ADX LONG signal @ $30129.26 | Stop entry: $30173.59
+[ENTRY] LONG @ $30422.44 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $30357.68 (0.21%) | Pos Size: 304.2%
+[SQUEEZE] SQUEEZE LONG @ $30422.44 | Qty: 1
+[SIGNAL] ADX LONG signal @ $30533.43 | Stop entry: $30566.90
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $30900.00 | Stop entry: $30993.32
+[SIGNAL] ADX LONG signal @ $31194.53 | Stop entry: $31204.11
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $34020.15 | Stop entry: $34045.35
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $34320.99 | Stop entry: $34554.68
+[SIGNAL] ADX SHORT signal @ $33832.23 | Stop entry: $33769.60
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $33813.22 | Stop entry: $33810.30
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $34393.28 | Stop entry: $34394.22
+[ENTRY] LONG @ $34692.40 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34599.98 (0.27%) | Pos Size: 346.9%
+[SIGNAL] ADX SHORT signal @ $34508.84 | Stop entry: $34479.51
+[SIGNAL] ADX SHORT signal @ $34470.48 | Stop entry: $34422.53
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $34108.97 | Stop entry: $34065.25
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $33858.30 | Stop entry: $33790.02
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $33936.60 | Stop entry: $33899.91
+[ENTRY] SHORT @ $33870.93 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $33922.25 (0.15%) | Pos Size: 338.7%
+[SIGNAL] ADX SHORT signal @ $33655.34 | Stop entry: $33449.90
+[ENTRY] SHORT @ $33443.84 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $33515.59 (0.21%) | Pos Size: 334.4%
+[SQUEEZE] SQUEEZE SHORT @ $33443.84 | Qty: 1
+[SIGNAL] ADX LONG signal @ $34037.57 | Stop entry: $34101.57
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $34062.74 | Stop entry: $34092.16
+[ENTRY] LONG @ $34095.84 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $33998.00 (0.29%) | Pos Size: 341.0%
+[SIGNAL] ADX LONG signal @ $34210.84 | Stop entry: $34387.86
+[SIGNAL] ADX LONG signal @ $34072.44 | Stop entry: $34091.36
+[ENTRY] LONG @ $34135.64 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34090.86 (0.13%) | Pos Size: 341.4%
+[SIGNAL] ADX LONG signal @ $34199.01 | Stop entry: $34247.40
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $34078.72 | Stop entry: $34043.34
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $34093.90 | Stop entry: $34098.85
+[ENTRY] LONG @ $34134.72 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34040.99 (0.27%) | Pos Size: 341.3%
+[SQUEEZE] SQUEEZE LONG @ $34695.54 | Qty: 1
+[SIGNAL] ADX LONG signal @ $34672.96 | Stop entry: $34699.90
+[ENTRY] LONG @ $34712.36 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34666.24 (0.13%) | Pos Size: 347.1%
+[SIGNAL] ADX SHORT signal @ $34326.58 | Stop entry: $34199.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $34588.54 | Qty: 1
+[SIGNAL] ADX LONG signal @ $34620.51 | Stop entry: $34688.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $34196.49 | Stop entry: $34156.25
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $34241.77 | Stop entry: $34194.65
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $34221.35 | Stop entry: $34146.16
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $34594.52 | Stop entry: $34629.62
+[ENTRY] LONG @ $34639.05 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34593.01 (0.13%) | Pos Size: 346.4%
+[SIGNAL] ADX SHORT signal @ $34393.99 | Stop entry: $34369.90
+[ENTRY] SHORT @ $34357.89 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $34386.03 (0.08%) | Pos Size: 687.2%
+[SIGNAL] ADX SHORT signal @ $34488.99 | Stop entry: $34438.63
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SQUEEZE] SQUEEZE LONG @ $34800.22 | Qty: 1
+[SIGNAL] ADX LONG signal @ $34816.29 | Stop entry: $34884.59
+[SIGNAL] ADX SHORT signal @ $34256.67 | Stop entry: $34166.66
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $34809.58 | Stop entry: $34816.10
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $35302.97 | Stop entry: $35369.49
+[ENTRY] LONG @ $35419.60 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $35369.33 (0.14%) | Pos Size: 354.2%
+[SIGNAL] ADX SHORT signal @ $34878.79 | Stop entry: $34769.82
+[SQUEEZE] SQUEEZE SHORT @ $34878.79 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $34855.85 | Qty: 1
+[ENTRY] SHORT @ $34655.40 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34748.57 (0.27%) | Pos Size: 346.6%
+[SIGNAL] ADX SHORT signal @ $34909.36 | Stop entry: $34884.60
+[ENTRY] SHORT @ $34869.03 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34936.73 (0.19%) | Pos Size: 348.7%
+[SIGNAL] ADX SHORT signal @ $34525.51 | Stop entry: $34418.10
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $34748.23 | Stop entry: $34792.44
+[ENTRY] LONG @ $34804.99 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34741.75 (0.18%) | Pos Size: 348.0%
+[SIGNAL] ADX LONG signal @ $34538.35 | Stop entry: $34622.72
+[SIGNAL] ADX LONG signal @ $34522.76 | Stop entry: $34600.18
+[SIGNAL] ADX SHORT signal @ $34475.92 | Stop entry: $34423.96
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $34786.32 | Stop entry: $34856.57
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $34913.99 | Stop entry: $34950.35
+[ENTRY] LONG @ $35000.63 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34953.37 (0.14%) | Pos Size: 350.0%
+[SIGNAL] ADX LONG signal @ $35119.27 | Stop entry: $35131.80
+[ENTRY] LONG @ $35132.19 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $35099.83 (0.09%) | Pos Size: 702.6%
+[SIGNAL] ADX SHORT signal @ $34936.06 | Stop entry: $34887.58
+[SIGNAL] ADX LONG signal @ $35170.29 | Stop entry: $35213.16
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $34858.96 | Stop entry: $34803.23
+[ENTRY] SHORT @ $34682.18 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34744.63 (0.18%) | Pos Size: 346.8%
+[SQUEEZE] SQUEEZE SHORT @ $34682.18 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $34708.92 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $34793.71 | Qty: 1
+[SIGNAL] ADX LONG signal @ $35084.20 | Stop entry: $35093.42
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $35222.04 | Stop entry: $35294.22
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $35142.84 | Stop entry: $35190.10
+[ENTRY] LONG @ $35231.08 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $35170.22 (0.17%) | Pos Size: 352.3%
+[SIGNAL] ADX SHORT signal @ $34989.77 | Stop entry: $34898.90
+[ENTRY] SHORT @ $34886.80 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34939.32 (0.15%) | Pos Size: 348.9%
+[SIGNAL] ADX SHORT signal @ $34893.17 | Stop entry: $34841.81
+[ENTRY] SHORT @ $34830.09 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34873.61 (0.12%) | Pos Size: 348.3%
+[SIGNAL] ADX SHORT signal @ $34897.66 | Stop entry: $34891.16
+[ENTRY] SHORT @ $34867.07 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $34895.07 (0.08%) | Pos Size: 697.3%
+[SIGNAL] ADX SHORT signal @ $34831.50 | Stop entry: $34700.90
+[ENTRY] SHORT @ $34666.20 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $34715.74 (0.14%) | Pos Size: 346.7%
+[SIGNAL] ADX LONG signal @ $35292.26 | Stop entry: $35348.10
+[SQUEEZE] SQUEEZE LONG @ $35292.26 | Qty: 1
+[ENTRY] LONG @ $35392.81 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $35302.54 (0.26%) | Pos Size: 353.9%
+[SIGNAL] ADX LONG signal @ $35305.25 | Stop entry: $35349.69
+[ENTRY] LONG @ $35360.89 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $35328.54 (0.09%) | Pos Size: 707.2%
+[SIGNAL] ADX LONG signal @ $35710.26 | Stop entry: $35736.93
+[SQUEEZE] SQUEEZE LONG @ $35710.26 | Qty: 1
+[ENTRY] LONG @ $35745.60 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $35675.92 (0.19%) | Pos Size: 357.5%
+[SIGNAL] ADX SHORT signal @ $36210.32 | Stop entry: $35999.91
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $36516.70 | Stop entry: $36458.88
+[SIGNAL] ADX LONG signal @ $36706.59 | Stop entry: $36800.61
+[ENTRY] LONG @ $36806.18 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $36749.27 (0.15%) | Pos Size: 368.1%
+[SIGNAL] ADX LONG signal @ $36786.43 | Stop entry: $36907.53
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $36973.49 | Stop entry: $37149.97
+[SQUEEZE] SQUEEZE LONG @ $37087.82 | Qty: 1
+[ENTRY] LONG @ $37197.94 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $37113.86 (0.23%) | Pos Size: 372.0%
+[SIGNAL] ADX LONG signal @ $37228.19 | Stop entry: $37236.81
+[ENTRY] LONG @ $37260.63 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $37202.71 (0.16%) | Pos Size: 372.6%
+[SIGNAL] ADX SHORT signal @ $37073.78 | Stop entry: $36974.47
+[ENTRY] SHORT @ $36967.22 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $37021.47 (0.15%) | Pos Size: 369.7%
+[SIGNAL] ADX LONG signal @ $37175.66 | Stop entry: $37185.36
+[SIGNAL] ADX LONG signal @ $37183.01 | Stop entry: $37194.36
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $36987.87 | Stop entry: $36914.19
+[SIGNAL] ADX SHORT signal @ $37017.58 | Stop entry: $37001.16
+[ENTRY] SHORT @ $36938.98 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $37000.49 (0.17%) | Pos Size: 369.4%
+[SIGNAL] ADX LONG signal @ $37150.07 | Stop entry: $37183.01
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $37003.11 | Stop entry: $36974.90
+[SIGNAL] ADX LONG signal @ $37337.21 | Stop entry: $37442.58
+[SIGNAL] ADX SHORT signal @ $36867.81 | Stop entry: $36865.30
+[SQUEEZE] SQUEEZE SHORT @ $36867.81 | Qty: 1
+[ENTRY] SHORT @ $36853.84 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $36908.62 (0.15%) | Pos Size: 368.5%
+[SIGNAL] ADX SHORT signal @ $36832.64 | Stop entry: $36715.38
+[ENTRY] SHORT @ $36691.40 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $36745.51 (0.15%) | Pos Size: 366.9%
+[SIGNAL] ADX SHORT signal @ $36791.45 | Stop entry: $36632.69
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $36539.12 | Stop entry: $36432.00
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $36644.90 | Stop entry: $36699.80
+[ENTRY] LONG @ $36729.45 | Qty: 2 | Risk: 0.5% ($50.00)
+   Stop: $36697.33 (0.09%) | Pos Size: 734.6%
+[SIGNAL] ADX SHORT signal @ $36509.66 | Stop entry: $36474.08
+[ENTRY] SHORT @ $36440.95 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $36487.03 (0.13%) | Pos Size: 364.4%
+[SIGNAL] ADX SHORT signal @ $36267.15 | Stop entry: $36231.56
+[ENTRY] SHORT @ $36196.49 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $36296.01 (0.27%) | Pos Size: 362.0%
+[SIGNAL] ADX SHORT signal @ $35596.40 | Stop entry: $35542.79
+[ENTRY] SHORT @ $35540.31 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $35574.78 (0.10%) | Pos Size: 355.4%
+[SIGNAL] ADX LONG signal @ $35831.21 | Stop entry: $35960.52
+[ENTRY] LONG @ $35974.21 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $35931.81 (0.12%) | Pos Size: 359.7%
+[SQUEEZE] SQUEEZE LONG @ $36217.77 | Qty: 1
+[SQUEEZE] SQUEEZE LONG @ $36338.92 | Qty: 1
+[SIGNAL] ADX LONG signal @ $37536.70 | Stop entry: $37555.91
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $37531.23 | Stop entry: $37555.55
+[SIGNAL] ADX SHORT signal @ $37263.52 | Stop entry: $37177.10
+[ENTRY] SHORT @ $37085.55 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $37158.61 (0.20%) | Pos Size: 370.9%
+[SQUEEZE] SQUEEZE SHORT @ $36801.57 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $36779.61 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $36702.76 | Qty: 1
+[SQUEEZE] SQUEEZE SHORT @ $36556.11 | Qty: 1
+[SIGNAL] ADX LONG signal @ $36460.33 | Stop entry: $36489.37
+[ENTRY] LONG @ $36495.76 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $36436.65 (0.16%) | Pos Size: 365.0%
+[SIGNAL] ADX SHORT signal @ $36324.12 | Stop entry: $36141.81
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $35984.45 | Stop entry: $35964.87
+[SIGNAL] ADX LONG signal @ $36517.60 | Stop entry: $36555.65
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $36679.25 | Stop entry: $36700.06
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $36637.65 | Stop entry: $36657.50
+[SIGNAL] ADX SHORT signal @ $36527.55 | Stop entry: $36514.40
+[SIGNAL] ADX SHORT signal @ $36468.54 | Stop entry: $36456.71
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX LONG signal @ $36621.16 | Stop entry: $36661.49
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $36450.61 | Stop entry: $36404.72
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $36559.38 | Stop entry: $36528.82
+[SIGNAL] ADX LONG signal @ $36569.10 | Stop entry: $36598.30
+[SIGNAL] ADX LONG signal @ $36810.01 | Stop entry: $36847.09
+[SQUEEZE] SQUEEZE LONG @ $36810.01 | Qty: 1
+[ENTRY] LONG @ $36860.30 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $36819.57 (0.11%) | Pos Size: 368.6%
+[SQUEEZE] SQUEEZE LONG @ $37402.95 | Qty: 1
+[SIGNAL] ADX LONG signal @ $37225.62 | Stop entry: $37236.46
+[ENTRY] LONG @ $37264.68 | Qty: 1 | Risk: 0.5% ($50.00)
+   Stop: $37227.95 (0.10%) | Pos Size: 372.6%
+
+================================================================================
+BACKTEST RESULTS
+================================================================================
+Start                     2023-01-01 00:00:00
+End                       2023-11-20 19:15:00
+Duration                    323 days 19:15:00
+Exposure Time [%]                         0.0
+Equity Final [$]                      10000.0
+Equity Peak [$]                       10000.0
+Return [%]                                0.0
+Buy & Hold Return [%]               127.35835
+Return (Ann.) [%]                         0.0
+Volatility (Ann.) [%]                     0.0
+CAGR [%]                                  0.0
+Sharpe Ratio                              NaN
+Sortino Ratio                             NaN
+Calmar Ratio                              NaN
+Alpha [%]                                 0.0
+Beta                                      0.0
+Max. Drawdown [%]                        -0.0
+Avg. Drawdown [%]                         NaN
+Max. Drawdown Duration                    NaN
+Avg. Drawdown Duration                    NaN
+# Trades                                    0
+Win Rate [%]                              NaN
+Best Trade [%]                            NaN
+Worst Trade [%]                           NaN
+Avg. Trade [%]                            NaN
+Max. Trade Duration                       NaN
+Avg. Trade Duration                       NaN
+Profit Factor                             NaN
+Expectancy [%]                            NaN
+SQN                                       NaN
+Kelly Criterion                           NaN
+_strategy                 ADX_Squeeze_R_Based
+_equity_curve                             ...
+_trades                   Empty DataFrame
+...
+dtype: object
+================================================================================
+
+Opening interactive chart...

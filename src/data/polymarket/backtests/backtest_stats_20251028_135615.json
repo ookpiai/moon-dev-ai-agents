@@ -1,0 +1,26 @@
+{
+  "backtest_period": "2025-10-27 to 2025-10-28",
+  "total_snapshots": 1170,
+  "total_signals": 328,
+  "total_entries": 310,
+  "fill_rate_actual": 1.0,
+  "total_trades": 310,
+  "winning_trades": 0,
+  "losing_trades": 310,
+  "win_rate": 0.0,
+  "total_pnl": -8747.903333850338,
+  "avg_pnl": -28.219043012420443,
+  "avg_win": 0,
+  "avg_loss": -28.219043012420432,
+  "profit_factor": 0.0,
+  "initial_capital": 10000.0,
+  "final_capital": 1252.0966661496648,
+  "total_return": -0.8747903333850335,
+  "sharpe_ratio": 0,
+  "max_drawdown": -8631.344265014051,
+  "avg_hold_time_days": 0.0,
+  "exit_rules": {
+    "stop_loss": 206,
+    "z_reversion": 104
+  }
+}

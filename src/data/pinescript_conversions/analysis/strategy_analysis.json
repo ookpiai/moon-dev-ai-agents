@@ -1,0 +1,89 @@
+{
+  "analysis": {
+    "core_thesis": "A multi-layered trend-following strategy combining ADX momentum and volatility squeeze signals with advanced risk management",
+    "entry_conditions": [
+      "ADX strength above threshold",
+      "EMA trend confirmation",
+      "Directional Movement Index (DMI) trend",
+      "Volatility squeeze signal",
+      "Multiple entry scenarios: standalone, add-on, and reversal"
+    ],
+    "exit_conditions": [
+      "Dynamic R-based trailing stop",
+      "D-Bands trailing stop",
+      "ATR-based trailing stop",
+      "Optional fixed profit target",
+      "Risk-adjusted stop loss"
+    ],
+    "position_sizing": "R-based position sizing: Automatically calculates position size based on stop distance and predefined risk percentage (0.5% default)",
+    "risk_management": [
+      "Initial stop based on ATR",
+      "Dynamic risk factor reduction",
+      "Multiple stop mechanisms",
+      "Configurable risk percentage",
+      "Initial stop distance multipliers",
+      "Volatility regime-based stop adjustments"
+    ],
+    "indicator_roles": {
+      "ADX": "Measure trend strength and direction",
+      "EMA": "Trend confirmation and direction",
+      "Volatility Squeeze": "Identify low volatility compression points",
+      "D-Bands": "Alternative trailing stop mechanism",
+      "ATR Stop Module": "Adaptive stop loss based on volatility regimes"
+    },
+    "parameters": {
+      "risk_percent": {
+        "default": 0.5,
+        "purpose": "Percentage of equity risked per trade, determines position sizing"
+      },
+      "adx_threshold": {
+        "default": 20,
+        "purpose": "Minimum ADX strength to consider a trend valid"
+      },
+      "long_max_risk": {
+        "default": 1.7,
+        "purpose": "Maximum initial risk factor for long positions"
+      },
+      "short_max_risk": {
+        "default": 1.7,
+        "purpose": "Maximum initial risk factor for short positions"
+      },
+      "initial_stop_multiplier": {
+        "default": 1.0,
+        "purpose": "Adjust initial stop distance for fine-tuning entry risk"
+      }
+    }
+  },
+  "dependencies": [
+    "Arch",
+    "Biased",
+    "Expiration",
+    "LSMA",
+    "Offset",
+    "Profit",
+    "Risk",
+    "Stop",
+    "Target",
+    "Trade",
+    "Trailing",
+    "loxx/loxxexpandedsourcetypes/4",
+    "loxx/loxxmas/1"
+  ],
+  "indicator_code": {},
+  "missing_indicators": [
+    "Arch",
+    "Biased",
+    "Expiration",
+    "LSMA",
+    "Offset",
+    "Profit",
+    "Risk",
+    "Stop",
+    "Target",
+    "Trade",
+    "Trailing",
+    "loxx/loxxexpandedsourcetypes/4",
+    "loxx/loxxmas/1"
+  ],
+  "timestamp": "2025-10-28T12:01:21.040838"
+}

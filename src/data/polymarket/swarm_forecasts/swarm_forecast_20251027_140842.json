@@ -1,0 +1,23 @@
+{
+  "question": "Will Bitcoin hit $100k by end of 2024?",
+  "description": "Market resolves YES if Bitcoin closes above $100,000 on December 31, 2024.",
+  "consensus_prob": 0.35,
+  "model_probs": {
+    "claude": 0.35,
+    "deepseek": 0.35
+  },
+  "disagreement": 0.0,
+  "high_disagreement": false,
+  "reasoning": {
+    "claude": "PROBABILITY: 0.35\n\nMy reasoning for a 35% probability that Bitcoin will close above $100,000 on December 31, 2024:\n\n**Key Considerations:**\n\n1. **Current Price Context**: As of early November 2024, Bitcoin is trading in the $60,000-$70,000 range. Reaching $100,000 would require approximately a 45-65% increase in just 60 days.\n\n2. **Historical Volatility**: Bitcoin has demonstrated the capability for such moves in short timeframes, particularly during bull market phases. The 2020-2021 bull run saw similar percentage gains over 2-month periods.\n\n3. **Recent Catalysts**:\n   - Bitcoin ETF approvals in early 2024 brought institutional capital\n   - The April 2024 halving event historically precedes bull runs (though effects typically lag 6-12 months)\n   - Potential macroeconomic tailwinds from Fed policy shifts\n\n4. **Headwinds**:\n   - 60 days is a relatively short timeframe for a 45-65% move\n   - $100k represents a major psychological resistance level\n   - Potential profit-taking as year-end approaches\n   - Macroeconomic uncertainty remains\n\n5. **Base Rate Analysis**: Bitcoin has only briefly touched $69k (its all-time high in 2021) and has never reached $100k. Breaking through a major round number ATH in such a compressed timeframe is historically challenging.\n\n6. **Probability Calibration**: While possible given Bitcoin's volatility, the combination of the magnitude of move required, the short timeframe, and the psychological barrier at $100k suggests this is less likely than not. A 35% probability reflects that this is a plausible but not favored outcome - roughly 1-in-3 chance.\n\nThe current market odds of 42% appear slightly optimistic given these constraints.",
+    "deepseek": "PROBABILITY: 0.35\n\nMy reasoning for this 35% probability estimate:\n\nBase Rate Considerations:\n- Bitcoin has historically shown significant volatility, with major price surges typically occurring during bull markets. The current cycle suggests we're in a post-halving period where price appreciation often occurs, but reaching $100k from current levels (~$60k) requires approximately 67% growth in 60 days, which is aggressive even by Bitcoin standards.\n\nRecent Evidence:\n- Institutional adoption through ETFs has provided new inflows, but recent flows have been mixed with some days showing outflows\n- Regulatory environment remains uncertain in key markets like the US\n- Macroeconomic conditions with potential Fed policy changes could impact risk assets\n- On-chain metrics show strong holder accumulation but also some profit-taking at resistance levels\n\nTime to Resolution (60 days):\n- The timeframe is relatively short for such a significant price move\n- Historical data shows Bitcoin can make rapid moves, but sustained 67% gains in two months are uncommon outside of extreme bull market conditions\n- Seasonal factors around year-end typically see reduced trading activity and potential tax-related selling\n\nMarket Dynamics:\n- While the current market odds suggest 42% probability, I'm slightly more pessimistic given the technical resistance levels and the magnitude of move required\n- The halving effect typically plays out over 6-18 months, not necessarily in immediate explosive moves\n\nOverall, while Bitcoin has the potential for rapid appreciation and the ETF narrative remains constructive, the combination of technical resistance, macroeconomic headwinds, and the sheer magnitude of required movement in a limited timeframe leads me to a conservative estimate of 35% probability."
+  },
+  "metadata": {
+    "timestamp": "2025-10-27T14:08:42.682508",
+    "total_models": 2,
+    "successful_responses": 2,
+    "failed_responses": 0,
+    "total_time": 14.89,
+    "disagreement_threshold": 0.15
+  }
+}

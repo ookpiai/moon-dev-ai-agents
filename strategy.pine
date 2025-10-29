@@ -1,0 +1,1036 @@
+//@version=5
+// ADX + Squeeze Strategy with R-BASED POSITION SIZING
+// Position size automatically calculated based on stop distance and risk %
+// CRITICAL: Set your starting balance in Properties tab > Initial capital
+
+strategy("ADX + Squeeze [R-BASED]", "ADX+SQZ [R-Based]", overlay=true, commission_type=strategy.commission.percent, commission_value=0, pyramiding=5)
+
+import loxx/loxxexpandedsourcetypes/4
+import loxx/loxxmas/1
+
+///_____________________________________________________________________________________________________________________
+/// ADX Inputs
+///‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+adx_length = input.int(14, "ADX Length", minval=1, group="ADX Settings")
+adx_smooth = input.int(14, "ADX Smoothing", minval=1, group="ADX Settings")
+ema_fast = input.int(12, "Fast EMA", minval=1, group="ADX Settings")
+ema_slow = input.int(50, "Slow EMA", minval=1, group="ADX Settings")
+adx_threshold = input.int(20, "ADX Strength Threshold", minval=0, group="ADX Settings")
+
+///_____________________________________________________________________________________________________________________
+/// Entry Settings
+///‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+groupEntry = "Entry Settings"
+tradingDirection = input.string("Long Only", "Trading Direction", options=["Long Only", "Short Only", "Both"], group=groupEntry, tooltip="Choose whether to trade longs, shorts, or both")
+longEntryOffsetTicks = input.int(10, "Long Entry Offset (Ticks Above)", minval=0, group=groupEntry, tooltip="Ticks above the ADX BUY signal to place stop entry order")
+shortEntryOffsetTicks = input.int(10, "Short Entry Offset (Ticks Below)", minval=0, group=groupEntry, tooltip="Ticks below the ADX SELL signal to place stop entry order")
+enableSignalExpiration = input.bool(true, "Enable ADX Signal Expiration", group=groupEntry, tooltip="Cancel unfilled ADX entry orders after X bars")
+signalExpirationBars = input.int(13, "Signal Expiration (Bars)", minval=1, group=groupEntry, tooltip="Number of bars before an unfilled ADX signal expires")
+
+// Enhanced Squeeze Entry Settings
+enableSqueezeStandalone = input.bool(true, "Enable Squeeze Standalone Entries", group=groupEntry, tooltip="Allow squeeze signals to open new positions when flat")
+enableSqueezeLongAdd = input.bool(true, "Enable Squeeze Long Add-Ons", group=groupEntry, tooltip="Allow squeeze long signals to add to existing long positions")
+enableSqueezeShortAdd = input.bool(true, "Enable Squeeze Short Add-Ons", group=groupEntry, tooltip="Allow squeeze short signals to add to existing short positions")
+enableSqueezeReversal = input.bool(false, "Enable Squeeze Reversals", group=groupEntry, tooltip="Allow squeeze signals to reverse positions (close long, open short)")
+squeezeEntryOffsetTicks = input.int(0, "Squeeze Entry Offset (Ticks)", minval=0, group=groupEntry, tooltip="Ticks above/below squeeze signal for stop entry. 0 = market order")
+
+///_____________________________________________________________________________________________________________________
+/// Squeeze Inputs
+///‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+fsmthtype = input.string("Kaufman", "Fast HA Better Smoothing", options = ["AMA", "T3", "Kaufman"], group="Squeeze Settings")
+fastsrc = input.string("Close", "Fast Source", group="Squeeze Settings",
+     options =
+     ["Close", "Open", "High", "Low", "Median", "Typical", "Weighted", "Average", "Average Median Body", "Trend Biased", "Trend Biased (Extreme)",
+     "HA Close", "HA Open", "HA High", "HA Low", "HA Median", "HA Typical", "HA Weighted", "HA Average", "HA Average Median Body", "HA Trend Biased", "HA Trend Biased (Extreme)",
+     "HAB Close", "HAB Open", "HAB High", "HAB Low", "HAB Median", "HAB Typical", "HAB Weighted", "HAB Average", "HAB Average Median Body", "HAB Trend Biased", "HAB Trend Biased (Extreme)"])
+
+ftype = input.string("Exponential Moving Average - EMA", "Fast MA Type", options = ["ADXvma - Average Directional Volatility Moving Average",  "Ahrens Moving Average"
+     , "Alexander Moving Average - ALXMA", "Double Exponential Moving Average - DEMA", "Double Smoothed Exponential Moving Average - DSEMA"
+     , "Exponential Moving Average - EMA", "Fast Exponential Moving Average - FEMA", "Fractal Adaptive Moving Average - FRAMA"
+     , "Hull Moving Average - HMA", "IE/2 - Early T3 by Tim Tilson", "Integral of Linear Regression Slope - ILRS"
+     , "Instantaneous Trendline", "Laguerre Filter", "Leader Exponential Moving Average", "Linear Regression Value - LSMA (Least Squares Moving Average)"
+     , "Linear Weighted Moving Average - LWMA", "McGinley Dynamic", "McNicholl EMA", "Non-Lag Moving Average", "Parabolic Weighted Moving Average"
+     , "Recursive Moving Trendline", "Simple Moving Average - SMA", "Sine Weighted Moving Average", "Smoothed Moving Average - SMMA"
+     , "Smoother", "Super Smoother", "Three-pole Ehlers Butterworth", "Three-pole Ehlers Smoother"
+     , "Triangular Moving Average - TMA", "Triple Exponential Moving Average - TEMA", "Two-pole Ehlers Butterworth", "Two-pole Ehlers smoother"
+     , "Volume Weighted EMA - VEMA", "Zero-Lag DEMA - Zero Lag Double Exponential Moving Average", "Zero-Lag Moving Average"
+     , "Zero Lag TEMA - Zero Lag Triple Exponential Moving Average"],
+     group = "Squeeze Settings")
+
+fastper = input.int(5, "Fast Period", group="Squeeze Settings")
+
+ssmthtype = input.string("Kaufman", "Slow HA Better Smoothing", options = ["AMA", "T3", "Kaufman"], group="Squeeze Settings")
+slowsrc = input.string("Close", "Slow Source", group="Squeeze Settings",
+     options =
+     ["Close", "Open", "High", "Low", "Median", "Typical", "Weighted", "Average", "Average Median Body", "Trend Biased", "Trend Biased (Extreme)",
+     "HA Close", "HA Open", "HA High", "HA Low", "HA Median", "HA Typical", "HA Weighted", "HA Average", "HA Average Median Body", "HA Trend Biased", "HA Trend Biased (Extreme)",
+     "HAB Close", "HAB Open", "HAB High", "HAB Low", "HAB Median", "HAB Typical", "HAB Weighted", "HAB Average", "HAB Average Median Body", "HAB Trend Biased", "HAB Trend Biased (Extreme)"])
+
+stype = input.string("Exponential Moving Average - EMA", "Slow MA Type", options = ["ADXvma - Average Directional Volatility Moving Average",  "Ahrens Moving Average"
+     , "Alexander Moving Average - ALXMA", "Double Exponential Moving Average - DEMA", "Double Smoothed Exponential Moving Average - DSEMA"
+     , "Exponential Moving Average - EMA", "Fast Exponential Moving Average - FEMA", "Fractal Adaptive Moving Average - FRAMA"
+     , "Hull Moving Average - HMA", "IE/2 - Early T3 by Tim Tilson", "Integral of Linear Regression Slope - ILRS"
+     , "Instantaneous Trendline", "Laguerre Filter", "Leader Exponential Moving Average", "Linear Regression Value - LSMA (Least Squares Moving Average)"
+     , "Linear Weighted Moving Average - LWMA", "McGinley Dynamic", "McNicholl EMA", "Non-Lag Moving Average", "Parabolic Weighted Moving Average"
+     , "Recursive Moving Trendline", "Simple Moving Average - SMA", "Sine Weighted Moving Average", "Smoothed Moving Average - SMMA"
+     , "Smoother", "Super Smoother", "Three-pole Ehlers Butterworth", "Three-pole Ehlers Smoother"
+     , "Triangular Moving Average - TMA", "Triple Exponential Moving Average - TEMA", "Two-pole Ehlers Butterworth", "Two-pole Ehlers smoother"
+     , "Volume Weighted EMA - VEMA", "Zero-Lag DEMA - Zero Lag Double Exponential Moving Average", "Zero-Lag Moving Average"
+     , "Zero Lag TEMA - Zero Lag Triple Exponential Moving Average"],
+     group = "Squeeze Settings")
+
+slowper = input.int(7, "Slow Period", group="Squeeze Settings")
+
+atrper = input.int(50, "ATR Period", group="Squeeze Filter")
+atrmult = input.float(.4, "ATR Multiplier", group="Squeeze Filter")
+pipsfiltin = input.int(36, "MA Threshold Ticks", group="Squeeze Filter")
+filttype = input.string("ATR", "Filter type", options = ["ATR", "Pips"], group="Squeeze Filter")
+
+frama_FC = input.int(defval=1, title="* FRAMA Only - FC", group = "Squeeze MA Inputs")
+frama_SC = input.int(defval=200, title="* FRAMA Only - SC", group = "Squeeze MA Inputs")
+instantaneous_alpha = input.float(defval=0.07, minval = 0, title="* INSTANT Only - Alpha", group = "Squeeze MA Inputs")
+_laguerre_alpha = input.float(title="* Laguerre Only - Alpha", minval=0, maxval=1, step=0.1, defval=0.7, group = "Squeeze MA Inputs")
+lsma_offset = input.int(defval=0, title="* LSMA Only - Offset", group = "Squeeze MA Inputs")
+_pwma_pwr = input.int(2, "* PWMA Only - Power", minval=0, group = "Squeeze MA Inputs")
+kfl=input.float(0.665, title="* KAMA Only - Fast End", group = "Squeeze MA Inputs")
+ksl=input.float(0.0645, title="* KAMA Only - Slow End", group = "Squeeze MA Inputs")
+amafl = input.int(2, title="* AMA Only - Fast", group = "Squeeze MA Inputs")
+amasl = input.int(30, title="* AMA Only - Slow", group = "Squeeze MA Inputs")
+
+// ===== R-BASED POSITION SIZING =====
+groupPos = "R-Based Position Management"
+// NOTE: This represents RISK % per trade (if stopped out)
+// Position size is automatically calculated based on stop distance
+// Example: 1% risk with 5% stop = 20% position size, but you only lose 1% if stopped
+// IMPORTANT: Change starting balance in Properties tab > Initial capital
+isFutures = str.contains(syminfo.type, "futures") or str.contains(str.lower(syminfo.ticker), "es") or str.contains(str.lower(syminfo.ticker), "nq") or str.contains(str.lower(syminfo.ticker), "ym") or str.contains(str.lower(syminfo.ticker), "rty") or str.contains(str.lower(syminfo.ticker), "cl") or str.contains(str.lower(syminfo.ticker), "gc") or str.contains(str.lower(syminfo.ticker), "si")
+risk_percent = input.float(0.5, "Risk Per Trade (%)", minval=0.1, maxval=10, step=0.1, group=groupPos, tooltip="Percentage of equity to risk if stopped out. Position size adjusts automatically based on stop distance. For futures, consider using 0.25-0.5% for safety.")
+showDebugInfo = input.bool(false, "Show Position Sizing Debug Info", group=groupPos, tooltip="Display detailed position sizing calculations on chart")
+
+// ===== Dynamic R Trailing Stop Inputs =====
+grpStop = "Dynamic R Trailing Stop"
+long_activation_profit = input.float(0.5, "Long Activation Profit (R)", minval=0, step=0.1, group=grpStop)
+long_max_risk = input.float(1.7, "Long Maximum Risk (R)", minval=0.1, step=0.1, group=grpStop)
+long_min_risk = input.float(1.5, "Long Minimum Risk (R)", minval=0.1, step=0.1, group=grpStop)
+long_terminal_profit = input.float(1.0, "Long Terminal Profit (R)", minval=0.1, step=0.1, group=grpStop)
+long_arch = input.float(0.7, "Long Arch (Curve Shape)", minval=0.1, step=0.1, group=grpStop)
+
+short_activation_profit = input.float(0.5, "Short Activation Profit (R)", minval=0, step=0.1, group=grpStop)
+short_max_risk = input.float(1.7, "Short Maximum Risk (R)", minval=0.1, step=0.1, group=grpStop)
+short_min_risk = input.float(1.5, "Short Minimum Risk (R)", minval=0.1, step=0.1, group=grpStop)
+short_terminal_profit = input.float(1.0, "Short Terminal Profit (R)", minval=0.1, step=0.1, group=grpStop)
+short_arch = input.float(0.7, "Short Arch (Curve Shape)", minval=0.1, step=0.1, group=grpStop)
+
+useProfitTarget = input.bool(false, "Use Profit Target", group=grpStop)
+profitTargetR = input.float(3.0, "Profit Target (R)", minval=0.5, maxval=10, step=0.5, group=grpStop)
+
+// ===== D-Bands Trailing Stop =====
+grpDBands = "D-Bands Trailing Stop"
+dbandLength = input.int(30, "D-Bands Length", minval=1, group=grpDBands)
+dbandMultiplier = input.float(5.0, "D-Bands Multiplier", minval=0.1, step=0.1, group=grpDBands)
+showDBandLines = input.bool(false, "Show D-Band Lines", group=grpDBands)
+
+// ===== ATR Stop Module =====
+grpATRStop = "ATR Stop Module Settings"
+useATRStops = input.bool(true, "Enable ATR Trailing (for 3rd stop)", group=grpATRStop)
+atrShortLen = input.int(14, "Short ATR Length", minval=1, group=grpATRStop)
+atrLongLen = input.int(100, "Long ATR Length", minval=2, group=grpATRStop)
+baselineLen = input.int(100, "Baseline EMA Length", minval=1, group=grpATRStop)
+ratioSmooth = input.int(5, "Ratio Smoothing", minval=1, group=grpATRStop)
+lowIn = input.float(0.85, "Enter LOW Regime Below", minval=0.1, maxval=1.0, step=0.01, group=grpATRStop)
+lowOut = input.float(0.85, "Exit LOW Regime Above", minval=0.1, maxval=1.0, step=0.01, group=grpATRStop)
+highIn = input.float(1.15, "Enter HIGH Regime Above", minval=1.0, maxval=2.0, step=0.01, group=grpATRStop)
+highOut = input.float(1.15, "Exit HIGH Regime Below", minval=1.0, maxval=2.0, step=0.01, group=grpATRStop)
+multLow = input.float(2.25, "LOW Vol Stop Multiplier", minval=0.5, maxval=10.0, step=0.25, group=grpATRStop)
+multNormal = input.float(0.5, "NORMAL Vol Stop Multiplier", minval=0.5, maxval=10.0, step=0.25, group=grpATRStop)
+multHigh = input.float(3.25, "HIGH Vol Stop Multiplier", minval=0.5, maxval=10.0, step=0.25, group=grpATRStop)
+showRegimeZones = input.bool(false, "Show ATR Regime Zones", group=grpATRStop)
+
+// ===== Initial Stop Adjustment =====
+grpInitialStop = "Initial Stop Settings"
+longInitialStopMultiplier = input.float(1.0, "Long Initial Stop Multiplier", minval=0.1, maxval=3.0, step=0.1, group=grpInitialStop, tooltip="Adjusts ONLY the initial stop distance for long trades. < 1.0 = tighter, > 1.0 = wider")
+shortInitialStopMultiplier = input.float(1.0, "Short Initial Stop Multiplier", minval=0.1, maxval=3.0, step=0.1, group=grpInitialStop, tooltip="Adjusts ONLY the initial stop distance for short trades. < 1.0 = tighter, > 1.0 = wider")
+showInitialStopInfo = input.bool(false, "Show Initial Stop Distance Info", group=grpInitialStop)
+
+// Display Options
+show_signals = input.bool(true, "Show Entry Signals", group="Display")
+show_background = input.bool(true, "Highlight Background", group="Display")
+show_signal_countdown = input.bool(false, "Show Signal Expiration Countdown", group="Display", tooltip="Display bars remaining until ADX signal expires")
+
+// Color Settings
+groupColors = "Colors"
+bull_color = input.color(color.new(#00ff00, 0), "ADX Bullish Color", group=groupColors)
+bear_color = input.color(color.new(#ff0000, 0), "ADX Bearish Color", group=groupColors)
+squeeze_long_color = input.color(color.new(#FFD700, 0), "Squeeze Long Color", group=groupColors)
+squeeze_short_color = input.color(color.new(#FF00FF, 0), "Squeeze Short Color", group=groupColors)
+bg_transparency = input.int(90, "Background Transparency", minval=0, maxval=100, group=groupColors)
+
+// ===== Date Range Inputs =====
+grpDateRange = "Backtest Date Range"
+startDate = input.time(timestamp("01 Jan 2015 00:00 +0000"), "Start Date", group=grpDateRange)
+endDate = input.time(timestamp("31 Dec 2099 23:59 +0000"), "End Date", group=grpDateRange)
+
+// Check if current bar is within date range
+inDateRange = time >= startDate and time <= endDate
+
+// Trading direction booleans
+allowLongs = tradingDirection == "Long Only" or tradingDirection == "Both"
+allowShorts = tradingDirection == "Short Only" or tradingDirection == "Both"
+
+///_____________________________________________________________________________________________________________________
+/// ADX Calculations
+///‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+[diplus, diminus, adx] = ta.dmi(adx_length, adx_smooth)
+ema1 = ta.ema(close, ema_fast)
+ema2 = ta.ema(close, ema_slow)
+
+adx_direction_bull = diplus > diminus
+adx_direction_bear = diminus > diplus
+adx_strength = adx > adx_threshold
+ema_trend_bull = ema1 > ema2
+ema_trend_bear = ema1 < ema2
+
+bullish_confluence = adx_direction_bull and adx_strength and ema_trend_bull
+bearish_confluence = adx_direction_bear and adx_strength and ema_trend_bear
+
+bull_signal = bullish_confluence and not bullish_confluence[1]
+bear_signal = bearish_confluence and not bearish_confluence[1]
+
+///_____________________________________________________________________________________________________________________
+/// Squeeze Calculations
+///‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+_calcBaseUnit() =>
+    bool isForexSymbol = syminfo.type == "forex"
+    bool isYenPair = syminfo.currency == "JPY"
+    float result = isForexSymbol ? isYenPair ? 0.01 : 0.0001 : syminfo.mintick
+    result
+
+haclose = request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, close)
+haopen = request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, open)
+hahigh = request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, high)
+halow = request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, low)
+hamedian = request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, hl2)
+hatypical = request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, hlc3)
+haweighted = request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, hlcc4)
+haaverage = request.security(ticker.heikinashi(syminfo.tickerid), timeframe.period, ohlc4)
+
+outsrc(srcin, smthtype)=>
+    src = switch srcin
+        "Close" => loxxexpandedsourcetypes.rclose()
+        "Open" => loxxexpandedsourcetypes.ropen()
+        "High" => loxxexpandedsourcetypes.rhigh()
+        "Low" => loxxexpandedsourcetypes.rlow()
+        "Median" => loxxexpandedsourcetypes.rmedian()
+        "Typical" => loxxexpandedsourcetypes.rtypical()
+        "Weighted" => loxxexpandedsourcetypes.rweighted()
+        "Average" => loxxexpandedsourcetypes.raverage()
+        "Average Median Body" => loxxexpandedsourcetypes.ravemedbody()
+        "Trend Biased" => loxxexpandedsourcetypes.rtrendb()
+        "Trend Biased (Extreme)" => loxxexpandedsourcetypes.rtrendbext()
+        "HA Close" => loxxexpandedsourcetypes.haclose(haclose)
+        "HA Open" => loxxexpandedsourcetypes.haopen(haopen)
+        "HA High" => loxxexpandedsourcetypes.hahigh(hahigh)
+        "HA Low" => loxxexpandedsourcetypes.halow(halow)
+        "HA Median" => loxxexpandedsourcetypes.hamedian(hamedian)
+        "HA Typical" => loxxexpandedsourcetypes.hatypical(hatypical)
+        "HA Weighted" => loxxexpandedsourcetypes.haweighted(haweighted)
+        "HA Average" => loxxexpandedsourcetypes.haaverage(haaverage)
+        "HA Average Median Body" => loxxexpandedsourcetypes.haavemedbody(haclose, haopen)
+        "HA Trend Biased" => loxxexpandedsourcetypes.hatrendb(haclose, haopen, hahigh, halow)
+        "HA Trend Biased (Extreme)" => loxxexpandedsourcetypes.hatrendbext(haclose, haopen, hahigh, halow)
+        "HAB Close" => loxxexpandedsourcetypes.habclose(smthtype, amafl, amasl, kfl, ksl)
+        "HAB Open" => loxxexpandedsourcetypes.habopen(smthtype, amafl, amasl, kfl, ksl)
+        "HAB High" => loxxexpandedsourcetypes.habhigh(smthtype, amafl, amasl, kfl, ksl)
+        "HAB Low" => loxxexpandedsourcetypes.hablow(smthtype, amafl, amasl, kfl, ksl)
+        "HAB Median" => loxxexpandedsourcetypes.habmedian(smthtype, amafl, amasl, kfl, ksl)
+        "HAB Typical" => loxxexpandedsourcetypes.habtypical(smthtype, amafl, amasl, kfl, ksl)
+        "HAB Weighted" => loxxexpandedsourcetypes.habweighted(smthtype, amafl, amasl, kfl, ksl)
+        "HAB Average" => loxxexpandedsourcetypes.habaverage(smthtype, amafl, amasl, kfl, ksl)
+        "HAB Average Median Body" => loxxexpandedsourcetypes.habavemedbody(smthtype, amafl, amasl, kfl, ksl)
+        "HAB Trend Biased" => loxxexpandedsourcetypes.habtrendb(smthtype, amafl, amasl, kfl, ksl)
+        "HAB Trend Biased (Extreme)" => loxxexpandedsourcetypes.habtrendbext(smthtype, amafl, amasl, kfl, ksl)
+        => haclose
+    src
+
+variant(type, src, len) =>
+    sig = 0.0
+    trig = 0.0
+    special = false
+    if type == "ADXvma - Average Directional Volatility Moving Average"
+        [t, s, b] = loxxmas.adxvma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Ahrens Moving Average"
+        [t, s, b] = loxxmas.ahrma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Alexander Moving Average - ALXMA"
+        [t, s, b] = loxxmas.alxma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Double Exponential Moving Average - DEMA"
+        [t, s, b] = loxxmas.dema(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Double Smoothed Exponential Moving Average - DSEMA"
+        [t, s, b] = loxxmas.dsema(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Exponential Moving Average - EMA"
+        [t, s, b] = loxxmas.ema(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Fast Exponential Moving Average - FEMA"
+        [t, s, b] = loxxmas.fema(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Fractal Adaptive Moving Average - FRAMA"
+        [t, s, b] = loxxmas.frama(src, len, frama_FC, frama_SC)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Hull Moving Average - HMA"
+        [t, s, b] = loxxmas.hma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "IE/2 - Early T3 by Tim Tilson"
+        [t, s, b] = loxxmas.ie2(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Integral of Linear Regression Slope - ILRS"
+        [t, s, b] = loxxmas.ilrs(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Instantaneous Trendline"
+        [t, s, b] = loxxmas.instant(src, instantaneous_alpha)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Laguerre Filter"
+        [t, s, b] = loxxmas.laguerre(src, _laguerre_alpha)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Leader Exponential Moving Average"
+        [t, s, b] = loxxmas.leader(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Linear Regression Value - LSMA (Least Squares Moving Average)"
+        [t, s, b] = loxxmas.lsma(src, len, lsma_offset)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Linear Weighted Moving Average - LWMA"
+        [t, s, b] = loxxmas.lwma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "McGinley Dynamic"
+        [t, s, b] = loxxmas.mcginley(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "McNicholl EMA"
+        [t, s, b] = loxxmas.mcNicholl(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Non-Lag Moving Average"
+        [t, s, b] = loxxmas.nonlagma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Parabolic Weighted Moving Average"
+        [t, s, b] = loxxmas.pwma(src, len, _pwma_pwr)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Recursive Moving Trendline"
+        [t, s, b] = loxxmas.rmta(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Simple Moving Average - SMA"
+        [t, s, b] = loxxmas.sma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Sine Weighted Moving Average"
+        [t, s, b] = loxxmas.swma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Smoothed Moving Average - SMMA"
+        [t, s, b] = loxxmas.smma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Smoother"
+        [t, s, b] = loxxmas.smoother(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Super Smoother"
+        [t, s, b] = loxxmas.super(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Three-pole Ehlers Butterworth"
+        [t, s, b] = loxxmas.threepolebuttfilt(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Three-pole Ehlers Smoother"
+        [t, s, b] = loxxmas.threepolesss(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Triangular Moving Average - TMA"
+        [t, s, b] = loxxmas.tma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Triple Exponential Moving Average - TEMA"
+        [t, s, b] = loxxmas.tema(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Two-pole Ehlers Butterworth"
+        [t, s, b] = loxxmas.twopolebutter(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Two-pole Ehlers smoother"
+        [t, s, b] = loxxmas.twopoless(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Volume Weighted EMA - VEMA"
+        [t, s, b] = loxxmas.vwema(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Zero-Lag DEMA - Zero Lag Double Exponential Moving Average"
+        [t, s, b] = loxxmas.zlagdema(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Zero-Lag Moving Average"
+        [t, s, b] = loxxmas.zlagma(src, len)
+        sig := s
+        trig := t
+        special := b
+    else if type == "Zero Lag TEMA - Zero Lag Triple Exponential Moving Average"
+        [t, s, b] = loxxmas.zlagtema(src, len)
+        sig := s
+        trig := t
+        special := b
+    trig
+
+ma1 = variant(ftype, outsrc(fastsrc, fsmthtype), fastper)
+ma2 = variant(stype, outsrc(slowsrc, ssmthtype), slowper)
+madif = math.abs(ma1-ma2)
+
+pipsout = _calcBaseUnit()
+
+delta = filttype == "ATR" ? ta.atr(atrper) * atrmult / pipsout : pipsfiltin
+swithit = false
+
+if (madif / pipsout < delta)
+    swithit := true
+else
+    swithit := false
+
+sqzend = not swithit and nz(swithit[1])
+
+goLong = sqzend and ma1 > ma2
+goShort = sqzend and ma1 < ma2
+
+// ===== D-Bands =====
+f_doubleWMA(_src, _len) =>
+    w1 = ta.wma(_src, _len)
+    w2 = ta.wma(w1, _len)
+    w2
+
+dbands_center = f_doubleWMA(hlc3, dbandLength)
+dbands_distUpPre = ta.wma(math.max(0.0, high - dbands_center), dbandLength)
+dbands_distDownPre = ta.wma(math.max(0.0, dbands_center - low), dbandLength)
+dbands_stDevUp = f_doubleWMA(ta.stdev(dbands_distUpPre, dbandLength), dbandLength)
+dbands_stDevDown = f_doubleWMA(ta.stdev(dbands_distDownPre, dbandLength), dbandLength)
+dbands_atrVal = ta.atr(dbandLength)
+dbands_alpha = 0.3
+upper_band = dbands_center + ((dbands_alpha * dbands_stDevUp + (1 - dbands_alpha) * dbands_atrVal) * dbandMultiplier)
+lower_band = dbands_center - ((dbands_alpha * dbands_stDevDown + (1 - dbands_alpha) * dbands_atrVal) * dbandMultiplier)
+
+// ===== ATR Stop Module =====
+tr = ta.tr(true)
+ATR_short = ta.rma(tr, atrShortLen)
+ATR_long = ta.rma(tr, atrLongLen)
+baseline = ta.ema(ATR_long, baselineLen)
+ratio = ta.ema(baseline != 0 ? ATR_long / baseline : 1.0, ratioSmooth)
+
+var string regime = "NORMAL"
+if not na(ratio)
+    if regime != "HIGH" and ratio > highIn
+        regime := "HIGH"
+    else if regime == "HIGH" and ratio >= highOut
+        regime := "HIGH"
+    else if regime != "LOW" and ratio < lowIn
+        regime := "LOW"
+    else if regime == "LOW" and ratio <= lowOut
+        regime := "LOW"
+    else
+        regime := "NORMAL"
+
+mult = regime == "LOW" ? multLow : regime == "HIGH" ? multHigh : multNormal
+stopDist = ATR_short * mult
+
+// ===== Dynamic R helpers =====
+fall_gradient(max_r, min_r, terminal_p, activation_p) =>
+    (max_r - min_r) / math.max(terminal_p - activation_p, 1e-6)
+
+reduction_scaler(max_r, min_r, terminal_p, activation_p, arch_val) =>
+    fall_gradient(max_r, min_r, terminal_p, activation_p) / math.pow(1 + arch_val, terminal_p - activation_p)
+
+get_profit_factors(initialRisk, entryPrice) =>
+    if strategy.position_size == 0 or na(initialRisk) or initialRisk == 0
+        0.0
+    else
+        strategy.position_size > 0 ? (close - entryPrice) / initialRisk : (entryPrice - close) / initialRisk
+
+get_desired_risk_factor(pf, max_r, min_r, terminal_p, activation_p, arch_val) =>
+    if pf < activation_p
+        max_r
+    else
+        netp = pf - activation_p
+        rr = netp * math.pow(arch_val + 1, netp) * reduction_scaler(max_r, min_r, terminal_p, activation_p, arch_val)
+        desired = max_r - rr
+        math.max(desired, min_r)
+
+calculate_stop_price(rf, initialRisk, isLong) =>
+    if strategy.position_size == 0
+        na
+    else if isLong
+        close - (rf * initialRisk)
+    else
+        close + (rf * initialRisk)
+
+// ===== R-BASED POSITION SIZING FUNCTION =====
+calculatePositionSize(currentPrice, stopDistance, isLong) =>
+    // Calculate risk per share/contract
+    float riskPerShare = stopDistance
+
+    // Calculate risk amount (total dollars we're willing to lose)
+    float currentEquity = strategy.equity
+    float riskAmount = currentEquity * (risk_percent / 100.0)
+
+    // Calculate position size (number of shares/contracts)
+    float positionQty = riskAmount / riskPerShare
+
+    // Return calculated quantity
+    positionQty
+
+// ===== State Variables =====
+var float entryPrice = na
+var float initialStopLoss = na
+var float initialRisk = na
+var float currentStop = na
+var float used_risk_factor = na
+var string activeStopType = na
+var float dynamicRStop = na
+var float dBandsStop = na
+var float atrStop = na
+var float prevPos = 0.0
+var string lastTradeType = "NONE"
+var float initialStopDistance = na
+var int barsSinceEntry = 0
+var float fixedProfitTarget = na
+var bool isLongPosition = false
+
+// Track pending stop orders
+var float pendingLongStopPrice = na
+var float pendingShortStopPrice = na
+
+// Track when ADX signals were triggered (for expiration)
+var int longSignalBar = na
+var int shortSignalBar = na
+
+// ===== Entry Logic =====
+posNow = strategy.position_size
+
+// Detect new ADX signals and update pending stop prices
+if bull_signal and allowLongs and inDateRange
+    pendingLongStopPrice := high + (longEntryOffsetTicks * syminfo.mintick)
+    pendingShortStopPrice := na
+    longSignalBar := bar_index
+    shortSignalBar := na
+
+if bear_signal and allowShorts and inDateRange
+    pendingShortStopPrice := low - (shortEntryOffsetTicks * syminfo.mintick)
+    pendingLongStopPrice := na
+    shortSignalBar := bar_index
+    longSignalBar := na
+
+// Check for signal expiration and cancel stale orders
+if enableSignalExpiration
+    if not na(longSignalBar) and not na(pendingLongStopPrice)
+        barsElapsed = bar_index - longSignalBar
+        if barsElapsed >= signalExpirationBars
+            pendingLongStopPrice := na
+            longSignalBar := na
+            if show_signals
+                label.new(x=bar_index, y=high, text="EXPIRED",
+                          color=color.new(color.gray, 70),
+                          textcolor=color.gray,
+                          style=label.style_label_down,
+                          size=size.tiny)
+
+    if not na(shortSignalBar) and not na(pendingShortStopPrice)
+        barsElapsed = bar_index - shortSignalBar
+        if barsElapsed >= signalExpirationBars
+            pendingShortStopPrice := na
+            shortSignalBar := na
+            if show_signals
+                label.new(x=bar_index, y=low, text="EXPIRED",
+                          color=color.new(color.gray, 70),
+                          textcolor=color.gray,
+                          style=label.style_label_up,
+                          size=size.tiny)
+
+// ===== R-BASED ADX ENTRY ORDERS =====
+if not na(pendingLongStopPrice) and allowLongs and strategy.position_size <= 0 and inDateRange
+    if strategy.position_size < 0
+        strategy.close_all(comment="Reverse to Long")
+
+    // R-BASED POSITION SIZING FOR LONG
+    float currentPrice = pendingLongStopPrice
+    float expectedStopDist = stopDist * longInitialStopMultiplier
+
+    qty = calculatePositionSize(currentPrice, expectedStopDist, true)
+
+    // Debug label at signal
+    if showDebugInfo
+        label.new(x=bar_index, y=high * 1.02, text=
+                 "ADX LONG PENDING:\n" +
+                 "Entry: $" + str.tostring(currentPrice, "#.##") + "\n" +
+                 "Stop Dist: $" + str.tostring(expectedStopDist, "#.##") + "\n" +
+                 "Risk: " + str.tostring(risk_percent, "#.##") + "% ($" + str.tostring(strategy.equity * risk_percent / 100, "#,###") + ")\n" +
+                 "Qty: " + str.tostring(qty, "#,###.##"),
+                 color=color.new(color.green, 20),
+                 textcolor=color.white,
+                 style=label.style_label_down,
+                 size=size.tiny)
+
+    strategy.entry("ADX_Long", strategy.long, qty=qty, stop=pendingLongStopPrice)
+
+if not na(pendingShortStopPrice) and allowShorts and strategy.position_size >= 0 and inDateRange
+    if strategy.position_size > 0
+        strategy.close_all(comment="Reverse to Short")
+
+    // R-BASED POSITION SIZING FOR SHORT
+    float currentPrice = pendingShortStopPrice
+    float expectedStopDist = stopDist * shortInitialStopMultiplier
+
+    qty = calculatePositionSize(currentPrice, expectedStopDist, false)
+
+    // Debug label at signal
+    if showDebugInfo
+        label.new(x=bar_index, y=low * 0.98, text=
+                 "ADX SHORT PENDING:\n" +
+                 "Entry: $" + str.tostring(currentPrice, "#.##") + "\n" +
+                 "Stop Dist: $" + str.tostring(expectedStopDist, "#.##") + "\n" +
+                 "Risk: " + str.tostring(risk_percent, "#.##") + "% ($" + str.tostring(strategy.equity * risk_percent / 100, "#,###") + ")\n" +
+                 "Qty: " + str.tostring(qty, "#,###.##"),
+                 color=color.new(color.red, 20),
+                 textcolor=color.white,
+                 style=label.style_label_up,
+                 size=size.tiny)
+
+    strategy.entry("ADX_Short", strategy.short, qty=qty, stop=pendingShortStopPrice)
+
+// Clear pending orders once we're in a position
+if strategy.position_size > 0
+    pendingShortStopPrice := na
+    shortSignalBar := na
+if strategy.position_size < 0
+    pendingLongStopPrice := na
+    longSignalBar := na
+
+// ===== ENHANCED SQUEEZE ENTRY LOGIC =====
+
+// Calculate position size for squeeze entries
+float squeezeQty = 0.0
+float expectedStopDist = 0.0
+if not na(stopDist)
+    expectedStopDist := stopDist * (goLong ? longInitialStopMultiplier : goShort ? shortInitialStopMultiplier : 1.0)
+    squeezeQty := calculatePositionSize(close, expectedStopDist, goLong)
+
+// SQUEEZE LONG SCENARIOS
+if goLong and allowLongs and inDateRange and squeezeQty > 0
+    bool canEnter = false
+    string entryComment = ""
+
+    // Scenario 1: Add to existing long position
+    if enableSqueezeLongAdd and strategy.position_size > 0
+        canEnter := true
+        entryComment := "Squeeze Add Long"
+        if showDebugInfo
+            label.new(x=bar_index, y=low * 0.97, text=
+                     "SQZ LONG ADD:\n" +
+                     "Price: $" + str.tostring(close, "#.##") + "\n" +
+                     "Stop Dist: $" + str.tostring(expectedStopDist, "#.##") + "\n" +
+                     "Risk: " + str.tostring(risk_percent, "#.##") + "%\n" +
+                     "Qty: " + str.tostring(squeezeQty, "#,###.##"),
+                     color=color.new(color.yellow, 20),
+                     textcolor=color.black,
+                     style=label.style_label_up,
+                     size=size.tiny)
+
+    // Scenario 2: Open new long position when flat
+    else if enableSqueezeStandalone and strategy.position_size == 0
+        canEnter := true
+        entryComment := "Squeeze Long Entry"
+        if showDebugInfo
+            label.new(x=bar_index, y=low * 0.97, text=
+                     "SQZ LONG NEW:\n" +
+                     "Price: $" + str.tostring(close, "#.##") + "\n" +
+                     "Stop Dist: $" + str.tostring(expectedStopDist, "#.##") + "\n" +
+                     "Risk: " + str.tostring(risk_percent, "#.##") + "%\n" +
+                     "Qty: " + str.tostring(squeezeQty, "#,###.##"),
+                     color=color.new(color.yellow, 20),
+                     textcolor=color.black,
+                     style=label.style_label_up,
+                     size=size.tiny)
+
+    // Scenario 3: Reverse from short to long
+    else if enableSqueezeReversal and strategy.position_size < 0
+        strategy.close_all(comment="Squeeze Reversal to Long")
+        canEnter := true
+        entryComment := "Squeeze Reversal Long"
+        if showDebugInfo
+            label.new(x=bar_index, y=low * 0.97, text=
+                     "SQZ REVERSE LONG:\n" +
+                     "Price: $" + str.tostring(close, "#.##") + "\n" +
+                     "Stop Dist: $" + str.tostring(expectedStopDist, "#.##") + "\n" +
+                     "Risk: " + str.tostring(risk_percent, "#.##") + "%\n" +
+                     "Qty: " + str.tostring(squeezeQty, "#,###.##"),
+                     color=color.new(color.yellow, 10),
+                     textcolor=color.black,
+                     style=label.style_label_up,
+                     size=size.tiny)
+
+    // Execute entry if conditions met
+    if canEnter
+        if squeezeEntryOffsetTicks > 0
+            // Stop entry order above current price
+            strategy.entry("Squeeze_Long", strategy.long, qty=squeezeQty,
+                          stop=close + (squeezeEntryOffsetTicks * syminfo.mintick),
+                          comment=entryComment)
+        else
+            // Market entry
+            strategy.entry("Squeeze_Long", strategy.long, qty=squeezeQty, comment=entryComment)
+
+        lastTradeType := "SQUEEZE"
+
+// SQUEEZE SHORT SCENARIOS
+if goShort and allowShorts and inDateRange and squeezeQty > 0
+    bool canEnter = false
+    string entryComment = ""
+
+    // Scenario 1: Add to existing short position
+    if enableSqueezeShortAdd and strategy.position_size < 0
+        canEnter := true
+        entryComment := "Squeeze Add Short"
+        if showDebugInfo
+            label.new(x=bar_index, y=high * 1.03, text=
+                     "SQZ SHORT ADD:\n" +
+                     "Price: $" + str.tostring(close, "#.##") + "\n" +
+                     "Stop Dist: $" + str.tostring(expectedStopDist, "#.##") + "\n" +
+                     "Risk: " + str.tostring(risk_percent, "#.##") + "%\n" +
+                     "Qty: " + str.tostring(squeezeQty, "#,###.##"),
+                     color=color.new(color.fuchsia, 20),
+                     textcolor=color.white,
+                     style=label.style_label_down,
+                     size=size.tiny)
+
+    // Scenario 2: Open new short position when flat
+    else if enableSqueezeStandalone and strategy.position_size == 0
+        canEnter := true
+        entryComment := "Squeeze Short Entry"
+        if showDebugInfo
+            label.new(x=bar_index, y=high * 1.03, text=
+                     "SQZ SHORT NEW:\n" +
+                     "Price: $" + str.tostring(close, "#.##") + "\n" +
+                     "Stop Dist: $" + str.tostring(expectedStopDist, "#.##") + "\n" +
+                     "Risk: " + str.tostring(risk_percent, "#.##") + "%\n" +
+                     "Qty: " + str.tostring(squeezeQty, "#,###.##"),
+                     color=color.new(color.fuchsia, 20),
+                     textcolor=color.white,
+                     style=label.style_label_down,
+                     size=size.tiny)
+
+    // Scenario 3: Reverse from long to short
+    else if enableSqueezeReversal and strategy.position_size > 0
+        strategy.close_all(comment="Squeeze Reversal to Short")
+        canEnter := true
+        entryComment := "Squeeze Reversal Short"
+        if showDebugInfo
+            label.new(x=bar_index, y=high * 1.03, text=
+                     "SQZ REVERSE SHORT:\n" +
+                     "Price: $" + str.tostring(close, "#.##") + "\n" +
+                     "Stop Dist: $" + str.tostring(expectedStopDist, "#.##") + "\n" +
+                     "Risk: " + str.tostring(risk_percent, "#.##") + "%\n" +
+                     "Qty: " + str.tostring(squeezeQty, "#,###.##"),
+                     color=color.new(color.fuchsia, 10),
+                     textcolor=color.white,
+                     style=label.style_label_down,
+                     size=size.tiny)
+
+    // Execute entry if conditions met
+    if canEnter
+        if squeezeEntryOffsetTicks > 0
+            // Stop entry order below current price
+            strategy.entry("Squeeze_Short", strategy.short, qty=squeezeQty,
+                          stop=close - (squeezeEntryOffsetTicks * syminfo.mintick),
+                          comment=entryComment)
+        else
+            // Market entry
+            strategy.entry("Squeeze_Short", strategy.short, qty=squeezeQty, comment=entryComment)
+
+        lastTradeType := "SQUEEZE"
+
+// Define entry bar for visuals
+bool isEntryBar = (posNow != 0 and prevPos == 0)
+
+// Track when ADX orders are filled
+if isEntryBar
+    if posNow > 0
+        lastTradeType := "ADX"
+        isLongPosition := true
+        pendingLongStopPrice := na
+        longSignalBar := na
+    else if posNow < 0
+        lastTradeType := "ADX"
+        isLongPosition := false
+        pendingShortStopPrice := na
+        shortSignalBar := na
+
+// ===== Detect fills & seed initial stop =====
+if posNow != 0 and prevPos == 0
+    entryPrice := strategy.position_avg_price
+    isLongPosition := posNow > 0
+
+    adjustedStopDist = stopDist * (isLongPosition ? longInitialStopMultiplier : shortInitialStopMultiplier)
+
+    if isLongPosition
+        initialStopLoss := entryPrice - adjustedStopDist
+        initialRisk := entryPrice - initialStopLoss
+        used_risk_factor := long_max_risk
+    else
+        initialStopLoss := entryPrice + adjustedStopDist
+        initialRisk := initialStopLoss - entryPrice
+        used_risk_factor := short_max_risk
+
+    currentStop := initialStopLoss
+    initialStopDistance := adjustedStopDist
+    activeStopType := "Initial"
+    barsSinceEntry := 0
+    fixedProfitTarget := useProfitTarget ? (isLongPosition ? entryPrice + (profitTargetR * initialRisk) : entryPrice - (profitTargetR * initialRisk)) : na
+
+// Closed -> reset
+if posNow == 0 and prevPos != 0
+    entryPrice := na
+    initialStopLoss := na
+    initialRisk := na
+    currentStop := na
+    used_risk_factor := na
+    activeStopType := na
+    dynamicRStop := na
+    dBandsStop := na
+    atrStop := na
+    initialStopDistance := na
+    barsSinceEntry := 0
+    fixedProfitTarget := na
+
+// ===== While in position: compute/select/ratchet =====
+if posNow != 0 and not na(initialRisk)
+    if not isEntryBar
+        barsSinceEntry := barsSinceEntry + 1
+
+    // Calculate all stop candidates
+    pf = get_profit_factors(initialRisk, entryPrice)
+
+    if isLongPosition
+        drf = get_desired_risk_factor(pf, long_max_risk, long_min_risk, long_terminal_profit, long_activation_profit, long_arch)
+        if drf < used_risk_factor
+            used_risk_factor := drf
+        dynamicRStop := calculate_stop_price(used_risk_factor, initialRisk, true)
+        dBandsStop := lower_band
+        atrStop := useATRStops ? close - stopDist : na
+    else
+        drf = get_desired_risk_factor(pf, short_max_risk, short_min_risk, short_terminal_profit, short_activation_profit, short_arch)
+        if drf < used_risk_factor
+            used_risk_factor := drf
+        dynamicRStop := calculate_stop_price(used_risk_factor, initialRisk, false)
+        dBandsStop := upper_band
+        atrStop := useATRStops ? close + stopDist : na
+
+    // Only activate trailing stops from bar 2 onwards
+    if barsSinceEntry >= 1
+        float selectedStop = na
+        string newStopType = ""
+
+        if isLongPosition
+            selectedStop := dynamicRStop, newStopType := "Dynamic R"
+            if not na(dBandsStop) and (na(selectedStop) or dBandsStop > selectedStop)
+                selectedStop := dBandsStop, newStopType := "D-Bands"
+            if not na(atrStop) and (na(selectedStop) or atrStop > selectedStop)
+                selectedStop := atrStop, newStopType := "ATR"
+
+            if not na(selectedStop) and selectedStop >= initialStopLoss
+                if na(currentStop) or selectedStop > currentStop
+                    currentStop := selectedStop
+                    activeStopType := newStopType
+        else
+            selectedStop := dynamicRStop, newStopType := "Dynamic R"
+            if not na(dBandsStop) and (na(selectedStop) or dBandsStop < selectedStop)
+                selectedStop := dBandsStop, newStopType := "D-Bands"
+            if not na(atrStop) and (na(selectedStop) or atrStop < selectedStop)
+                selectedStop := atrStop, newStopType := "ATR"
+
+            if not na(selectedStop) and selectedStop <= initialStopLoss
+                if na(currentStop) or selectedStop < currentStop
+                    currentStop := selectedStop
+                    activeStopType := newStopType
+
+// ===== EXIT ORDERS =====
+if strategy.position_size > 0 and not na(currentStop)
+    strategy.exit("Exit_ADX_Long", from_entry="ADX_Long", stop=currentStop, limit=fixedProfitTarget)
+    strategy.exit("Exit_Squeeze_Long", from_entry="Squeeze_Long", stop=currentStop, limit=fixedProfitTarget)
+
+if strategy.position_size < 0 and not na(currentStop)
+    strategy.exit("Exit_ADX_Short", from_entry="ADX_Short", stop=currentStop, limit=fixedProfitTarget)
+    strategy.exit("Exit_Squeeze_Short", from_entry="Squeeze_Short", stop=currentStop, limit=fixedProfitTarget)
+
+// ===== Plotting =====
+
+// Background Highlighting
+bg_color = bullish_confluence and show_background ? color.new(bull_color, bg_transparency) : bearish_confluence and show_background ? color.new(bear_color, bg_transparency) : na
+bgcolor(bg_color, title="Confluence Background")
+
+// ADX Signal markers
+plotshape(bull_signal and allowLongs and show_signals ? pendingLongStopPrice : na, title="ADX Long Entry Level", style=shape.triangleup, location=location.absolute, color=bull_color, size=size.small, text="BUY")
+
+plotshape(bear_signal and allowShorts and show_signals ? pendingShortStopPrice : na, title="ADX Short Entry Level", style=shape.triangledown, location=location.absolute, color=bear_color, size=size.small, text="SELL")
+
+// Squeeze add-on signals
+plotshape(goLong and show_signals and ((enableSqueezeLongAdd and strategy.position_size > 0) or (enableSqueezeStandalone and strategy.position_size == 0) or (enableSqueezeReversal and strategy.position_size < 0)) and allowLongs, title="Squeeze Long", style=shape.triangleup, location=location.belowbar, color=squeeze_long_color, size=size.tiny, text="L")
+
+plotshape(goShort and show_signals and ((enableSqueezeShortAdd and strategy.position_size < 0) or (enableSqueezeStandalone and strategy.position_size == 0) or (enableSqueezeReversal and strategy.position_size > 0)) and allowShorts, title="Squeeze Short", style=shape.triangledown, location=location.abovebar, color=squeeze_short_color, size=size.tiny, text="S")
+
+plot(showDBandLines ? upper_band : na, "D-Bands Upper", color=color.new(color.teal, 50), linewidth=1)
+plot(showDBandLines ? lower_band : na, "D-Bands Lower", color=color.new(color.teal, 50), linewidth=1)
+
+// Initial stop marker (entry bar only)
+var float initialStopMark = na
+initialStopMark := na
+if isEntryBar
+    initialStopMark := initialStopLoss
+plotchar(initialStopMark,
+         title="Initial Stop (one-time)",
+         location=location.absolute,
+         color=color.purple,
+         char="●",
+         size=size.auto)
+
+// Trailing stop dots
+color stopColor = activeStopType == "Initial" ? color.purple :
+                  activeStopType == "Dynamic R" ? color.red :
+                  activeStopType == "D-Bands" ? color.blue :
+                  color.orange
+plotchar((strategy.position_size != 0 and not isEntryBar) ? currentStop : na,
+         title="Trailing Stop (Active)",
+         location=location.absolute,
+         color=stopColor,
+         char="●",
+         size=size.auto)
+
+// Profit target lines
+plot(strategy.position_size != 0 and useProfitTarget ? fixedProfitTarget : na, color=isLongPosition ? color.green : color.red, linewidth=2, style=plot.style_linebr, title="Profit Target")
+
+// Initial stop reference line
+plot(strategy.position_size != 0 and showInitialStopInfo ? initialStopLoss : na, color=color.new(color.purple, 70), style=plot.style_linebr, linewidth=1, title="Initial Stop Reference")
+
+// Regime shading
+bgcolor(showRegimeZones and regime == "LOW" ? color.new(color.green, 95) : na, title="Low Vol Regime")
+bgcolor(showRegimeZones and regime == "HIGH" ? color.new(color.red, 95) : na, title="High Vol Regime")
+
+// Visual indicator for backtest period
+bgcolor(inDateRange ? na : color.new(color.gray, 90), title="Outside Backtest Period")
+
+// Labels for trade type with R-based info
+if isEntryBar
+    tradeLabel = lastTradeType == "ADX" ? "ADX" : "SQZ"
+    labelColor = isLongPosition ? color.new(color.green, 70) : color.new(color.red, 70)
+
+    // Add R-based position sizing info to label
+    posValue = strategy.position_size * strategy.position_avg_price
+    posPct = (posValue / strategy.equity) * 100
+    riskDollar = strategy.equity * (risk_percent / 100)
+    stopPct = isLongPosition ? ((strategy.position_avg_price - initialStopLoss) / strategy.position_avg_price) * 100 : ((initialStopLoss - strategy.position_avg_price) / strategy.position_avg_price) * 100
+
+    tradeLabel := tradeLabel + "\n" + str.tostring(risk_percent, "#.##") + "R | $" + str.tostring(riskDollar, "#,###") + "\nPos: " + str.tostring(posPct, "#.#") + "% | Stop: " + str.tostring(stopPct, "#.##") + "%"
+
+    label.new(x=bar_index, y=isLongPosition ? low * 0.99 : high * 1.01, text=tradeLabel,
+              color=labelColor,
+              textcolor=color.white,
+              style=isLongPosition ? label.style_label_up : label.style_label_down,
+              size=size.small)
+
+// Initial stop info display
+if showInitialStopInfo and isEntryBar and not na(initialStopDistance)
+    stopInfoText = "Initial Stop: " + str.tostring(initialStopDistance / close * 100, "#.##") + "%\n" +
+                   "Multiplier: " + str.tostring(isLongPosition ? longInitialStopMultiplier : shortInitialStopMultiplier, "#.##") + "x"
+    label.new(x=bar_index, y=isLongPosition ? low * 0.98 : high * 1.02, text=stopInfoText,
+              color=color.new(color.purple, 80),
+              textcolor=color.white,
+              style=isLongPosition ? label.style_label_up : label.style_label_down,
+              size=size.tiny)
+
+// Signal expiration countdown display
+if enableSignalExpiration and show_signal_countdown
+    if not na(longSignalBar) and not na(pendingLongStopPrice) and strategy.position_size <= 0
+        barsRemaining = signalExpirationBars - (bar_index - longSignalBar)
+        if barsRemaining > 0
+            countdownText = "Long Signal: " + str.tostring(barsRemaining) + " bars left"
+            label.new(x=bar_index, y=high * 1.005, text=countdownText,
+                      color=color.new(color.green, 85),
+                      textcolor=color.green,
+                      style=label.style_label_down,
+                      size=size.tiny)
+
+    if not na(shortSignalBar) and not na(pendingShortStopPrice) and strategy.position_size >= 0
+        barsRemaining = signalExpirationBars - (bar_index - shortSignalBar)
+        if barsRemaining > 0
+            countdownText = "Short Signal: " + str.tostring(barsRemaining) + " bars left"
+            label.new(x=bar_index, y=low * 0.995, text=countdownText,
+                      color=color.new(color.red, 85),
+                      textcolor=color.red,
+                      style=label.style_label_up,
+                      size=size.tiny)
+
+// Update prev position
+prevPos := posNow

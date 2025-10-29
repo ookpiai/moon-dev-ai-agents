@@ -1,6 +1,6 @@
 """
-🌙 Moon Dev's xAI Grok Model Implementation
-Built with love by Moon Dev 🚀
+[MOON] Moon Dev's xAI Grok Model Implementation
+Built with love by Moon Dev [ROCKET]
 """
 
 from openai import OpenAI
@@ -61,20 +61,20 @@ class XAIModel(BaseModel):
                 api_key=self.api_key,
                 base_url=self.base_url
             )
-            cprint(f"✨ Moon Dev's magic initialized xAI Grok model: {self.model_name} 🌙", "green")
+            cprint(f"[OK] Moon Dev's magic initialized xAI Grok model: {self.model_name} [MOON]", "green")
 
             # Show model info if available
             model_info = self.AVAILABLE_MODELS.get(self.model_name, {})
             if model_info:
                 if "context_window" in model_info:
-                    cprint(f"📊 Context window: {model_info['context_window']}", "cyan")
+                    cprint(f"[STATS] Context window: {model_info['context_window']}", "cyan")
                 if "pricing" in model_info:
-                    cprint(f"💰 Pricing: {model_info['pricing']}", "cyan")
+                    cprint(f"[MONEY] Pricing: {model_info['pricing']}", "cyan")
                 if "rate_limits" in model_info:
-                    cprint(f"⚡ Rate limits: {model_info['rate_limits']}", "cyan")
+                    cprint(f"[BOLT] Rate limits: {model_info['rate_limits']}", "cyan")
 
         except Exception as e:
-            cprint(f"❌ Failed to initialize xAI Grok model: {str(e)}", "red")
+            cprint(f"[ERROR] Failed to initialize xAI Grok model: {str(e)}", "red")
             self.client = None
 
     def generate_response(self,
@@ -86,7 +86,7 @@ class XAIModel(BaseModel):
     ) -> ModelResponse:
         """Generate a response using xAI Grok"""
         try:
-            cprint(f"🤔 Moon Dev's {self.model_name} is thinking...", "yellow")
+            cprint(f"[EMOJI] Moon Dev's {self.model_name} is thinking...", "yellow")
 
             response = self.client.chat.completions.create(
                 model=self.model_name,
@@ -101,7 +101,7 @@ class XAIModel(BaseModel):
 
             content = response.choices[0].message.content.strip()
 
-            cprint(f"✅ Grok response received! 🌙", "green")
+            cprint(f"[OK] Grok response received! [MOON]", "green")
 
             return ModelResponse(
                 content=content,
@@ -111,7 +111,7 @@ class XAIModel(BaseModel):
             )
 
         except Exception as e:
-            cprint(f"❌ xAI Grok generation error: {str(e)}", "red")
+            cprint(f"[ERROR] xAI Grok generation error: {str(e)}", "red")
             raise
 
     def is_available(self) -> bool:

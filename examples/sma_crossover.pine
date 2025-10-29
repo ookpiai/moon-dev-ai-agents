@@ -1,0 +1,71 @@
+//@version=5
+strategy("Simple SMA Crossover - Moon Dev", overlay=true,
+         initial_capital=10000,
+         default_qty_type=strategy.percent_of_equity,
+         default_qty_value=95)
+
+// ============================================================================
+// 🌙 MOON DEV'S SIMPLE SMA CROSSOVER STRATEGY
+// ============================================================================
+//
+// STRATEGY LOGIC:
+// - Buy when fast SMA crosses above slow SMA (bullish crossover)
+// - Sell when fast SMA crosses below slow SMA (bearish crossover)
+//
+// BEST TIMEFRAMES: 5m, 15m, 30m, 1H
+// ASSET: BTC, ETH, SOL, or any liquid crypto
+//
+// ============================================================================
+
+// Inputs
+fastLength = input.int(10, "Fast SMA Length", minval=1, maxval=200)
+slowLength = input.int(30, "Slow SMA Length", minval=1, maxval=200)
+useStopLoss = input.bool(true, "Use Stop Loss")
+stopLossPct = input.float(2.0, "Stop Loss %", minval=0.1, maxval=10, step=0.1)
+useTakeProfit = input.bool(true, "Use Take Profit")
+takeProfitPct = input.float(4.0, "Take Profit %", minval=0.1, maxval=20, step=0.1)
+
+// Calculate Indicators
+fastSMA = ta.sma(close, fastLength)
+slowSMA = ta.sma(close, slowLength)
+
+// Entry Conditions
+longCondition = ta.crossover(fastSMA, slowSMA)
+exitCondition = ta.crossunder(fastSMA, slowSMA)
+
+// Calculate Stop Loss & Take Profit
+var float entryPrice = na
+if (longCondition)
+    entryPrice := close
+
+stopLossPrice = useStopLoss and not na(entryPrice) ? entryPrice * (1 - stopLossPct/100) : na
+takeProfitPrice = useTakeProfit and not na(entryPrice) ? entryPrice * (1 + takeProfitPct/100) : na
+
+// Execute Trades
+if (longCondition)
+    strategy.entry("🚀 Moon Dev Long", strategy.long)
+
+if (exitCondition)
+    strategy.close("🚀 Moon Dev Long", comment="💰 Exit Signal")
+
+// Exit on Stop Loss
+if (useStopLoss and not na(stopLossPrice) and close <= stopLossPrice)
+    strategy.close("🚀 Moon Dev Long", comment="🛑 Stop Loss")
+
+// Exit on Take Profit
+if (useTakeProfit and not na(takeProfitPrice) and close >= takeProfitPrice)
+    strategy.close("🚀 Moon Dev Long", comment="💎 Take Profit")
+
+// Plot Indicators
+plot(fastSMA, color=color.new(color.blue, 0), linewidth=2, title="Fast SMA")
+plot(slowSMA, color=color.new(color.red, 0), linewidth=2, title="Slow SMA")
+
+// Plot Entry/Exit Signals
+plotshape(longCondition, style=shape.triangleup, location=location.belowbar,
+          color=color.new(color.green, 0), size=size.small, title="Buy Signal")
+plotshape(exitCondition, style=shape.triangledown, location=location.abovebar,
+          color=color.new(color.red, 0), size=size.small, title="Sell Signal")
+
+// Background Color for Trend
+bgcolor(fastSMA > slowSMA ? color.new(color.green, 90) : color.new(color.red, 90),
+        title="Trend Background")

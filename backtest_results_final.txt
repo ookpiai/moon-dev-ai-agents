@@ -1,0 +1,77 @@
+================================================================================
+MOON DEV'S ADX + SQUEEZE R-BASED BACKTEST
+================================================================================
+Data: 31066 bars from 2023-01-01 00:00:00 to 2023-11-20 19:15:00
+Initial Capital: $100,000
+Risk Per Trade: 0.5%
+Commission: 0.1% per trade
+================================================================================
+Backtest.run:   0%|          | 0/31007 [00:00<?, ?bar/s]                                                        Traceback (most recent call last):
+  File "C:\Users\oo\AppData\Roaming\Python\Python311\site-packages\pandas\core\indexes\range.py", line 413, in get_loc
+    return self._range.index(new_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: -1 is not in range
+
+The above exception was the direct cause of the following exception:
+
+[SIGNAL] ADX LONG signal @ $16576.97 | Stop entry: $16580.24
+[ENTRY] LONG @ $16584.75 | Qty: 63 | Risk: 0.5% ($500.00)
+   Stop: $16576.79 (0.05%) | Pos Size: 1044.8%
+[SIGNAL] ADX SHORT signal @ $16570.61 | Stop entry: $16566.79
+[SIGNAL] ADX LONG signal @ $16600.36 | Stop entry: $16604.51
+[ENTRY] LONG @ $16656.66 | Qty: 37 | Risk: 0.5% ($500.00)
+   Stop: $16643.30 (0.08%) | Pos Size: 616.3%
+[SQUEEZE] SQUEEZE LONG @ $16656.66 | Qty: 37
+[SQUEEZE] SQUEEZE LONG @ $16727.63 | Qty: 31
+[SIGNAL] ADX LONG signal @ $16737.38 | Stop entry: $16744.52
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $16682.08 | Stop entry: $16667.03
+[ENTRY] SHORT @ $16666.01 | Qty: 54 | Risk: 0.5% ($500.00)
+   Stop: $16675.27 (0.06%) | Pos Size: 900.0%
+[SIGNAL] ADX LONG signal @ $16754.64 | Stop entry: $16754.99
+[SQUEEZE] SQUEEZE LONG @ $16754.64 | Qty: 51
+[EXPIRED] Long signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $16655.42 | Stop entry: $16644.08
+[ENTRY] SHORT @ $16640.60 | Qty: 27 | Risk: 0.5% ($500.00)
+   Stop: $16658.94 (0.11%) | Pos Size: 449.3%
+[SQUEEZE] SQUEEZE SHORT @ $16640.60 | Qty: 27
+[SQUEEZE] SQUEEZE SHORT @ $16644.33 | Qty: 27
+[SIGNAL] ADX LONG signal @ $16707.52 | Stop entry: $16719.84
+[ENTRY] LONG @ $16734.50 | Qty: 40 | Risk: 0.5% ($500.00)
+   Stop: $16721.97 (0.07%) | Pos Size: 669.4%
+[SQUEEZE] SQUEEZE LONG @ $16829.45 | Qty: 28
+[SIGNAL] ADX LONG signal @ $16819.91 | Stop entry: $16831.01
+[SIGNAL] ADX LONG signal @ $16831.97 | Stop entry: $16856.30
+[SIGNAL] ADX LONG signal @ $16847.96 | Stop entry: $16852.35
+[ENTRY] LONG @ $16874.56 | Qty: 29 | Risk: 0.5% ($500.00)
+   Stop: $16857.11 (0.10%) | Pos Size: 489.4%
+[SIGNAL] ADX SHORT signal @ $16805.45 | Stop entry: $16789.90
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $16816.34 | Stop entry: $16810.21
+[ENTRY] SHORT @ $16800.58 | Qty: 64 | Risk: 0.5% ($500.00)
+   Stop: $16808.42 (0.05%) | Pos Size: 1075.2%
+[SIGNAL] ADX SHORT signal @ $16804.27 | Stop entry: $16796.06
+[EXPIRED] Short signal EXPIRED after 13 bars
+[SIGNAL] ADX SHORT signal @ $16802.85 | Stop entry: $16802.17
+[ENTRY] SHORT @ $16797.95 | Qty: 66 | Risk: 0.5% ($500.00)
+   Stop: $16805.58 (0.05%) | Pos Size: 1108.7%
+[SQUEEZE] SQUEEZE LONG @ $16832.91 | Qty: 4
+ERROR: Error running backtest: -1
+Traceback (most recent call last):
+  File "C:\Users\oo\Desktop\moon-dev-ai-agents\src\data\pinescript_conversions\backtests\ADX_Squeeze_R_Based_BT.py", line 503, in <module>
+    stats = bt.run()
+            ^^^^^^^^
+  File "C:\Users\oo\AppData\Roaming\Python\Python311\site-packages\backtesting\backtesting.py", line 1339, in run
+    strategy.next()
+  File "C:\Users\oo\Desktop\moon-dev-ai-agents\src\data\pinescript_conversions\backtests\ADX_Squeeze_R_Based_BT.py", line 376, in next
+    dBandsStop = self.lower_band[-1] if self.isLongPosition else self.upper_band[-1]
+                 ~~~~~~~~~~~~~~~^^^^
+  File "C:\Users\oo\AppData\Roaming\Python\Python311\site-packages\pandas\core\series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\oo\AppData\Roaming\Python\Python311\site-packages\pandas\core\series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\oo\AppData\Roaming\Python\Python311\site-packages\pandas\core\indexes\range.py", line 415, in get_loc
+    raise KeyError(key) from err
+KeyError: -1

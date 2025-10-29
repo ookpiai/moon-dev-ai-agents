@@ -1,6 +1,6 @@
 """
-🌙 Moon Dev's Claude Model Implementation
-Built with love by Moon Dev 🚀
+[MOON] Moon Dev's Claude Model Implementation
+Built with love by Moon Dev [ROCKET]
 """
 
 from anthropic import Anthropic
@@ -24,7 +24,7 @@ class ClaudeModel(BaseModel):
         "claude-3-haiku": "Fast, efficient Claude 3 model"
     }
     
-    def __init__(self, api_key: str, model_name: str = "claude-3-haiku", **kwargs):
+    def __init__(self, api_key: str, model_name: str = "claude-3-5-haiku-20241022", **kwargs):
         self.model_name = model_name
         super().__init__(api_key, **kwargs)
     
@@ -32,9 +32,9 @@ class ClaudeModel(BaseModel):
         """Initialize the Anthropic client"""
         try:
             self.client = Anthropic(api_key=self.api_key)
-            cprint(f"✨ Initialized Claude model: {self.model_name}", "green")
+            cprint(f"[OK] Initialized Claude model: {self.model_name}", "green")
         except Exception as e:
-            cprint(f"❌ Failed to initialize Claude model: {str(e)}", "red")
+            cprint(f"[ERROR] Failed to initialize Claude model: {str(e)}", "red")
             self.client = None
     
     def generate_response(self, 
@@ -64,7 +64,7 @@ class ClaudeModel(BaseModel):
             )
             
         except Exception as e:
-            cprint(f"❌ Claude generation error: {str(e)}", "red")
+            cprint(f"[ERROR] Claude generation error: {str(e)}", "red")
             raise
     
     def is_available(self) -> bool:
